@@ -1,6 +1,8 @@
 # Step 1: Use a base image with Node.js. Nuxt 3 requires Node.js 14 or later.
 FROM node:18-alpine
 
+ENV NITRO_PRESET node-server
+
 # Step 2: Set the working directory in the container
 WORKDIR /app
 
@@ -23,12 +25,6 @@ RUN pnpm build
 
 # Step 8: Expose the port that Nuxt will run on
 ENV EXPOSE 3000
-
-# Step 9: Set environment variables
-ENV HOST 0.0.0.0
-ENV PORT 3000
-
-ENV NITRO_PRESET node-server
 
 # Step 10: Build the application
 CMD ["node", ".output/server/index.mjs"]
