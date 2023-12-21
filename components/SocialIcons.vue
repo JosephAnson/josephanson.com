@@ -1,36 +1,41 @@
 <script setup lang="ts">
-const props = defineProps({
-  socials: {
-    type: Object,
-    default: () => {}
-  }
-})
+const socials = {
+  twitter: 'https://twitter.com/josephleeanson',
+  instagram: 'https://www.instagram.com/joe.anson',
+  github: 'https://github.com/josephAnson',
+}
 
-const builtInSocials = ['twitter', 'facebook', 'instagram', 'youtube', 'github', 'medium']
+const socialsMap = {
+  twitter: 'i-ph:twitter-logo-duotone',
+  facebook: 'i-ph:facebook-logo-duotone',
+  instagram: 'i-ph:instagram-logo-duotone',
+  youtube: 'i-ph:youtube-logo-duotone',
+  github: 'i-ph:github-logo-duotone',
+  medium: 'i-ph:medium-logo-duotone',
+}
 
 const icons = computed<any>(() => {
-  return Object.entries(props.socials)
+  return Object.entries(socials)
     .map(([key, value]) => {
       if (typeof value === 'object') {
         return value
-      } else if (typeof value === 'string' && value && builtInSocials.includes(key)) {
+      }
+      else {
         return {
-          href: `https://${key}.com/${value}`,
-          icon: `uil:${key}`,
-          label: value
+          href: value,
+          icon: socialsMap[key as keyof typeof socialsMap],
+          label: value,
         }
-      } else {
-        return null
       }
     })
     .filter(Boolean)
 })
 
-const getRel = (icon:any) => {
+function getRel(icon: any) {
   const base = ['noopener', 'noreferrer']
-  if (icon.rel) {
+  if (icon.rel)
     base.push(icon.rel)
-  }
+
   return base.join(' ')
 }
 </script>
@@ -45,26 +50,8 @@ const getRel = (icon:any) => {
     :aria-label="icon.label"
     :href="icon.href"
     target="_blank"
+    class="h-6 w-6 flex hover:text-yellow-500"
   >
-    <Icon v-if="icon.icon" :name="icon.icon" />
+    <div v-if="icon.icon" :class="icon.icon" class="h-full w-full" />
   </NuxtLink>
 </template>
-
-<style scoped lang="ts">
-css({
-  a: {
-    '--social-icon-size': '24px',
-    width: 'var(--social-icon-size)',
-    height: 'var(--social-icon-size)',
-    display: 'flex',
-    ':hover': {
-      // TODO: why prose links is not yellow, should be primary
-      color: '{color.primary.500}',
-    },
-    svg: {
-      width: '100%',
-      height: '100%',
-    }
-  }
-})
-</style>

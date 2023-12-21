@@ -1,32 +1,23 @@
 <script setup lang="ts">
-
 defineProps({
   padded: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 })
 
 useHead({
   meta: [
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ]
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ],
 })
 </script>
 
 <template>
-  <Container class="app-layout">
+  <Container class="app-layout min-w-[calc(var(--size-xs))]">
     <AppLoadingBar />
     <AppHeader />
     <slot />
-    <AppFooter  />
+    <AppFooter />
   </Container>
 </template>
-
-<style lang="ts" scoped>
-css({
-  '.app-layout': {
-    minWidth: '{size.xs}'
-  }
-})
-</style>

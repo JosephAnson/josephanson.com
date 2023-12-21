@@ -1,45 +1,6 @@
-<template>
-  <article ref="article">
-    <!-- TODO: could be refactored as a transparent ButtonLink -->
-    <NuxtLink
-      :to="parentPath"
-      class="back"
-    >
-      <Icon name="ph:arrow-left" />
-      <span>
-        Back
-      </span>
-    </NuxtLink>
-    <header>
-      <h1
-        v-if="page?.title"
-        class="title"
-      >
-        {{ page.title }}
-      </h1>
-      <time
-        v-if="page?.date"
-        :datetime="page.date"
-      >
-        {{ formatDate(page.date) }}
-      </time>
-    </header>
-
-    <div class="prose">
-      <slot />
-      <div
-        class="back-to-top"
-      >
-        <ProseA @click.prevent.stop="onBackToTop">
-          {{ 'Back to top' }}
-          <Icon :name="material-symbols:arrow-upward" />
-        </ProseA>
-      </div>
-    </div>
-  </article>
-</template>
-
 <script setup lang="ts">
+import { formatDate } from '@vueuse/shared'
+
 const { page } = useContent()
 const route = useRoute()
 
@@ -48,74 +9,60 @@ const article = ref<HTMLElement | null>(null)
 if (page.value && page.value.cover) {
   useHead({
     meta: [
-      { property: 'og:image', content: page.value.cover }
-    ]
+      { property: 'og:image', content: page.value.cover },
+    ],
   })
 }
 
-const parentPath = computed(
-  () => {
-    const pathTabl = route.path.split('/')
-    pathTabl.pop()
-    return pathTabl.join('/')
-  }
-)
+const parentPath = computed(() => {
+  const pathTable = route.path.split('/')
+  pathTable.pop()
+  return pathTable.join('/') || '/'
+})
 
-const onBackToTop = () => {
+function onBackToTop() {
   article.value?.scrollIntoView({
-    behavior: 'smooth'
+    behavior: 'smooth',
   })
 }
 </script>
 
-<style scoped lang="ts">
-css({
-  article: {
-    maxWidth: '{alpine.readableLine}',
-    mx: 'auto',
-    py: '{space.4}',
-    '@sm': {
-      py: '{space.12}',
-    },
-    '.back': {
-      display: 'inline-flex',
-      alignItems: 'center',
-      fontSize: '{text.lg.fontSize}',
-      borderBottom: '1px solid {elements.border.secondary.static}',
-      '& :deep(svg)': {
-        width: '{size.16}',
-        height: '{size.16}',
-        marginRight: '{space.2}'
-      }
-    },
-    header: {
-      marginTop: '{space.16}',
-      marginBottom: '{space.12}',
-    },
-    '.title': {
-      fontSize: '{text.5xl.fontSize}',
-      lineHeight: '{text.5xl.lineHeight}',
-      fontWeight: '{fontWeight.semibold}',
-      marginBottom: '{space.4}'
-    },
-    time: {
-      color: '{elements.text.secondary.color.static}'
-    },
-    '.prose': {
-      '.back-to-top': {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        width: '100%',
-        a: {
-          cursor: 'pointer',
-          fontSize: '{text.lg.fontSize}'
-        }
-      },
-      '& :deep(h1)': {
-        display: 'none'
-      },
-    }
-  }
-})
-</style>
+<template>
+  <article ref="article">
+    <NuxtLink
+      :to="parentPath"
+      class="back border-elements-border-secondary-static inline-flex items-center border-b text-lg"
+    >
+      <div class="i-ph:arrow-left mr-2 h-4 w-4" />
+      <span>
+        Back
+      </span>
+    </NuxtLink>
+
+    <header class="mb-12 mt-16">
+      <h1
+        v-if="page?.title"
+        class="title mb-4 text-5xl font-semibold leading-tight"
+      >
+        {{ page.title }}
+      </h1>
+      <time
+        v-if="page?.date"
+        :datetime="page.date"
+        class="text-elements-text-secondary-color-static"
+      >
+        {{ formatDate(page.date) }}
+      </time>
+    </header>
+
+    <div class="prose">
+      <slot />
+      <div class="back-to-top w-full flex items-center justify-end">
+        <ProseA class="cursor-pointer text-lg" @click.prevent.stop="onBackToTop">
+          {{ 'Back to top' }}
+          <div class="i-material-symbols:arrow-upward" />
+        </ProseA>
+      </div>
+    </div>
+  </article>
+</template>

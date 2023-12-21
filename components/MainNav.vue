@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const { navigation } = useContent()
-
 const emits = defineEmits(['linkClick'])
+
+const { navigation } = useContent()
 
 function handleClick() {
   emits('linkClick')
@@ -10,55 +10,21 @@ function handleClick() {
 
 <template>
   <nav>
-    <ul>
+    <ul class="w-full flex flex-col justify-center sm:flex-row space-y-4 sm:space-x-8 sm:space-y-0">
       <li
         v-for="link of navigation"
         :key="link._path"
+        class="relative"
       >
         <NuxtLink
           :to="link._path"
+          :class="{ 'text-primary-500': $route.path === link._path }"
           @click="handleClick"
         >
-          <span class="underline-fx" />
+          <span class="absolute bottom-[-4px] h-1 w-0 bg-current transition-width duration-200 ease-in-out hover:w-full" />
           {{ link.title }}
         </NuxtLink>
       </li>
     </ul>
   </nav>
 </template>
-
-<style scoped lang="ts">
-css({
-  nav: {
-    ul: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      justifyContent: 'center',
-      gap: '{space.4}',
-      '@sm': {
-        flexDirection: 'row',
-        gap: '{space.8}',
-      },
-      a: {
-        position: 'relative',
-        '&.router-link-active': {
-          color: '{color.primary.500}'
-        },
-        '.underline-fx': {
-          position: 'absolute',
-          bottom: '-4px',
-          width: 0,
-          height: '1px',
-          backgroundColor: 'currentColor',
-          transition: 'width 200ms ease-in-out',
-          'a:hover &&': {
-            width: '100%'
-          }
-        }
-      },
-
-    }
-  }
-})
-</style>

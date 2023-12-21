@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
-const onClick = () => {
+function onClick() {
   const values = ['system', 'light', 'dark']
   const index = values.indexOf(colorMode.preference)
   const next = (index + 1) % values.length
@@ -10,38 +10,20 @@ const onClick = () => {
 </script>
 
 <template>
-  <button aria-label="Color Mode" @click="onClick">
+  <button aria-label="Color Mode" class="h-6 w-6 flex hover:text-primary-500" @click="onClick">
     <ColorScheme>
       <template v-if="colorMode.preference === 'dark'">
-        <Icon name="uil:moon" />
+        <div class="i-ph:moon-duotone h-full w-full" />
         <span class="sr-only">Dark mode</span>
       </template>
       <template v-else-if="colorMode.preference === 'light'">
-        <Icon name="uil:sun" />
+        <div class="i-ph:sun-duotone h-full w-full" />
         <span class="sr-only">Light mode</span>
       </template>
       <template v-else>
-        <Icon name="uil:desktop" />
+        <div class="i-ph:desktop-duotone h-full w-full" />
         <span class="sr-only">System mode</span>
       </template>
     </ColorScheme>
   </button>
 </template>
-
-<style scoped lang="ts">
-css({
-  button: {
-    display: 'flex',
-    '--color-mode-switcher-size': '24px',
-    width: 'var(--color-mode-switcher-size)',
-    height: 'var(--color-mode-switcher-size)',
-    ':hover': {
-      color: '{color.primary.500}',
-    },
-    svg: {
-      width: '100%',
-      height: '100%',
-    }
-  }
-})
-</style>

@@ -1,14 +1,11 @@
 <script lang="ts" setup>
-
-import { appName } from "../constants";
-
 const show = ref(false)
 </script>
 
 <template>
-  <header :class="'left'">
-    <div class="menu">
-      <button @click="(show = !show)" aria-label="Navigation Menu">
+  <header class="left relative grid grid-cols-12 items-center gap-16 py-16">
+    <div class="menu absolute right-0 flex sm:hidden hover:text-primary-500">
+      <button aria-label="Navigation Menu" @click="(show = !show)">
         <svg width="24" height="24" viewBox="0 0 68 68" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 34C8 32.1362 8 31.2044 8.30448 30.4693C8.71046 29.4892 9.48915 28.7105 10.4693 28.3045C11.2044 28 12.1362 28 14 28C15.8638 28 16.7956 28 17.5307 28.3045C18.5108 28.7105 19.2895 29.4892 19.6955 30.4693C20 31.2044 20 32.1362 20 34C20 35.8638 20 36.7956 19.6955 37.5307C19.2895 38.5108 18.5108 39.2895 17.5307 39.6955C16.7956 40 15.8638 40 14 40C12.1362 40 11.2044 40 10.4693 39.6955C9.48915 39.2895 8.71046 38.5108 8.30448 37.5307C8 36.7956 8 35.8638 8 34Z" />
           <path d="M28 34C28 32.1362 28 31.2044 28.3045 30.4693C28.7105 29.4892 29.4892 28.7105 30.4693 28.3045C31.2044 28 32.1362 28 34 28C35.8638 28 36.7956 28 37.5307 28.3045C38.5108 28.7105 39.2895 29.4892 39.6955 30.4693C40 31.2044 40 32.1362 40 34C40 35.8638 40 36.7956 39.6955 37.5307C39.2895 38.5108 38.5108 39.2895 37.5307 39.6955C36.7956 40 35.8638 40 34 40C32.1362 40 31.2044 40 30.4693 39.6955C29.4892 39.2895 28.7105 38.5108 28.3045 37.5307C28 36.7956 28 35.8638 28 34Z" />
@@ -17,130 +14,18 @@ const show = ref(false)
       </button>
     </div>
 
-    <div class="overlay" :class="[show && 'show']">
+    <div class="overlay bg-backdrop absolute top-auto transform border border-gray-200 rounded-md p-24 pr-96 text-lg font-medium transition-all sm:hidden dark:border-gray-800" :class="[show && 'opacity-100 transform-none', !show && 'opacity-0 transform translateY(-10px) rotateY(-8deg) rotateX(-20deg) pointer-events-none']">
       <MainNav @link-click="show = !show" />
     </div>
 
-    <div class="logo">
-      <NuxtLink to="/" class="fallback">
+    <div class="logo height-8 col-span-12 flex sm:col-span-4">
+      <NuxtLink to="/" class="fallback line-height-lg flex text-xl font-semibold">
         {{ appName }}
       </NuxtLink>
     </div>
 
-    <div class="main-nav">
+    <div class="main-nav line-height-xl col-span-8 hidden justify-end text-xl font-medium sm:flex">
       <MainNav />
     </div>
   </header>
 </template>
-
-<style scoped lang="ts">
-css({
-  header: {
-    '--header-padding': '{space.16}',
-    '--logo-height': '{space.8}',
-    position: 'relative',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(12, minmax(0, 1fr))',
-    alignItems: 'center',
-    gap: '{space.4}',
-    py: 'var(--header-padding)',
-    '.menu': {
-      position: 'absolute',
-      display: 'flex',
-      ':hover': {
-        color: '{color.primary.500}',
-      },
-      '.left &&': {
-        right: 0
-      },
-      '@sm': {
-        display: 'none'
-      }
-    },
-    '.overlay': {
-      position: 'absolute',
-      top: 'calc(var(--header-padding) + var(--logo-height) + {space.2})',
-      backgroundColor: '{alpine.backdrop.backgroundColor}',
-      border: '1px solid {color.gray.200}',
-      borderRadius: '{radii.md}',
-      padding: '{space.6}',
-      paddingRight: '{space.24}',
-      fontSize: '{text.lg.fontSize}',
-      lineHeight: '{text.lg.lineHeight}',
-      fontWeight: '{fontWeight.medium}',
-      transition: 'all 250ms',
-      perspective: '2000px',
-      transformOrigin: 'top',
-      backdropFilter: 'blur(20px)',
-      willChange: 'opacity, transform',
-      '&:not(.show)': {
-        opacity: 0,
-        transform: 'translateY(-10px) rotateY(-8deg) rotateX(-20deg)',
-        '.left &&': {
-          transform: 'translateY(-10px) rotateY(8deg) rotateX(-20deg)',
-        },
-        pointerEvents: 'none'
-      },
-      '.left &&': {
-        right: 0,
-        padding: '{space.6}',
-        paddingLeft: '{space.16}',
-        textAlign: 'right'
-      },
-      '@sm': {
-        display: 'none'
-      },
-      '@dark': {
-        borderColor: '{color.gray.800}',
-      }
-    },
-    '.logo': {
-      display: 'flex',
-      gridColumn: 'span 12 / span 12',
-      height: 'var(--logo-height)',
-      a: {
-        display: 'flex',
-      },
-      '.center &&': {
-        gridColumn: 'span 12 / span 12',
-        justifyContent: 'center',
-      },
-      '.right &&': {
-        justifyContent: 'flex-end',
-      },
-      '@sm': {
-        gridColumn: 'span 4 / span 4',
-        gridColumnStart: 'auto',
-        '.right &&': {
-          order: 2,
-        },
-      },
-      '.fallback': {
-        fontSize: '{text.2xl.fontSize}',
-        lineHeight: '{text.2xl.lineHeight}',
-        fontWeight: '{fontWeight.semibold}'
-      }
-    },
-    '.main-nav': {
-      display: 'none',
-      '@sm': {
-        display: 'flex',
-        gridColumn: 'span 8 / span 8',
-        fontSize: '{text.xl.fontSize}',
-        lineHeight: '{text.xl.lineHeight}',
-        fontWeight: '{fontWeight.medium}',
-        '.center &&': {
-          gridColumn: 'span 12 / span 12',
-          justifyContent: 'center',
-        },
-        '.right &&': {
-          justifyContent: 'flex-start',
-        },
-        '.left &&': {
-          justifyContent: 'flex-end',
-        },
-      }
-    },
-  }
-})
-</style>

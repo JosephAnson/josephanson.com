@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useContentPreview } from '#imports'
-
-type Article = {
+interface Article {
   _path: string
   title: string
   date: string
@@ -14,41 +12,26 @@ const props = defineProps({
     type: Object,
     required: true,
     validator: (value: Article) => {
-      if (value?._path && value.title) { return true }
+      if (value?._path && value.title)
+        return true
       return false
-    }
+    },
   },
   featured: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 
-const id = computed(() => {
-  // @ts-ignore
-  return (process.dev || useContentPreview()?.isEnabled()) ? props.article?._id : undefined
-})
+const id = computed(() => props.article?._id)
 </script>
 
 <template>
   <article
     v-if="article._path && article.title"
-    :class="{ 'featured': featured }"
     :data-content-id="id"
   >
-    <div v-if="article.cover" class="image">
-      <div v-if="article?.badges">
-        <span
-          v-for="(badge, index) in article.badges"
-          :key="index"
-          :style="{
-            backgroundColor: badge?.bg || 'rgba(0, 0, 0, 0.3)',
-            color: badge?.color || 'white'
-          }"
-        >
-          {{ typeof badge === 'string' ? badge : badge.content }}
-        </span>
-      </div>
+    <div v-if="article.cover" class="aspect-w-16 aspect-h-9 w-full rounded-md object-cover">
       <NuxtLink :to="article._path">
         <NuxtImg
           :src="article.cover"
@@ -59,91 +42,23 @@ const id = computed(() => {
       </NuxtLink>
     </div>
 
-    <div class="content">
+    <div>
       <NuxtLink
         :to="article._path"
-        class="headline"
+        class="mb-2 block text-2xl"
+        :class="{ 'text-4xl leading-tight': featured }"
       >
-        <h1>
+        <h3>
           {{ article.title }}
-        </h1>
+        </h3>
       </NuxtLink>
 
-      <p class="description">
+      <p class="mb-4 leading-snug" :class="{ 'line-clamp-4': featured, 'line-clamp-2': !featured }">
         {{ article.description }}
       </p>
-      <time>
-        {{ formatDate(article.date) }}
+      <time class="text-sm text-gray-500 dark:text-gray-500">
+        {{ article.date }}
       </time>
     </div>
   </article>
 </template>
-
-<style scoped lang="ts">
-css({
-  article: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '{space.4}',
-    '&.featured': {
-      '@md': {
-        flexDirection: 'row',
-        gap: '{space.8}',
-      }
-    },
-    img: {
-      width: '100%',
-      aspectRatio: '16 / 9',
-      objectFit: 'cover',
-      borderRadius: '{radii.md}',
-    },
-    '.image': {
-      flex: 1,
-      div: {
-        position: 'absolute',
-        display: 'flex',
-        flexWrap: true,
-        gap: '{space.2}',
-        marginTop: '{space.2}',
-        marginLeft: '{space.2}',
-        span: {
-          padding: '{space.1}',
-          borderRadius: '{radii.sm}',
-          text: 'xs',
-          fontWeight: 700
-        }
-      }
-    },
-    '.content': {
-      display: 'flex',
-      flexDirection: 'column',
-      flex: 1,
-      '.headline': {
-        text: '2xl',
-        marginBottom: '{space.2}',
-        fontWeight: '{fontWeight.semibold}',
-        lineClamp: 2,
-        '.featured &&': {
-          text: '4xl',
-          lineClamp: 3,
-        },
-      },
-      '.description': {
-        marginBottom: '{space.4}',
-        lineClamp: 2,
-        '.featured &&': {
-          lineClamp: 4,
-        }
-      },
-      time: {
-        text: 'sm',
-        // TODO: add secondary color token
-        color: '{color.gray.500}',
-        '@dark': {
-          color: '{color.gray.500}',
-        }
-      }
-    },
-  }
-})
-</style>

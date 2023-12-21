@@ -15,9 +15,6 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@nuxt-themes/elements": "^0.9.5",
-    "@nuxt-themes/tokens": "^1.9.1",
-    "@nuxt-themes/typography": "^0.11.0",
     "@nuxt/content": "^2.9.0",
     "@nuxthq/studio": "^0.14.1",
     "@vueuse/core": "^10.7.0",
@@ -26,14 +23,15 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.6",
     "@iconify-json/carbon": "^1.1.27",
-    "@iconify-json/twemoji": "^1.1.15",
+    "@iconify-json/ph": "^1.1.9",
+    "@nuxt/image": "^1.1.0",
     "@nuxtjs/color-mode": "^3.3.2",
     "@unocss/eslint-config": "^0.58.0",
     "@unocss/nuxt": "^0.58.0",
     "@vueuse/nuxt": "^10.7.0",
     "consola": "^3.2.3",
-    "eslint-plugin-format": "^0.1.0",
     "eslint": "npm:eslint-ts-patch@^8.55.0-1",
+    "eslint-plugin-format": "^0.1.0",
     "eslint-ts-patch": "^8.55.0-1",
     "nuxt": "^3.8.2",
     "typescript": "^5.3.3",

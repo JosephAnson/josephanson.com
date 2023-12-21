@@ -2,29 +2,29 @@
 defineProps({
   image: {
     type: String,
-    default: null
+    default: null,
   },
   imageAlt: {
     type: String,
-    default: 'Hero Image'
+    default: 'Hero Image',
   },
   imagePosition: {
     type: String,
-    default: 'right'
-  }
+    default: 'right',
+  },
 })
 </script>
 
 <template>
-  <section class="hero">
+  <section class="hero grid gap-8 lg:grid-cols-2">
     <div class="layout">
       <div class="content">
-        <div class="title">
+        <div class="title text-4xl font-bold">
           <ContentSlot :use="$slots.title" unwrap="p">
             Hero title
           </ContentSlot>
         </div>
-        <div class="description">
+        <div class="description mt-3 text-xl">
           <ContentSlot :use="$slots.description" unwrap="p">
             Hero description
           </ContentSlot>
@@ -37,41 +37,8 @@ defineProps({
         :alt="imageAlt"
         :width="16"
         :height="9"
+        class="aspect-[16/9] w-full rounded-md object-cover"
       />
     </div>
   </section>
 </template>
-
-<style scoped lang="ts">
-css({
-  '.hero': {
-    '.layout': {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-      gap: '{space.8}',
-      '@lg': {
-        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-      },
-      '.title': {
-        fontSize: '{text.4xl.fontSize}',
-        lineHeight: '{text.4xl.lineHeight}',
-        fontWeight: '{fontWeight.bold}',
-      },
-      '.description': {
-        marginTop: '{space.3}',
-        fontSize: '{text.xl.fontSize}',
-        lineHeight: '{text.xl.lineHeight}',
-      },
-      img: {
-        width: '100%',
-        aspectRatio: '16 / 9',
-        objectFit: 'cover',
-        borderRadius: '{radii.md}',
-        '&.left': {
-          order: -1
-        }
-      },
-    }
-  }
-})
-</style>
