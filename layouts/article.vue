@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { formatDate } from '@vueuse/shared'
-
 const { page } = useContent()
 const route = useRoute()
 
@@ -46,13 +44,6 @@ function onBackToTop() {
       >
         {{ page.title }}
       </h1>
-      <time
-        v-if="page?.date"
-        :datetime="page.date"
-        class="text-elements-text-secondary-color-static"
-      >
-        {{ formatDate(page.date) }}
-      </time>
     </header>
 
     <div class="prose">
