@@ -24,6 +24,7 @@
     "@antfu/eslint-config": "^2.4.6",
     "@iconify-json/carbon": "^1.1.27",
     "@iconify-json/ph": "^1.1.9",
+    "@nuxt/devtools": "^1.0.6",
     "@nuxt/image": "^1.1.0",
     "@nuxtjs/color-mode": "^3.3.2",
     "@unocss/eslint-config": "^0.58.0",

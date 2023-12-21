@@ -59,8 +59,6 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: false,
       routes: ['/'],
-      ignore: ['/__pinceau_tokens_config.json', '/__pinceau_tokens_schema.json'],
     },
   },
-
 })
