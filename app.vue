@@ -1,6 +1,28 @@
+<script setup lang="ts">
+import { appName } from '~/constants'
+
+useHead({
+  title: appName,
+})
+</script>
+
 <template>
-  <div>
-    This is joe's nice new website, work in progress
-    <NuxtWelcome />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
+
+<style>
+html,
+body,
+#__nuxt {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  background: #222;
+  color: white;
+}
+</style>
