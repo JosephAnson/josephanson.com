@@ -16,6 +16,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  plugins: [
+    '~/plugins/router.client.ts',
+  ],
   pages: true,
   modules: [
     '@nuxthq/studio',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
 function onClick() {
-  const values = ['system', 'light', 'dark']
+  const values = ['system', 'dark', 'light']
   const index = values.indexOf(colorMode.preference)
   const next = (index + 1) % values.length
 

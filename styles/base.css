@@ -1,10 +1,42 @@
 html,
 body {
   height: 100vh;
-  overflow: hidden;
   --uno: bg-base font-sans;
 }
 
 .dark {
   color-scheme: dark;
+}
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #14b8a6;
+  opacity: 0.75;
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--s-dark, inherit);
+  background-color: #0e0e0e;
+  --twoslash-popup-bg: #0e0e0e;
+}
+
+html:not(.dark) .shiki,
+html:not(.dark) .shiki span {
+  color: var(--s-light, inherit);
+  background-color: #fafafa;
+  --twoslash-popup-bg: #fafafa;
+}
+
+.prose {
+  max-width: none;
 }

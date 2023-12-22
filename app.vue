@@ -12,7 +12,7 @@ useHead({
 <template>
   <AppLayout>
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
-      <div class="jumbo absolute opacity-50 -inset-[30px] dark:opacity-40" />
+      <div class="jumbo absolute opacity-50 -inset-[30px]" />
     </div>
     <NuxtPage class="font-sans" />
   </AppLayout>
