@@ -1,0 +1,66 @@
+@keyframes jumbo {
+    from {
+        background-position: 50% 50%, 50% 50%;
+    }
+    to {
+        background-position: 350% 50%, 350% 50%;
+    }
+}
+
+.jumbo {
+    --stripes: repeating-linear-gradient(
+            100deg,
+            #fff 0%,
+            #fff 7%,
+            transparent 10%,
+            transparent 12%,
+            #fff 16%
+    );
+    --stripesDark: repeating-linear-gradient(
+            100deg,
+            #000 0%,
+            #000 7%,
+            transparent 10%,
+            transparent 12%,
+            #000 16%
+    );
+    --rainbow: repeating-linear-gradient(
+            100deg,
+            #14b8a6 /* base color */ 10%,
+            #16c2af /* lighter teal, similar to #60a5fa */ 15%,
+            #18d9b9 /* greenish teal, similar to #e879f9 */ 20%,
+            #1ae8c2 /* bright teal, similar to #5eead4 */ 25%,
+            #20e0ca /* soft teal, similar to #60a5fa */ 30%,
+            #26d8d2 /* blueish teal, similar to #60a5fa */ 35%,
+            #2dd0da /* purplish teal, similar to #e879f9 */ 40%
+    );
+    background-image: var(--stripes), var(--rainbow);
+    background-size: 300%, 200%;
+    background-position: 50% 50%, 50% 50%;
+
+    filter: blur(10px) invert(100%);
+
+    mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 80%);
+
+    pointer-events: none;
+}
+
+.jumbo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--stripes), var(--rainbow);
+    background-size: 200%, 100%;
+    animation: jumbo 90s linear infinite;
+    background-attachment: fixed;
+    mix-blend-mode: difference;
+}
+
+.dark .jumbo {
+    background-image: var(--stripesDark), var(--rainbow);
+    filter: blur(10px) opacity(50%) saturate(200%);
+}
+
+.dark .jumbo::after {
+    background-image: var(--stripesDark), var(--rainbow);
+}

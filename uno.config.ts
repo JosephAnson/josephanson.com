@@ -30,6 +30,10 @@ export default defineConfig({
     transformerVariantGroup(),
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+    },
     colors: {
       primary: {
         50: '#f0fdfa',

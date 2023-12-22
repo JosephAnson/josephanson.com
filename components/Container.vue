@@ -13,7 +13,7 @@ defineProps({
 </script>
 
 <template>
-  <component :is="as" class="mx-auto max-w-7xl">
+  <component :is="as" class="max-w-7xl container">
     <slot />
   </component>
 </template>

@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 const show = ref(false)
+const menu = ref(null)
+
+onClickOutside(menu, () => show.value = false)
 </script>
 
 <template>
@@ -12,10 +15,9 @@ const show = ref(false)
           <path d="M48 34C48 32.1362 48 31.2044 48.3045 30.4693C48.7105 29.4892 49.4892 28.7105 50.4693 28.3045C51.2044 28 52.1362 28 54 28C55.8638 28 56.7956 28 57.5307 28.3045C58.5108 28.7105 59.2895 29.4892 59.6955 30.4693C60 31.2044 60 32.1362 60 34C60 35.8638 60 36.7956 59.6955 37.5307C59.2895 38.5108 58.5108 39.2895 57.5307 39.6955C56.7956 40 55.8638 40 54 40C52.1362 40 51.2044 40 50.4693 39.6955C49.4892 39.2895 48.7105 38.5108 48.3045 37.5307C48 36.7956 48 35.8638 48 34Z" />
         </svg>
       </button>
-    </div>
-
-    <div class="overlay bg-backdrop absolute top-auto transform border border-gray-200 rounded-md p-24 pr-96 text-lg font-medium transition-all sm:hidden dark:border-gray-800" :class="[show && 'opacity-100 transform-none', !show && 'opacity-0 transform translateY(-10px) rotateY(-8deg) rotateX(-20deg) pointer-events-none']">
-      <MainNav @link-click="show = !show" />
+      <div ref="menu" class="overlay bg-backdrop absolute right-100% top-0 transform border border-gray-200 rounded-md bg-gray-100 p-4 text-lg font-medium transition-all sm:hidden dark:border-gray-800 dark:bg-gray-900" :class="[show && 'opacity-100 transform-none', !show && 'opacity-0 transform translateY(-10px) rotateY(-8deg) rotateX(-20deg) pointer-events-none']">
+        <MainNav @link-click="show = !show" />
+      </div>
     </div>
 
     <div class="logo height-8 col-span-12 flex sm:col-span-4">

@@ -2,6 +2,7 @@
 import '@unocss/reset/tailwind.css'
 import './styles/base.css'
 import './styles/prose.css'
+import './styles/rays.css'
 
 useHead({
   title: appName,
@@ -10,6 +11,9 @@ useHead({
 
 <template>
   <AppLayout>
+    <div class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="jumbo absolute opacity-50 -inset-[30px] dark:opacity-40" />
+    </div>
     <NuxtPage class="font-sans" />
   </AppLayout>
 </template>
