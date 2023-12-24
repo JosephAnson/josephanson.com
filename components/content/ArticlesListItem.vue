@@ -30,7 +30,7 @@ const id = computed(() => props.article?._id)
   <li>
     <NuxtLink
       :to="article._path"
-      class="mb-2 block text-xl"
+      class="mb-2 block text-xl text-primary-500"
     >
       <article
         v-if="article._path && article.title"

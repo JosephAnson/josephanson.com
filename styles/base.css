@@ -22,6 +22,14 @@ body {
   color-scheme: dark;
 }
 
+.prose code {
+  --uno: color-primary-500 font-mono;
+}
+
+.dark .prose code {
+  color: #BD976A
+}
+
 * {
   scrollbar-color: var(--c-scrollbar) var(--c-bg);
 }
@@ -43,14 +51,12 @@ body {
 
 .dark .shiki,
 .dark .shiki span {
-  color: var(--s-dark, inherit);
   background-color: #0e0e0e;
   --twoslash-popup-bg: #0e0e0e;
 }
 
 html:not(.dark) .shiki,
 html:not(.dark) .shiki span {
-  color: var(--s-light, inherit);
   background-color: #fafafa;
   --twoslash-popup-bg: #fafafa;
 }
