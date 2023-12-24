@@ -1,4 +1,8 @@
 :root {
+  --un-prose-links: #1e62af;
+}
+
+html.dark {
   --un-prose-links: #93C5FD;
 }
 
