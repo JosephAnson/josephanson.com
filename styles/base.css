@@ -1,3 +1,15 @@
+:root {
+  --c-bg: #fff;
+  --c-scrollbar: #eee;
+  --c-scrollbar-hover: #bbb;
+}
+
+html.dark {
+  --c-bg: #050505;
+  --c-scrollbar: #111;
+  --c-scrollbar-hover: #222;
+}
+
 html,
 body {
   height: 100vh;
@@ -8,6 +20,10 @@ body {
 .dark {
   background: white;
   color-scheme: dark;
+}
+
+* {
+  scrollbar-color: var(--c-scrollbar) var(--c-bg);
 }
 
 #nprogress {
