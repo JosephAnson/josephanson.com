@@ -19,54 +19,26 @@ function onClose() {
   show.value = false
 }
 
-watch(show, (newShow) => {
-  // @ts-expect-error experimental API
-  const isAppearanceTransition = document.startViewTransition
-    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const x = computed(() => buttonX.value + width.value / 2)
+const y = computed(() => buttonY.value + height.value / 2)
 
-  if (!isAppearanceTransition)
-    return
-
-  const x = buttonX.value + width.value / 2
-  const y = buttonY.value + height.value
-
-  const endRadius = Math.hypot(
-    Math.max(x, innerWidth - x),
-    Math.max(y, innerHeight - y),
-  )
-  // @ts-expect-error: Transition API
-  const transition = document.startViewTransition()
-  transition.ready
-    .then(() => {
-      const clipPath = [
-          `circle(0px at ${x}px ${y}px)`,
-          `circle(${endRadius}px at ${x}px ${y}px)`,
-      ]
-
-      document.documentElement.animate(
-        {
-          clipPath: !newShow
-            ? [...clipPath].reverse()
-            : clipPath,
-        },
-        {
-          duration: 400,
-          easing: 'ease-in-out',
-          pseudoElement: !newShow
-            ? '::view-transition-old(root)'
-            : '::view-transition-new(root)',
-        },
-      )
-    })
-})
+const endRadius = computed(() => Math.hypot(
+  Math.max(x.value, innerWidth - x.value),
+  Math.max(y.value, innerHeight - y.value),
+))
 </script>
 
 <template>
   <div
     ref="menu"
-    class="pointer-events-none fixed inset-0 z-10 flex flex-col items-center justify-center bg-white py-10 opacity-0 transition-all transition-duration-250 dark:bg-black md:py-19"
+    class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10 bg-white py-8 transition-all transition-duration-500 ease-out dark:bg-black md:py-16"
     :class="{
-      'opacity-100 !pointer-events-auto': show,
+      '!pointer-events-auto': show,
+    }"
+    :style="{
+      clipPath: !show
+        ? `circle(0px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`
+        : `circle(${endRadius}px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`,
     }"
   >
     <Container class="h-100%">
@@ -82,11 +54,11 @@ watch(show, (newShow) => {
             >
               <NuxtLink
                 :to="link._path"
-                class="group relative text-5xl leading-loose md:text-7xl md:leading-loose"
+                class="group relative text-5xl font-bold leading-loose md:text-7xl md:leading-loose"
                 :class="{ 'text-primary-500': $route.path === link._path }"
                 @click="onClose"
               >
-                <span class="absolute bottom--4px h-1px w-0 bg-primary-500 transition-width duration-200 ease-in-out group-hover:w-full" />
+                <span class="absolute bottom--4px h-2px w-0 bg-primary-500 transition-width duration-200 ease-in-out group-hover:w-full" />
                 {{ link.title }}
               </NuxtLink>
             </li>

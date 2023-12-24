@@ -9,18 +9,22 @@ function toggleMenu() {
 </script>
 
 <template>
-  <header class="relative flex items-start justify-between gap-16 pb-16">
-    <NuxtLink to="/" class="flex text-2xl font-serif">
-      J. Anson
-    </NuxtLink>
+  <header class="relative pb-16">
+    <Container>
+      <div class="flex items-start justify-between gap-16">
+        <NuxtLink to="/" class="flex text-2xl font-serif">
+          J. Anson
+        </NuxtLink>
 
-    <div class="flex items-center gap-4">
-      <ToggleTheme />
-      <BaseButton class="rounded bg-white:20 px-4 py-2" aria-label="Navigation Menu" @click="toggleMenu()">
-        Menu
-      </BaseButton>
-    </div>
-
-    <MainNav v-model:show="show" />
+        <div class="flex items-center gap-4">
+          <ToggleTheme class="sm:hidden" />
+          <BaseButton class="rounded bg-white:20 px-4 py-2" aria-label="Navigation Menu" @click="toggleMenu()">
+            Menu
+          </BaseButton>
+        </div>
+      </div>
+    </Container>
   </header>
+
+  <MainNav v-model:show="show" />
 </template>
