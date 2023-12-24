@@ -50,7 +50,7 @@ function getRel(icon: any) {
     :aria-label="icon.label"
     :href="icon.href"
     target="_blank"
-    class="h-6 w-6 flex hover:text-yellow-500"
+    class="h-6 w-6 flex hover:text-primary-500"
   >
     <div v-if="icon.icon" :class="icon.icon" class="h-full w-full" />
   </NuxtLink>
