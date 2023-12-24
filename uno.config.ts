@@ -27,7 +27,7 @@ export default defineConfig({
     presetWebFonts({
       provider: 'bunny',
       fonts: {
-        sans: 'Noto Sans',
+        sans: ['Noto Sans', 'Noto Sans:400, 500,700'],
         mono: 'Noto Sans Mono',
       },
     }),

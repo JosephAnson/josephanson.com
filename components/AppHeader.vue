@@ -6,7 +6,7 @@ onClickOutside(menu, () => show.value = false)
 </script>
 
 <template>
-  <header class="left relative grid grid-cols-12 items-center gap-16 py-16">
+  <header class="left relative flex items-center justify-between gap-16 py-16">
     <div class="menu absolute right-0 flex sm:hidden hover:text-primary-500">
       <button aria-label="Navigation Menu" @click="(show = !show)">
         <svg width="24" height="24" viewBox="0 0 68 68" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -21,12 +21,12 @@ onClickOutside(menu, () => show.value = false)
     </div>
 
     <div class="logo height-8 col-span-12 flex sm:col-span-4">
-      <NuxtLink to="/" class="fallback line-height-lg flex text-xl font-semibold">
+      <NuxtLink to="/" class="fallback line-height-lg flex text-xl">
         {{ appName }}
       </NuxtLink>
     </div>
 
-    <div class="main-nav line-height-xl col-span-8 hidden justify-end text-xl font-medium sm:flex">
+    <div class="main-nav line-height-xl col-span-8 hidden justify-end font-medium uppercase sm:flex">
       <MainNav>
         <ToggleTheme />
       </MainNav>
