@@ -26,13 +26,13 @@
     );
     --rainbow: repeating-linear-gradient(
             100deg,
-            #ade9f4 /* base color */ 10%,
-            #90e0ef /* lighter teal, similar to #60a5fa */ 15%,
-            #90EFCF /* greenish teal, similar to #e879f9 */ 20%,
-            #1aa1c0 /* bright teal, similar to #5eead4 */ 25%,
-            #90B1EF /* soft teal, similar to #60a5fa */ 30%,
-            #1a6984 /* blueish teal, similar to #60a5fa */ 35%,
-            #1e566c /* purplish teal, similar to #e879f9 */ 40%
+            #93c5fd 10%,
+            #93c5fd 15%,
+            #60a9fa 20%,
+            #3b93f6 25%,
+            #2582eb 30%,
+            #1d75d8 35%,
+            #1e62af 40%
     );
     background-image: var(--stripes), var(--rainbow);
     background-size: 300%, 200%;
