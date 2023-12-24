@@ -47,8 +47,8 @@ export default defineNuxtConfig({
     },
     highlight: {
       theme: {
-        default: 'github-light',
-        dark: 'github-dark',
+        default: 'vitesse-light',
+        dark: 'vitesse-dark',
       },
       preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
     },

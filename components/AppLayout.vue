@@ -14,10 +14,11 @@ useHead({
 </script>
 
 <template>
-  <Container class="app-layout min-w-[calc(var(--size-xs))]">
+  <Container class="app-layout min-h-screen flex flex-col">
     <AppLoadingBar />
     <AppHeader />
     <slot />
+    <span class="flex-auto" />
     <AppFooter />
   </Container>
 </template>

@@ -25,6 +25,8 @@ function handleClick() {
           {{ link.title }}
         </NuxtLink>
       </li>
+
+      <slot />
     </ul>
   </nav>
 </template>

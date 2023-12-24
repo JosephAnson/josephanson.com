@@ -2,6 +2,7 @@
 import '@unocss/reset/tailwind.css'
 import './styles/base.css'
 import './styles/prose.css'
+import './styles/animations.css'
 import './styles/rays.css'
 
 useHead({

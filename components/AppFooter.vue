@@ -20,11 +20,6 @@
       <div class="xs:col-span-4 xs:col-start-5 col-span-12 mb-8 flex justify-center gap-4">
         <SocialIcons />
       </div>
-      <div
-        class="xs:col-span-2 xs:col-start-11 xs:justify-end col-span-12 flex justify-center"
-      >
-        <ColorModeSwitch />
-      </div>
     </div>
   </footer>
 </template>

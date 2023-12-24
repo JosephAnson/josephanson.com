@@ -27,7 +27,9 @@ onClickOutside(menu, () => show.value = false)
     </div>
 
     <div class="main-nav line-height-xl col-span-8 hidden justify-end text-xl font-medium sm:flex">
-      <MainNav />
+      <MainNav>
+        <ToggleTheme />
+      </MainNav>
     </div>
   </header>
 </template>

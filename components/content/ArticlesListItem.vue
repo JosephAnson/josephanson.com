@@ -27,38 +27,26 @@ const id = computed(() => props.article?._id)
 </script>
 
 <template>
-  <article
-    v-if="article._path && article.title"
-    :data-content-id="id"
-  >
-    <div v-if="article.cover" class="aspect-w-16 aspect-h-9 w-full rounded-md object-cover">
-      <NuxtLink :to="article._path">
-        <NuxtImg
-          :src="article.cover"
-          :alt="article.title"
-          width="16"
-          height="9"
-        />
-      </NuxtLink>
-    </div>
-
-    <div>
-      <NuxtLink
-        :to="article._path"
-        class="mb-2 block text-2xl"
-        :class="{ 'text-4xl leading-tight': featured }"
+  <li>
+    <NuxtLink
+      :to="article._path"
+      class="mb-2 block text-2xl"
+    >
+      <article
+        v-if="article._path && article.title"
+        :data-content-id="id"
+        class="flex items-center"
       >
         <h3>
           {{ article.title }}
         </h3>
-      </NuxtLink>
-
-      <p class="mb-4 leading-snug" :class="{ 'line-clamp-4': featured, 'line-clamp-2': !featured }">
-        {{ article.description }}
-      </p>
-      <time class="text-sm text-gray-500 dark:text-gray-500">
-        {{ article.date }}
-      </time>
-    </div>
-  </article>
+        <p>
+          &nbsp;- {{ article.description }}
+        </p>
+        <time>
+          {{ article.date }}
+        </time>
+      </article>
+    </NuxtLink>
+  </li>
 </template>

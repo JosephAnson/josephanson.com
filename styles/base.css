@@ -37,6 +37,6 @@ html:not(.dark) .shiki span {
   --twoslash-popup-bg: #fafafa;
 }
 
-.prose {
-  max-width: none;
+strong {
+  font-weight: 900 !important;
 }
