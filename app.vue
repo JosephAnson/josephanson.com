@@ -40,7 +40,7 @@ const clipPath = computed(() => {
     <div class="relative flex flex-auto flex-col of-hidden rounded-md bg-white py-8 dark:bg-black md:py-16">
       <TheAnimation fragment-shader-options="1" />
       <div
-        class="absolute inset-0 z-0 bg-secondary-500 opacity-10 opacity-30 transition-all duration-500"
+        class="absolute inset-0 z-0 bg-secondary-900:15 transition-all duration-500"
         :style="{
           clipPath,
         }"
