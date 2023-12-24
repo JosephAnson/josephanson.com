@@ -10,10 +10,6 @@
       <MainNav />
     </div>
 
-    <p class="mb-4 text-center">
-      Follow me on
-    </p>
-
     <div
       class="grid grid-cols-12 w-full items-center justify-between gap-4"
     >
