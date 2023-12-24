@@ -40,9 +40,6 @@ const id = computed(() => props.article?._id)
         <h3>
           {{ article.title }}
         </h3>
-        <p>
-          &nbsp;- {{ article.description }}
-        </p>
         <time>
           {{ article.date }}
         </time>
