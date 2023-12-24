@@ -27,8 +27,9 @@ export default defineConfig({
     presetWebFonts({
       provider: 'bunny',
       fonts: {
-        sans: ['Noto Sans', 'Noto Sans:400, 500,700'],
-        mono: 'Noto Sans Mono',
+        sans: ['Poppins', 'Poppins:400, 500,700'],
+        serif: ['Yeseva One', 'Yeseva One:400, 500, 700'],
+        mono: 'DM Sans Mono',
       },
     }),
   ],
@@ -39,7 +40,6 @@ export default defineConfig({
   theme: {
     container: {
       center: true,
-      padding: '2rem',
     },
     colors: {
       primary: {

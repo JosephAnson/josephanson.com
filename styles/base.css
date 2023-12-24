@@ -1,10 +1,12 @@
 html,
 body {
   height: 100vh;
-  --uno: bg-base font-sans;
+  --uno: font-sans;
+  background: black;
 }
 
 .dark {
+  background: white;
   color-scheme: dark;
 }
 
