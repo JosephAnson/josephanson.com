@@ -149,5 +149,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="container" class="filter-blur-xs absolute inset-0 z-0 h-full w-full opacity-30 filter-brightness-300 filter-hue-rotate--20deg" />
+  <div ref="container" class="filter-blur-xs absolute inset-0 z-0 h-full w-full opacity-10 filter-brightness-300 filter-hue-rotate--20deg" />
 </template>

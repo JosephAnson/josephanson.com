@@ -26,7 +26,7 @@ const clipPath = computed(() => {
     case '/blog':
       return `circle(90vw at 100dvw 150px)`
     case '/projects':
-      return `circle(40vw at 50dvw 50dvh)`
+      return `circle(50vw at 50dvw 50dvh)`
     case '/notes':
       return `circle(90vw at 100dvw 100dvh)`
     default:
