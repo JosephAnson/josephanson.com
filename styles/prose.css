@@ -1,9 +1,9 @@
 :root {
-  --un-prose-links: #1e62af;
+  --un-prose-links: #a26726;
 }
 
 html.dark {
-  --un-prose-links: #93C5FD;
+  --un-prose-links: #f6a33b;
 }
 
 .prose a {

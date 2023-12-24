@@ -23,11 +23,11 @@ body {
 }
 
 .prose code {
-  --uno: color-primary-500 font-mono;
+  --uno: color-primary-800 font-mono;
 }
 
 .dark .prose code {
-  color: #BD976A
+  --uno: color-primary-400 font-mono;
 }
 
 * {

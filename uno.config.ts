@@ -43,6 +43,18 @@ export default defineConfig({
     },
     colors: {
       primary: {
+        50: '#fdf6ec',
+        100: '#fae6cf',
+        200: '#f7d5a1',
+        300: '#f4c473',
+        400: '#f1b345',
+        500: '#f6a33b',
+        600: '#da8f34',
+        700: '#be7b2d',
+        800: '#a26726',
+        900: '#86531f',
+      },
+      secondary: {
         default: '#3b93f6',
         50: '#eff7ff',
         100: '#dbecfe',
@@ -58,5 +70,4 @@ export default defineConfig({
       },
     },
   },
-
 })
