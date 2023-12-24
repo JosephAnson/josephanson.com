@@ -14,7 +14,7 @@ useHead({
 </script>
 
 <template>
-  <Container class="app-layout min-h-screen flex flex-col">
+  <Container class="app-layout min-h-screen flex flex-col text-sm md:text-base">
     <AppLoadingBar />
     <AppHeader />
     <slot />

@@ -7,7 +7,7 @@ onClickOutside(menu, () => show.value = false)
 
 <template>
   <header class="left relative flex items-center justify-between gap-16 py-16">
-    <div class="menu absolute right-0 flex sm:hidden hover:text-primary-500">
+    <div class="menu absolute right-0 z-10 flex sm:hidden">
       <button aria-label="Navigation Menu" @click="(show = !show)">
         <svg width="24" height="24" viewBox="0 0 68 68" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 34C8 32.1362 8 31.2044 8.30448 30.4693C8.71046 29.4892 9.48915 28.7105 10.4693 28.3045C11.2044 28 12.1362 28 14 28C15.8638 28 16.7956 28 17.5307 28.3045C18.5108 28.7105 19.2895 29.4892 19.6955 30.4693C20 31.2044 20 32.1362 20 34C20 35.8638 20 36.7956 19.6955 37.5307C19.2895 38.5108 18.5108 39.2895 17.5307 39.6955C16.7956 40 15.8638 40 14 40C12.1362 40 11.2044 40 10.4693 39.6955C9.48915 39.2895 8.71046 38.5108 8.30448 37.5307C8 36.7956 8 35.8638 8 34Z" />
