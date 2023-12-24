@@ -42,7 +42,7 @@ const endRadius = computed(() => Math.hypot(
     <TheRays />
     <BaseContainer class="h-100%">
       <div class="relative h-full flex items-center">
-        <BaseButton ref="closeButton" class="absolute right-0 top-0" aria-label="Navigation Menu" @click="onClose">
+        <BaseButton ref="closeButton" class="absolute right-0 top-0 rounded bg-white:20 px-4 py-2" aria-label="Navigation Menu" @click="onClose">
           Close
         </BaseButton>
         <nav>

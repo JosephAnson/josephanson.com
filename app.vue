@@ -18,7 +18,21 @@ useHead({
   ],
 })
 
-const radius = computed(() => `circle(75vw at 150px 150px)`)
+const route = useRoute()
+const clipPath = computed(() => {
+  switch (route.path) {
+    case '/':
+      return `circle(75vw at 150px 150px)`
+    case '/blog':
+      return `circle(55vw at 100dvw 150px)`
+    case '/projects':
+      return `circle(40vw at 50dvw 50dvh)`
+    case '/notes':
+      return `circle(90vw at 100dvw 100dvh)`
+    default:
+      return `circle(75vw at 150px 150px)`
+  }
+})
 </script>
 
 <template>
@@ -26,9 +40,9 @@ const radius = computed(() => `circle(75vw at 150px 150px)`)
     <div class="relative flex flex-auto flex-col of-hidden rounded-md bg-white py-8 dark:bg-black md:py-16">
       <TheAnimation fragment-shader-options="1" />
       <div
-        class="absolute inset-0 z-0 bg-secondary-500 opacity-10"
+        class="bg-secondary-500 absolute inset-0 z-0 opacity-10 opacity-30 transition-all duration-500"
         :style="{
-          clipPath: radius,
+          clipPath,
         }"
       />
 
