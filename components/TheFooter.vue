@@ -9,9 +9,9 @@
     <div
       class="flex gap-4"
     >
-      <SocialIcons />
+      <BaseSocialIcons />
     </div>
 
-    <ToggleTheme />
+    <BaseToggleTheme />
   </footer>
 </template>

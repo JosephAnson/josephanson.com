@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import BaseButton from '~/components/BaseButton.vue'
-
 const props = defineProps<{
   show: boolean
 }>()
@@ -41,7 +39,7 @@ const endRadius = computed(() => Math.hypot(
         : `circle(${endRadius}px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`,
     }"
   >
-    <Container class="h-100%">
+    <BaseContainer class="h-100%">
       <div class="relative h-full flex items-center">
         <BaseButton ref="closeButton" class="absolute right-0 top-0 rounded bg-white:20 px-4 py-2" aria-label="Navigation Menu" @click="onClose">
           Close
@@ -67,6 +65,6 @@ const endRadius = computed(() => Math.hypot(
           </ul>
         </nav>
       </div>
-    </Container>
+    </BaseContainer>
   </div>
 </template>

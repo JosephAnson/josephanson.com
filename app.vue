@@ -6,6 +6,16 @@ import './styles/animations.css'
 
 useHead({
   title: appName,
+  meta: [
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: 'view-transition',
+      content: 'same-origin',
+    },
+  ],
 })
 </script>
 
@@ -15,14 +25,14 @@ useHead({
       <TheRays />
       <TheHeader />
 
-      <Container class="flex flex-auto flex-col text-sm md:text-base">
+      <BaseContainer class="flex flex-auto flex-col text-sm md:text-base">
         <TheLoadingBar />
 
         <NuxtPage class="font-sans" />
 
         <span class="flex-auto" />
         <TheFooter />
-      </Container>
+      </BaseContainer>
     </div>
   </div>
 </template>
