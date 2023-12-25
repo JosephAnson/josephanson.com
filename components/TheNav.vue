@@ -29,7 +29,7 @@ const endRadius = computed(() => Math.hypot(
 <template>
   <div
     ref="menu"
-    class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10 bg-white py-8 transition-all transition-duration-500 ease-out dark:bg-black md:py-16"
+    class="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10 bg-secondary-50 py-8 transition-all transition-duration-500 ease-out dark:bg-secondary-950 md:py-16"
     :class="{
       '!pointer-events-auto': show,
     }"
