@@ -1,6 +1,14 @@
 import { appDescription } from './utils/constants'
 
 export default defineNuxtConfig({
+  extends: ['nuxt-umami'],
+  appConfig: {
+    umami: {
+      host: 'https://unami.josephanson.com/',
+      id: '12879b25-2e43-4ce5-8c63-b14c309854a8',
+      version: 2,
+    },
+  },
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',
@@ -29,8 +37,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
   experimental: {
-    payloadExtraction: false,
-    inlineSSRStyles: false,
     renderJsonPayloads: true,
     typedPages: true,
   },
