@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import * as THREE from 'three'
-import type { ShaderMaterial } from 'three/src/materials/ShaderMaterial'
-import type { WebGLRenderer } from 'three/src/renderers/WebGLRenderer'
-import type { Scene } from 'three/src/scenes/Scene'
-import type { Camera } from 'three/src/cameras/Camera'
+import type { Camera, Scene, ShaderMaterial, WebGLRenderer } from 'three'
 
 const props = withDefaults(defineProps<{
   fragmentShaderOptions: '1' | '2'
