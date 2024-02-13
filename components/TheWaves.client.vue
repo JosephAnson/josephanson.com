@@ -14,7 +14,7 @@ const waveColor = computed(() => {
 
 const height = 400
 const width = 1440
-const waves = computed(() => waveInit({
+const waves = ref(waveInit({
   height: 400,
   width: 1440,
   segmentCount: 12,
@@ -24,6 +24,21 @@ const waves = computed(() => waveInit({
   fillColor: waveColor.value,
   strokeColor: 'none',
 }))
+
+function changeWaves() {
+  waves.value = waveInit({
+    height: 400,
+    width: 1440,
+    segmentCount: 12,
+    layerCount: 4,
+    variance: 0.75,
+    strokeWidth: 0,
+    fillColor: waveColor.value,
+    strokeColor: 'none',
+  })
+}
+
+watch(waveColor, changeWaves)
 
 const styles = computed(() => waves.value.map((wave, index) => `
 .path-${index}{
@@ -53,6 +68,9 @@ useStyleTag(styles)
 </script>
 
 <template>
+  <BaseButton class="absolute z-10 bg-transparent md:bottom-10 md:left-10" @click="changeWaves">
+    <span class="i-ph:waves-duotone bg-none" />
+  </BaseButton>
   <svg
     v-for="(wave, index) in waves" :key="index" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${width} ${height}`"
     :class="`absolute bottom-0 z-${index}`"

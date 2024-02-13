@@ -17,7 +17,7 @@ function toggleMenu() {
         </NuxtLink>
 
         <div class="flex items-center gap-4">
-          <BaseToggleTheme class="sm:hidden" />
+          <BaseToggleTheme class="!hidden md:flex" />
           <BaseButton :theme="theme" aria-label="Navigation Menu" @click="toggleMenu()">
             Menu
           </BaseButton>
