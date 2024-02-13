@@ -3,7 +3,6 @@ import '@unocss/reset/tailwind-compat.css'
 import './styles/base.css'
 import './styles/prose.css'
 import './styles/animations.css'
-import TheWaves from '~/components/TheWaves.client.vue'
 
 const theme = useTheme()
 
@@ -41,10 +40,6 @@ useHead({
       <span class="flex-auto" />
     </div>
 
-    <TheFooter class="absolute bottom-0 z-4 w-full pb-6 md:mb-16" />
-
-    <ClientOnly>
-      <TheWaves />
-    </ClientOnly>
+    <TheFooter />
   </div>
 </template>

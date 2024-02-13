@@ -68,12 +68,11 @@ useStyleTag(styles)
 </script>
 
 <template>
-  <BaseButton class="absolute z-10 bg-transparent md:bottom-10 md:left-10" @click="changeWaves">
-    <span class="i-ph:waves-duotone bg-none" />
-  </BaseButton>
+  <slot :change-waves="changeWaves" />
+
   <svg
     v-for="(wave, index) in waves" :key="index" xmlns="http://www.w3.org/2000/svg" :viewBox="`0 0 ${width} ${height}`"
-    :class="`absolute bottom-0 z-${index}`"
+    :class="`fixed left-0 pointer-events-none bottom-0 z-${index}`"
   >
     <path
       class="transition-all duration-300"
