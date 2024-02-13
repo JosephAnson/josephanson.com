@@ -14,6 +14,8 @@ const colors: string[] = Object.entries(themeConfig.colors)
   .map(([key, value]) =>
     [
       `bg-${key}-500:20`,
+      `fill-${key}-300`,
+      `dark:fill-${key}-800`,
       ...Object.keys(value as Record<string, string>)
         .map(item => [`text-${key}-${item}`, `bg-${key}-${item}`, `dark:text-${key}-${item}`, `dark:bg-${key}-${item}`]),
     ].flat(),

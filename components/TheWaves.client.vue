@@ -1,16 +1,10 @@
 <script lang="ts" setup>
-import { themeConfig } from '~/utils/constants'
 import { Wavery, waveInit } from '~/utils/wave'
 
 const route = useRoute()
 const colorMode = useColorMode()
 
-const waveColor = computed(() => {
-  if (route.path === '/')
-    return colorMode.preference === 'dark' ? themeConfig.colors.primary['800'] : themeConfig.colors.primary['300']
-
-  return colorMode.preference === 'dark' ? themeConfig.colors.secondary['800'] : themeConfig.colors.secondary['300']
-})
+const theme = useTheme()
 
 const waveOptions = {
   height: 400,
@@ -66,8 +60,7 @@ useStyleTag(styles)
   >
     <path
       class="transition-all duration-300"
-      :class="`path-${index}`"
-      :fill="waveColor"
+      :class="`path-${index} fill-${theme}-300 dark:fill-${theme}-800`"
       :d="wave.d"
       :fill-opacity="(1 / waveOptions.layerCount) * (index + 1)"
     />
