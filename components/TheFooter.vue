@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <footer class="mt-10 pt-8">
+  <footer class="mt-2 pt-2 md:mt-10 md:pt-8">
     <BaseContainer>
       <div class="flex items-center justify-between">
         <div

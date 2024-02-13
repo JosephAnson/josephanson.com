@@ -7,8 +7,10 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import type { UserConfig } from '@unocss/core'
+import { themeConfig } from './utils/constants'
 
-export default defineConfig({
+export const unocssConfig: UserConfig<any> = {
   shortcuts: [
     ['btn', 'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
     ['icon-btn', 'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
@@ -37,37 +39,7 @@ export default defineConfig({
     transformerDirectives(),
     transformerVariantGroup(),
   ],
-  theme: {
-    container: {
-      center: true,
-    },
-    colors: {
-      primary: {
-        50: '#fdf6ec',
-        100: '#fae6cf',
-        200: '#f7d5a1',
-        300: '#f4c473',
-        400: '#f1b345',
-        500: '#f6a33b',
-        600: '#da8f34',
-        700: '#be7b2d',
-        800: '#a26726',
-        900: '#86531f',
-      },
-      secondary: {
-        default: '#3b93f6',
-        50: '#eff7ff',
-        100: '#dbecfe',
-        200: '#bfddfe',
-        300: '#93c5fd',
-        400: '#60a9fa',
-        500: '#3b93f6',
-        600: '#2582eb',
-        700: '#1d75d8',
-        800: '#1e62af',
-        900: '#1e518a',
-        950: '#173454',
-      },
-    },
-  },
-})
+  theme: themeConfig,
+}
+
+export default defineConfig(unocssConfig)

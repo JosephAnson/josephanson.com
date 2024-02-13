@@ -3,6 +3,9 @@ import '@unocss/reset/tailwind-compat.css'
 import './styles/base.css'
 import './styles/prose.css'
 import './styles/animations.css'
+import TheWaves from '~/components/TheWaves.vue'
+
+const theme = useTheme() // text-primary-950 text-secondary-950 dark:text-primary-50 dark:text-secondary-50
 
 useHead({
   title: appName,
@@ -17,47 +20,23 @@ useHead({
     },
   ],
 })
-
-const route = useRoute()
-const clipPath = computed(() => {
-  switch (route.path) {
-    case '/':
-      return `circle(75vw at 150px 150px)`
-    case '/blog':
-      return `circle(90vw at 100dvw 150px)`
-    case '/projects':
-      return `circle(50vw at 50dvw 50dvh)`
-    case '/notes':
-      return `circle(90vw at 100dvw 100dvh)`
-    default:
-      return `circle(75vw at 150px 150px)`
-  }
-})
 </script>
 
 <template>
-  <div class="h-100dvh flex flex-col bg-black p-2 dark:bg-white md:p-3">
-    <div class="relative flex flex-auto flex-col of-hidden rounded-md bg-white py-8 dark:bg-black md:py-16">
-      <TheAnimation fragment-shader-options="1" />
-      <div
-        class="absolute inset-0 z-0 bg-secondary-900:15 transition-all duration-500"
-        :style="{
-          clipPath,
-        }"
-      />
+  <div :class="`text-${theme}-950 h-100dvh flex flex-col bg-white dark:bg-black dark:text-${theme}-50`">
+    <div class="flex flex-grow-1 flex-col of-x-hidden pb-30">
+      <TheHeader />
 
-      <div class="flex flex-grow-1 flex-col of-x-hidden of-y-auto">
-        <TheHeader />
-
-        <BaseContainer class="relative z-1 text-sm md:text-base">
-          <NuxtLayout>
-            <NuxtPage class="font-sans" />
-          </NuxtLayout>
-        </BaseContainer>
-        <span class="flex-auto" />
-      </div>
-
-      <TheFooter />
+      <BaseContainer class="relative z-1 text-sm md:text-base">
+        <NuxtLayout>
+          <NuxtPage class="font-sans" />
+        </NuxtLayout>
+      </BaseContainer>
+      <span class="flex-auto" />
     </div>
+
+    <TheFooter class="absolute bottom-0 z-4 w-full pb-6 md:mb-16" />
+
+    <TheWaves />
   </div>
 </template>

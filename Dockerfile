@@ -1,5 +1,5 @@
 # Step 1: Use a base image with Node.js. Nuxt 3 requires Node.js 14 or later.
-FROM node:18-alpine
+FROM node:20-alpine
 
 ARG NUXT_PUBLIC_STUDIO_TOKENS
 

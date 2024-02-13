@@ -36,15 +36,12 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/image',
   ],
-  experimental: {
-    renderJsonPayloads: true,
-    typedPages: true,
-  },
   devtools: {
     enabled: true,
   },
   colorMode: {
     classSuffix: '',
+    preference: 'dark',
   },
   content: {
     documentDriven: true,
@@ -57,17 +54,6 @@ export default defineNuxtConfig({
         dark: 'vitesse-dark',
       },
       preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
-    },
-  },
-  nitro: {
-    esbuild: {
-      options: {
-        target: 'esnext',
-      },
-    },
-    prerender: {
-      crawlLinks: false,
-      routes: ['/'],
     },
   },
 })
