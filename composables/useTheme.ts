@@ -2,7 +2,7 @@ export function useTheme() {
   const route = useRoute()
   const currentTheme = useState<string>('primary')
 
-  const themes = ['primary', 'secondary', 'tertiary']
+  const themes = Object.keys(themeConfig.colors)
 
   watch(() => route.path, (path) => {
     if (path === '/projects')
