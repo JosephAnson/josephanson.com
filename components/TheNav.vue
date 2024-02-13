@@ -11,8 +11,6 @@ const menu = ref()
 const closeButton = ref()
 
 const theme = useTheme()
-// bg-primary-300 bg-secondary-300 text-primary-900 text-secondary-900 bg-primary-900 bg-secondary-900
-// dark:bg-primary-800 dark:bg-secondary-800  dark:text-primary-300 dark:text-secondary-300 dark:bg-primary-300 dark:bg-secondary-300
 
 const { navigation } = useContent()
 const { x: buttonX, y: buttonY, height, width } = useElementBounding(closeButton)

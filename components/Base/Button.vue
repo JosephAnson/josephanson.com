@@ -7,8 +7,6 @@ withDefaults(
     theme: 'secondary',
   },
 )
-
-// bg-primary-500:20 bg-secondary-500:20
 </script>
 
 <template>

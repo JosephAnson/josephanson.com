@@ -52,7 +52,7 @@ function onBackToTop() {
         class="h-8 w-8 flex cursor-pointer items-center justify-center rounded-full bg-black:50 text-lg opacity-0 transition" @click.prevent.stop="onBackToTop"
       >
         <span class="sr-only">{{ 'Back to top' }}</span>
-        <div class="i-ph:arrow-up-duotone text-2xl color-white" />
+        <div class="i-ph:arrow-up-duotone text-2xl text-white" />
       </div>
     </div>
   </article>

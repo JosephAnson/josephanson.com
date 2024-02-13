@@ -10,6 +10,15 @@ import {
 import type { UserConfig } from '@unocss/core'
 import { themeConfig } from './utils/constants'
 
+const colors: string[] = Object.entries(themeConfig.colors)
+  .map(([key, value]) =>
+    [
+      `bg-${key}-500:20`,
+      ...Object.keys(value as Record<string, string>)
+        .map(item => [`text-${key}-${item}`, `bg-${key}-${item}`, `dark:text-${key}-${item}`, `dark:bg-${key}-${item}`]),
+    ].flat(),
+  ).flat()
+
 export const unocssConfig: UserConfig<any> = {
   shortcuts: [
     ['btn', 'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
@@ -40,6 +49,9 @@ export const unocssConfig: UserConfig<any> = {
     transformerVariantGroup(),
   ],
   theme: themeConfig,
+  safelist: [
+    ...colors,
+  ],
 }
 
 export default defineConfig(unocssConfig)

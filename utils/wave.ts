@@ -6,9 +6,6 @@ interface InitData {
   segmentCount: number
   layerCount: number
   variance: number
-  strokeWidth: number
-  fillColor: string
-  strokeColor: string
 }
 
 interface Point {
@@ -44,13 +41,14 @@ function generatePoints(
     for (let x = cellWidth; x < width; x += cellWidth) {
       // @anup: this decides whether a segment is crest or trough
       const varietalY = y - moveLimitY / 2 + Math.random() * moveLimitY
-
       const varietalX = x - moveLimitX / 2 + Math.random() * moveLimitX
+
       pointsPerLayer.push({
         x: Math.floor(varietalX),
         y: Math.floor(varietalY),
       })
     }
+
     pointsPerLayer.push({
       x: width,
       y: Math.floor(y),
@@ -67,9 +65,6 @@ function generateClosedPath(
   curvePoints: Point[],
   leftCornerPoint: Point,
   rightCornerPoint: Point,
-  fillColor: string,
-  strokeColor: string,
-  strokeWidth: number,
   animationPoints: Point[][],
 ) {
   const xPoints = curvePoints.map(p => p.x)
@@ -84,11 +79,8 @@ function generateClosedPath(
   path += `L ${xPoints[0]},${yPoints[0]} `
 
   // Creating the Bézier curve for the rest of the points
-  for (let i = 0; i < xPoints.length - 1; i++) {
-    path += `C ${xControlPoints.p1[i]},${yControlPoints.p1[i]} ${
-            xControlPoints.p2[i]
-        },${yControlPoints.p2[i]} ${xPoints[i + 1]},${yPoints[i + 1]} `
-  }
+  for (let i = 0; i < xPoints.length - 1; i++)
+    path += `C ${xControlPoints.p1[i]},${yControlPoints.p1[i]} ${xControlPoints.p2[i]},${yControlPoints.p2[i]} ${xPoints[i + 1]},${yPoints[i + 1]} `
 
   // Closing the path back to the right bottom corner and then to the left bottom corner
   path += `L ${rightCornerPoint.x},${rightCornerPoint.y} L ${leftCornerPoint.x},${leftCornerPoint.y} Z`
@@ -102,22 +94,14 @@ function generateClosedPath(
 
     let animatedPath = `M ${leftCornerPoint.x},${leftCornerPoint.y} L ${aniXPoints[0]},${aniYPoints[0]} `
 
-    for (let i = 0; i < aniXPoints.length - 1; i++) {
-      animatedPath += `C ${aniXControlPoints.p1[i]},${
-                    aniYControlPoints.p1[i]
-                } ${aniXControlPoints.p2[i]},${aniYControlPoints.p2[i]} ${
-                    aniXPoints[i + 1]
-                },${aniYPoints[i + 1]} `
-    }
+    for (let i = 0; i < aniXPoints.length - 1; i++)
+      animatedPath += `C ${aniXControlPoints.p1[i]},${aniYControlPoints.p1[i]} ${aniXControlPoints.p2[i]},${aniYControlPoints.p2[i]} ${aniXPoints[i + 1]},${aniYPoints[i + 1]} `
 
     animatedPath += `L ${rightCornerPoint.x},${rightCornerPoint.y} L ${leftCornerPoint.x},${leftCornerPoint.y} Z`
     return animatedPath
   })
 
   return {
-    fill: fillColor,
-    strokeColor,
-    strokeWidth,
     d: path,
     animatedPath: animatedPaths,
   }
@@ -154,9 +138,6 @@ export class Wavery {
         pointLayer,
         { x: 0, y: this.properties.height },
         { x: this.properties.width, y: this.properties.height },
-        this.properties.fillColor,
-        this.properties.strokeColor,
-        this.properties.strokeWidth,
         this.aniPoints.map(aniPoint => aniPoint[i]),
       ),
     )

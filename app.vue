@@ -19,9 +19,6 @@ useHead({
     },
   ],
 })
-
-// text-primary-950 text-secondary-950 bg-primary-100 bg-secondary-100
-// dark:text-primary-50 dark:text-secondary-50 dark:bg-primary-950 dark:bg-secondary-950
 </script>
 
 <template>

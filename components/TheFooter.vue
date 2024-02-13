@@ -7,20 +7,20 @@ import TheWaves from '~/components/TheWaves.client.vue'
     <BaseContainer>
       <div class="flex items-center justify-between">
         <div
-          class="z-5 flex gap-4"
+          class="z-40 flex gap-4"
         >
           <BaseSocialIcons />
         </div>
 
         <div class="flex gap-4">
-          <BaseToggleTheme class="z-4 !hidden !md:flex" />
+          <BaseToggleTheme class="z-40 !hidden !md:flex" />
 
           <ClientOnly>
             <TheWaves v-slot="{ changeWaves }">
               <button
                 title="Change the waves"
                 aria-label="Change the waves"
-                class="z-5 h-6 w-6 flex bg-transparent hover:text-primary-500"
+                class="z-40 h-6 w-6 flex bg-transparent hover:text-primary-500"
                 @click="changeWaves"
               >
                 <span class="i-ph:waves-duotone h-full w-full bg-none" />
