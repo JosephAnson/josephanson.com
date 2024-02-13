@@ -1,11 +1,3 @@
-:root {
-  --un-prose-links: #a26726;
-}
-
-html.dark {
-  --un-prose-links: #f6a33b;
-}
-
 .prose a {
   text-decoration: none;
 }

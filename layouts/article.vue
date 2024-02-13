@@ -4,6 +4,7 @@ const route = useRoute()
 
 const article = ref<HTMLElement | null>(null)
 const windowScroll = useWindowScroll()
+const { currentTheme } = useTheme()
 
 if (page.value && page.value.cover) {
   useHead({
@@ -28,10 +29,11 @@ function onBackToTop() {
 
 <template>
   <article ref="article" class="relative">
-    <div class="slide-enter-content prose">
+    <div class="slide-enter-content not-prose">
       <NuxtLink
         :to="parentPath"
-        class="back border-elements-border-secondary-static absolute mb-8 inline-flex items-center text-sm -top-8"
+        class="absolute mb-8 inline-flex items-center text-sm -top-8"
+        :class="`text-${currentTheme}-600 dark:text-${currentTheme}-400`"
       >
         <div class="i-ph:arrow-left mr-2 h-4 w-4" />
         <span>

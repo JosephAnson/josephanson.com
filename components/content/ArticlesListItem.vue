@@ -24,13 +24,14 @@ const props = defineProps({
 })
 
 const id = computed(() => props.article?._id)
+const { currentTheme } = useTheme()
 </script>
 
 <template>
   <li>
     <NuxtLink
       :to="article._path"
-      class="mb-2 block text-xl text-primary-800 dark:text-primary-500"
+      :class="`mb-2 block text-xl text-${currentTheme}-800 font-bold dark:text-${currentTheme}-500`"
     >
       <article
         v-if="article._path && article.title"

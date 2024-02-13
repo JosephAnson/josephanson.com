@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    theme?: 'primary' | 'secondary'
+    theme?: string
   }>(),
   {
     theme: 'secondary',

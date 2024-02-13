@@ -16,16 +16,14 @@ const colors: string[] = Object.entries(themeConfig.colors)
       `bg-${key}-500:20`,
       `fill-${key}-300`,
       `dark:fill-${key}-800`,
+      `hover:text-${key}-800`,
+      `dark:hover:text-${key}-800`,
       ...Object.keys(value as Record<string, string>)
         .map(item => [`text-${key}-${item}`, `bg-${key}-${item}`, `dark:text-${key}-${item}`, `dark:bg-${key}-${item}`]),
     ].flat(),
   ).flat()
 
 export const unocssConfig: UserConfig<any> = {
-  shortcuts: [
-    ['btn', 'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
-    ['icon-btn', 'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
-  ],
   presets: [
     presetUno(),
     presetIcons({

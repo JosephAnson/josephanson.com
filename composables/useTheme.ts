@@ -1,5 +1,26 @@
 export function useTheme() {
   const route = useRoute()
+  const currentTheme = useState<string>('primary')
 
-  return computed(() => route.path === '/' ? 'primary' : 'secondary')
+  const themes = ['primary', 'secondary', 'tertiary']
+
+  watch(() => route.path, (path) => {
+    if (path === '/projects')
+      currentTheme.value = 'secondary'
+    else if (path.includes('/blog'))
+      currentTheme.value = 'tertiary'
+    else
+      currentTheme.value = 'primary'
+  }, { immediate: true })
+
+  function rotateTheme() {
+    const currentIndex = themes.indexOf(currentTheme.value)
+    const nextIndex = (currentIndex + 1) % themes.length
+    currentTheme.value = themes[nextIndex]
+  }
+
+  return {
+    currentTheme,
+    rotateTheme,
+  }
 }

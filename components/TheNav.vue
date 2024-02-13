@@ -10,7 +10,7 @@ const show = useVModel(props, 'show', emits)
 const menu = ref()
 const closeButton = ref()
 
-const theme = useTheme()
+const { currentTheme } = useTheme()
 
 const { navigation } = useContent()
 const { x: buttonX, y: buttonY, height, width } = useElementBounding(closeButton)
@@ -32,7 +32,7 @@ function onClose() {
   <div
     ref="menu"
     :class="{
-      [`pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10 bg-${theme}-300 py-8 transition-all transition-duration-500 ease-out dark:bg-${theme}-800 md:py-16`]: true,
+      [`pointer-events-none absolute bottom-0 left-0 right-0 top-0 !z-500 bg-${currentTheme}-300 py-8 transition-all transition-duration-500 ease-out dark:bg-${currentTheme}-800 md:py-16`]: true,
       '!pointer-events-auto': show,
     }"
     :style="{
@@ -61,12 +61,12 @@ function onClose() {
                 :to="link._path"
                 class="group relative text-5xl font-bold leading-loose md:text-7xl md:leading-loose"
                 :class="{
-                  [`text-${theme}-900 dark:text-${theme}-300`]: $route.path === link._path,
+                  [`text-${currentTheme}-900 dark:text-${currentTheme}-300`]: $route.path === link._path,
                 }"
                 @click="onClose"
               >
                 <span
-                  :class="`absolute bottom--4px h-2px w-0 bg-${theme}-900 dark:bg-${theme}-300 transition-width duration-200 ease-in-out group-hover:w-full`"
+                  :class="`absolute bottom--4px h-2px w-0 bg-${currentTheme}-900 dark:bg-${currentTheme}-300 transition-width duration-200 ease-in-out group-hover:w-full`"
                 />
                 {{ link.title }}
               </NuxtLink>

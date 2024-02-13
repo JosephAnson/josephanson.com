@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 import { Wavery, waveInit } from '~/utils/wave'
 
-const route = useRoute()
-const colorMode = useColorMode()
-
-const theme = useTheme()
+const { currentTheme } = useTheme()
 
 const waveOptions = {
   height: 400,
@@ -15,7 +12,6 @@ const waveOptions = {
 }
 
 const wavery = new Wavery(waveOptions)
-
 const waves = ref(wavery.generateSvg())
 
 function changeWaves() {
@@ -60,7 +56,7 @@ useStyleTag(styles)
   >
     <path
       class="transition-all duration-300"
-      :class="`path-${index} fill-${theme}-300 dark:fill-${theme}-800`"
+      :class="`path-${index} fill-${currentTheme}-300 dark:fill-${currentTheme}-800`"
       :d="wave.d"
       :fill-opacity="(1 / waveOptions.layerCount) * (index + 1)"
     />

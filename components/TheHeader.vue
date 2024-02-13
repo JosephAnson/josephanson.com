@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const theme = useTheme()
+const { currentTheme } = useTheme()
 
 const show = ref(false)
 
@@ -18,7 +18,7 @@ function toggleMenu() {
 
         <div class="flex items-center gap-4">
           <BaseToggleTheme />
-          <BaseButton :theme="theme" aria-label="Navigation Menu" @click="toggleMenu()">
+          <BaseButton :theme="currentTheme" aria-label="Navigation Menu" @click="toggleMenu()">
             Menu
           </BaseButton>
         </div>

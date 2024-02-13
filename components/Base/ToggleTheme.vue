@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
+const { currentTheme } = useTheme()
+
 function onClick() {
   const values = ['dark', 'light']
   const index = values.indexOf(colorMode.preference)
@@ -10,7 +12,7 @@ function onClick() {
 </script>
 
 <template>
-  <button aria-label="Color Mode" class="h-6 w-6 flex bg-transparent !hover:text-primary-500" @click="onClick">
+  <button aria-label="Color Mode" :class="`h-6 hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300 w-6 flex bg-transparent`" @click="onClick">
     <ColorScheme>
       <template v-if="colorMode.preference === 'dark'">
         <div class="i-ph:moon-duotone h-full w-full" />

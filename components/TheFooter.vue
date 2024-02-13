@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheWaves from '~/components/TheWaves.client.vue'
+const { currentTheme, rotateTheme } = useTheme()
 </script>
 
 <template>
@@ -15,12 +15,21 @@ import TheWaves from '~/components/TheWaves.client.vue'
         <div class="flex gap-4">
           <BaseToggleTheme class="z-40 !hidden !md:flex" />
 
+          <button
+            title="Change the waves"
+            aria-label="Change the waves"
+            :class="`z-40 h-6 w-6 flex bg-transparent hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300`"
+            @click="rotateTheme"
+          >
+            <span class="i-ph:paint-brush-duotone h-full w-full bg-none" />
+          </button>
+
           <ClientOnly>
             <TheWaves v-slot="{ changeWaves }">
               <button
                 title="Change the waves"
                 aria-label="Change the waves"
-                class="z-40 h-6 w-6 flex bg-transparent hover:text-primary-500"
+                :class="`z-40 h-6 w-6 flex bg-transparent hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300`"
                 @click="changeWaves"
               >
                 <span class="i-ph:waves-duotone h-full w-full bg-none" />

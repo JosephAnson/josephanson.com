@@ -14,6 +14,8 @@ const socialsMap = {
   medium: 'i-ph:medium-logo-duotone',
 }
 
+const { currentTheme } = useTheme()
+
 const icons = computed<any>(() => {
   return Object.entries(socials)
     .map(([key, value]) => {
@@ -50,7 +52,7 @@ function getRel(icon: any) {
     :aria-label="icon.label"
     :href="icon.href"
     target="_blank"
-    class="h-6 w-6 flex hover:text-primary-500"
+    :class="`h-6 w-6 flex hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300`"
   >
     <div v-if="icon.icon" :class="icon.icon" class="h-full w-full" />
   </NuxtLink>

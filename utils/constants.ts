@@ -3,8 +3,6 @@ import type { UserConfig } from '@unocss/core'
 export const appName = 'Joseph Anson'
 export const appDescription = 'Joseph Anson\'s personal website'
 
-export const opacityArray = [0.265, 0.4, 0.53, 1]
-
 export const themeConfig: UserConfig<any>['theme'] = {
   container: {
     center: true,
@@ -36,6 +34,19 @@ export const themeConfig: UserConfig<any>['theme'] = {
       800: '#1e62af',
       900: '#1e518a',
       950: '#0d335d',
+    },
+    tertiary: {
+      50: '#faf5ff',
+      100: '#f4e8ff',
+      200: '#ebd5ff',
+      300: '#dab4fe',
+      400: '#c184fc',
+      500: '#a855f7',
+      600: '#9133ea',
+      700: '#7a22ce',
+      800: '#6621a8',
+      900: '#531c87',
+      950: '#370764',
     },
   },
 }

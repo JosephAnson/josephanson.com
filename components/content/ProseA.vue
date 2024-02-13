@@ -9,6 +9,9 @@ const props = defineProps({
     default: false,
   },
 })
+
+const { currentTheme } = useTheme()
+
 function isHttpUrl(string) {
   let url
   try {
@@ -28,7 +31,10 @@ if (isExternal || props.blank)
 </script>
 
 <template>
-  <NuxtLink v-bind="bindProps">
+  <NuxtLink
+    v-bind="bindProps"
+    :class="`text-${currentTheme}-600 dark:text-${currentTheme}-400`"
+  >
     <slot />
   </NuxtLink>
 </template>

@@ -4,7 +4,7 @@ import './styles/base.css'
 import './styles/prose.css'
 import './styles/animations.css'
 
-const theme = useTheme()
+const { currentTheme } = useTheme()
 
 useHead({
   title: appName,
@@ -23,7 +23,7 @@ useHead({
 
 <template>
   <div
-    :class="`text-${theme}-950 dark:text-${theme}-50 h-100dvh flex flex-col bg-${theme}-100 dark:bg-${theme}-950 transition-all`"
+    :class="`text-${currentTheme}-950 dark:text-${currentTheme}-50 h-100dvh flex flex-col bg-${currentTheme}-100 dark:bg-${currentTheme}-950 transition-all duration-500`"
   >
     <div class="flex flex-grow-1 flex-col of-x-hidden pb-30">
       <TheHeader />
