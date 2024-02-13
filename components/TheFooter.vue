@@ -3,7 +3,7 @@ const { currentTheme, rotateTheme } = useTheme()
 </script>
 
 <template>
-  <footer class="absolute bottom-0 z-200 mt-2 w-full pb-6 pt-2 md:mb-16 md:mt-10 md:pt-8">
+  <footer class="absolute bottom-0 mt-2 w-full pb-6 pt-2 md:mb-16 md:mt-10 md:pt-8">
     <BaseContainer>
       <div class="flex items-center justify-between">
         <div

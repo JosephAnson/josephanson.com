@@ -13,7 +13,6 @@ interface Point {
   y: number
 }
 
-// layercount is default to 2. Increasing the number would stack up n-1 waves.
 function generatePoints(
   width: number,
   height: number,

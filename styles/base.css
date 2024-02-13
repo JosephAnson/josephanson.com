@@ -22,14 +22,6 @@ body {
   color-scheme: dark;
 }
 
-.prose code {
-  --uno: color-primary-800 font-mono;
-}
-
-.dark .prose code {
-  --uno: color-primary-400 font-mono;
-}
-
 * {
   scrollbar-color: var(--c-scrollbar) var(--c-bg);
 }
