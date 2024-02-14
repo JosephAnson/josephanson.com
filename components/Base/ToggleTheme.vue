@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { ColorModes } from '~/types'
+
 const colorMode = useColorMode()
 const { currentTheme } = useTheme()
 
 function onClick() {
-  const values = ['dark', 'light']
+  const values: string[] = ['dark', 'light'] satisfies ColorModes[]
   const index = values.indexOf(colorMode.preference)
   const next = (index + 1) % values.length
 

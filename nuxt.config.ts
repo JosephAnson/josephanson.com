@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { appDescription } from './utils/constants'
 
 export default defineNuxtConfig({
@@ -55,6 +56,49 @@ export default defineNuxtConfig({
         dark: 'vitesse-dark',
       },
       preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
+    },
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      routes: [],
+    },
+    storage: {
+      cache: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379,
+        username: 'default',
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 10,
+      },
+      data: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379,
+        username: 'default',
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 10,
+      },
+    },
+    // Development
+    devStorage: {
+      cache: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379,
+        username: 'default',
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 10,
+      },
+      data: {
+        driver: 'redis',
+        host: `${process.env.REDIS_HOST}`,
+        port: 6379,
+        username: 'default',
+        password: `${process.env.REDIS_PASSWORD}`,
+        db: 10,
+      },
     },
   },
 })
