@@ -2,6 +2,7 @@
   --c-bg: #fff;
   --c-scrollbar: #eee;
   --c-scrollbar-hover: #bbb;
+  --vp-z-index-local-nav: 100;
 }
 
 html.dark {

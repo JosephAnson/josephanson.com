@@ -30,6 +30,7 @@ export default defineNuxtConfig({
   pages: true,
   modules: [
     '@nuxthq/studio',
+    'nuxt-content-twoslash', // this needs to be before `@nuxt/content`
     '@nuxt/content',
     '@vueuse/nuxt',
     '@unocss/nuxt',

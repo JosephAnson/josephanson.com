@@ -29,9 +29,7 @@ useHead({
       <TheHeader />
 
       <BaseContainer class="relative z-1 text-sm md:text-base">
-        <NuxtLayout>
-          <NuxtPage class="font-sans" />
-        </NuxtLayout>
+        <NuxtPage class="font-sans" />
       </BaseContainer>
 
       <span class="flex-auto" />
