@@ -1,4 +1,3 @@
-import process from 'node:process'
 import { appDescription } from './utils/constants'
 
 export default defineNuxtConfig({
@@ -57,6 +56,9 @@ export default defineNuxtConfig({
       },
       preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
     },
+  },
+  image: {
+    domains: [`${process.env.MINIO_URL}:9000`],
   },
   nitro: {
     prerender: {

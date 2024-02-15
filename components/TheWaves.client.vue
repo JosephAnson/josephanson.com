@@ -52,7 +52,7 @@ useStyleTag(styles)
     v-for="(wave, index) in waves"
     :key="index" xmlns="http://www.w3.org/2000/svg"
     :viewBox="`0 0 ${waveOptions.width} ${waveOptions.height}`"
-    :class="`fixed left-0 pointer-events-none bottom-0 z-${index}`"
+    :class="`fixed left-0 pointer-events-none bottom-0 z-${index - 10}`"
   >
     <path
       class="transition-all duration-300"

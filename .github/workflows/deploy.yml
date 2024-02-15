@@ -37,3 +37,9 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/josephanson:latest
           build-args: |
             NUXT_PUBLIC_STUDIO_TOKENS=${{ secrets.NUXT_PUBLIC_STUDIO_TOKENS }}
+            CHROME_TOKEN=${{ secrets.CHROME_TOKEN }}
+            REDIS_HOST=${{ secrets.REDIS_HOST }}
+            REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
+            MINIO_URL=${{ secrets.MINIO_URL }}
+            MINIO_ACCESS_KEY=${{ secrets.MINIO_ACCESS_KEY }}
+            MINIO_SECRET_KEY=${{ secrets.MINIO_SECRET_KEY }}

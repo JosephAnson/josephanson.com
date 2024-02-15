@@ -21,7 +21,7 @@ const parentPath = computed(() => {
 </script>
 
 <template>
-  <article ref="article" class="relative max-w-3xl pb-10 prose">
+  <article ref="article" class="relative max-w-3xl pb-20 prose md:pb-40">
     <div class="slide-enter-content not-prose">
       <NuxtLink
         :to="parentPath"
