@@ -32,7 +32,7 @@ function onClose() {
   <div
     ref="menu"
     :class="{
-      [`pointer-events-none absolute bottom-0 left-0 right-0 top-0 !z-500 bg-${currentTheme}-300 py-8 transition-all transition-duration-500 ease-out dark:bg-${currentTheme}-800 md:py-16`]: true,
+      [`pointer-events-none absolute bottom-0 left-0 right-0 top-0 !z-500 bg-${currentTheme}-300 py-8 transition ease-out dark:bg-${currentTheme}-800 md:py-16`]: true,
       '!pointer-events-auto': show,
     }"
     :style="{

@@ -1,12 +1,10 @@
 :root {
-  --c-bg: #fff;
   --c-scrollbar: #eee;
   --c-scrollbar-hover: #bbb;
   --vp-z-index-local-nav: 100;
 }
 
 html.dark {
-  --c-bg: #050505;
   --c-scrollbar: #111;
   --c-scrollbar-hover: #222;
 }
@@ -16,11 +14,6 @@ body {
   height: 100vh;
   --uno: font-sans;
   background: black;
-}
-
-.dark {
-  background: white;
-  color-scheme: dark;
 }
 
 * {

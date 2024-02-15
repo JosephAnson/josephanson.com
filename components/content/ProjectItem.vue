@@ -37,7 +37,11 @@ if (isHttpUrl(props.link))
 </script>
 
 <template>
-  <NuxtLink v-bind="bindProps" :to="props.link" class="relative z-1 overflow-hidden rounded bg-secondary-800:10 dark:bg-secondary-300:10">
+  <NuxtLink
+    v-bind="bindProps"
+    :to="props.link"
+    :class="`relative overflow-hidden transition rounded bg-${currentTheme}-500:20 dark:bg-${currentTheme}-500:20`"
+  >
     <NuxtImg
       v-if="imageUrl"
       width="400"
@@ -45,7 +49,7 @@ if (isHttpUrl(props.link))
       :src="imageUrl"
     />
     <div class="p-4">
-      <h3 :class="`mb-1 block text-lg text-${currentTheme}-800 font-bold dark:text-${currentTheme}-500`">
+      <h3 :class="`mb-1 block text-lg transition text-${currentTheme}-900 font-bold dark:text-${currentTheme}-200`">
         {{ props.title }}
       </h3>
       <p>

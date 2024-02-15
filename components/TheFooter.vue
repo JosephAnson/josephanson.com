@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useWavesStore } from '~/stores/useWavesStore'
+
 const { currentTheme, rotateTheme } = useTheme()
+const { changeWaves } = useWavesStore()
 </script>
 
 <template>
-  <footer class="absolute bottom-0 mt-2 w-full pb-6 pt-2 md:mb-16 md:mt-10 md:pt-8">
+  <footer class="fixed bottom-0 z-20 mt-2 w-full pt-2 md:mb-16 md:mt-10 md:pt-8">
     <BaseContainer>
       <div class="flex items-center justify-between">
         <div
@@ -24,20 +27,18 @@ const { currentTheme, rotateTheme } = useTheme()
             <span class="i-ph:paint-brush-duotone h-full w-full bg-none" />
           </button>
 
-          <ClientOnly>
-            <TheWaves v-slot="{ changeWaves }">
-              <button
-                title="Change the waves"
-                aria-label="Change the waves"
-                :class="`z-40 h-6 w-6 flex bg-transparent hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300`"
-                @click="changeWaves"
-              >
-                <span class="i-ph:waves-duotone h-full w-full bg-none" />
-              </button>
-            </TheWaves>
-          </ClientOnly>
+          <button
+            title="Change the waves"
+            aria-label="Change the waves"
+            :class="`z-40 h-6 w-6 flex bg-transparent hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300`"
+            @click="changeWaves"
+          >
+            <span class="i-ph:waves-duotone h-full w-full bg-none" />
+          </button>
         </div>
       </div>
     </BaseContainer>
   </footer>
+
+  <TheWaves />
 </template>

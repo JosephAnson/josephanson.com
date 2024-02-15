@@ -18,22 +18,29 @@ useHead({
       content: 'same-origin',
     },
   ],
+  htmlAttrs: {
+    class: 'flex flex-col h-100vh overflow-hidden',
+  },
+  bodyAttrs: {
+    class: () => [
+      `transition bg-gradient-to-b`,
+      `from-${currentTheme.value}-200 via-${currentTheme.value}-100 to-${currentTheme.value}-50`,
+      `dark:from-${currentTheme.value}-800 dark:via-${currentTheme.value}-900 dark:to-${currentTheme.value}-950`,
+      `text-${currentTheme.value}-950 dark:text-${currentTheme.value}-50`,
+    ].join(' '),
+  },
 })
 </script>
 
 <template>
-  <div
-    :class="`text-${currentTheme}-950 dark:text-${currentTheme}-50 h-100dvh flex flex-col bg-${currentTheme}-100 dark:bg-${currentTheme}-950 transition-all duration-500`"
-  >
-    <div class="flex flex-grow-1 flex-col of-x-hidden pb-30">
-      <TheHeader />
+  <div class="h-100vh of-y-auto scroll-smooth">
+    <TheHeader />
 
-      <BaseContainer class="relative z-1 text-sm md:text-base">
-        <NuxtPage class="font-sans" />
+    <main>
+      <BaseContainer class="relative z-8 text-sm md:text-base">
+        <NuxtPage />
       </BaseContainer>
-
-      <span class="flex-auto" />
-    </div>
+    </main>
 
     <TheFooter />
   </div>

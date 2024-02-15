@@ -1,20 +1,13 @@
 <script setup lang="ts">
-interface Article {
-  _path: string
-  title: string
-  date: string
-  description: string
-  badges?: { bg: string, text: string, content: string }[]
-}
+import type { PropType } from 'vue'
+import type { Article } from '~/types'
 
-const props = defineProps({
+defineProps({
   article: {
-    type: Object,
+    type: Object as PropType<Article>,
     required: true,
     validator: (value: Article) => {
-      if (value?._path && value.title)
-        return true
-      return false
+      return !!(value?._path && value.title)
     },
   },
   featured: {
@@ -23,7 +16,6 @@ const props = defineProps({
   },
 })
 
-const id = computed(() => props.article?._id)
 const { currentTheme } = useTheme()
 </script>
 
@@ -31,19 +23,27 @@ const { currentTheme } = useTheme()
   <li>
     <NuxtLink
       :to="article._path"
-      :class="`mb-2 block text-xl text-${currentTheme}-800 font-bold dark:text-${currentTheme}-500`"
+      class="mb-2 block text-xl"
     >
       <article
         v-if="article._path && article.title"
-        :data-content-id="id"
-        class="flex flex-wrap items-center"
+        :class="`bg-${currentTheme}-500:20 p-4 rounded flex flex-wrap items-center`"
       >
-        <h3>
-          {{ article.title }}
-        </h3>
-        <time>
-          {{ article.date }}
-        </time>
+        <div class="flex items-center gap-x-4 text-xs">
+          <BaseTagList :tags="article.categories" />
+        </div>
+        <div class="group relative">
+          <h3 :class="`mt-3 text-lg text-${currentTheme}-900 dark:text-${currentTheme}-100 font-semibold`">
+            <a :href="article._path">
+              <span class="absolute inset-0" />
+              {{ article.title }}
+            </a>
+          </h3>
+          <time class="text-xs" :datetime="article.date" :class="`text-${currentTheme}-500`">{{ article.date }}</time>
+          <p :class="`line-clamp-3 mt-2 text-sm text-${currentTheme}-800 dark:text-${currentTheme}-200`">
+            {{ article.description }}
+          </p>
+        </div>
       </article>
     </NuxtLink>
   </li>

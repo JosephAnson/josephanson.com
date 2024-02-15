@@ -1,22 +1,9 @@
 <script lang="ts" setup>
-import { Wavery, waveInit } from '~/utils/wave'
+import { useWavesStore } from '~/stores/useWavesStore'
 
 const { currentTheme } = useTheme()
 
-const waveOptions = {
-  height: 400,
-  width: 1440,
-  segmentCount: 12,
-  layerCount: 12,
-  variance: 1.2,
-}
-
-const wavery = new Wavery(waveOptions)
-const waves = ref(wavery.generateSvg())
-
-function changeWaves() {
-  waves.value = waveInit(waveOptions)
-}
+const { state: waves, waveOptions } = useWavesStore()
 
 const styles = computed(() => waves.value.map((wave, index) => `
 .path-${index}{
@@ -43,22 +30,26 @@ const styles = computed(() => waves.value.map((wave, index) => `
 }`).join(''))
 
 useStyleTag(styles)
+
+// z--10 z--9 z--8 z--7 z--6 z--5 z--4 z--3 z--2 z--1 z-0 z-1 z-2 z-3 z-4 z-5 z-6 z-7 z-8 z-9 z-10
 </script>
 
 <template>
-  <slot :change-waves="changeWaves" />
-
   <svg
     v-for="(wave, index) in waves"
     :key="index" xmlns="http://www.w3.org/2000/svg"
     :viewBox="`0 0 ${waveOptions.width} ${waveOptions.height}`"
-    :class="`fixed left-0 pointer-events-none bottom-0 z-${index - 10}`"
+    :class="`fixed left-0 pointer-events-none bottom-0 z-${index}`"
   >
     <path
-      class="transition-all duration-300"
+      class="transition"
       :class="`path-${index} fill-${currentTheme}-300 dark:fill-${currentTheme}-800`"
       :d="wave.d"
-      :fill-opacity="(1 / waveOptions.layerCount) * (index + 1)"
+      :fill-opacity="(1 / waveOptions.layerCount) * (index + 2)"
     />
   </svg>
 </template>
+
+<style>
+
+</style>

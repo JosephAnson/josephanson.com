@@ -13,17 +13,39 @@ import { themeConfig } from './utils/constants'
 const colors: string[] = Object.entries(themeConfig.colors)
   .map(([key, value]) =>
     [
-      `bg-${key}-500:20`,
-      `fill-${key}-300`,
-      `dark:fill-${key}-800`,
-      `hover:text-${key}-800`,
-      `dark:hover:text-${key}-800`,
-      ...Object.keys(value as Record<string, string>)
-        .map(item => [`text-${key}-${item}`, `bg-${key}-${item}`, `dark:text-${key}-${item}`, `dark:bg-${key}-${item}`]),
+        // Opacity Background
+        `bg-${key}-500:20`,
+
+        // Footer Icons
+        `hover:text-${key}-800`,
+        `dark:hover:text-${key}-800`,
+
+        // Waves
+        `fill-${key}-300`,
+        `dark:fill-${key}-800`,
+
+        // Gradients
+        `from-${key}-200`,
+        `via-${key}-100`,
+        `to-${key}-50`,
+        `dark:from-${key}-800`,
+        `dark:via-${key}900`,
+        `dark:to-${key}-950`,
+
+        ...Object.keys(value as Record<string, string>)
+          .map(item => [
+            `text-${key}-${item}`,
+            `bg-${key}-${item}`,
+            `dark:text-${key}-${item}`,
+            `dark:bg-${key}-${item}`,
+          ]),
     ].flat(),
   ).flat()
 
 export const unocssConfig: UserConfig<any> = {
+  shortcuts: {
+    transition: 'transition-all duration-300',
+  },
   presets: [
     presetUno(),
     presetIcons({
