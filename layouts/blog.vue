@@ -3,7 +3,7 @@ const { page } = useContent()
 const route = useRoute()
 
 const article = ref<HTMLElement | null>(null)
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 if (page.value && page.value.cover) {
   useHead({

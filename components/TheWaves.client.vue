@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useWavesStore } from '~/stores/useWavesStore'
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 const { state: waves, waveOptions } = useWavesStore()
 

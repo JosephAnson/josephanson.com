@@ -1,7 +1,10 @@
-export const useTheme = createGlobalState(() => {
-  const route = useRoute()
-  const currentTheme = useState<string>('theme', () => 'primary')
+export function useCurrentTheme() {
+  return useState<string>('theme', () => 'primary')
+}
 
+export function useTheme() {
+  const currentTheme = useCurrentTheme()
+  const route = useRoute()
   const themes = Object.keys(themeConfig.colors)
 
   watch(() => route.path, (path) => {
@@ -20,7 +23,6 @@ export const useTheme = createGlobalState(() => {
   }
 
   return {
-    currentTheme,
     rotateTheme,
   }
-})
+}

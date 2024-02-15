@@ -2,7 +2,7 @@
 import type { ColorModes } from '~/types'
 
 const colorMode = useColorMode()
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 function onClick() {
   const values: string[] = ['dark', 'light'] satisfies ColorModes[]

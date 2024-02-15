@@ -10,7 +10,7 @@ const props = defineProps({
   },
 })
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 function isHttpUrl(string) {
   let url

@@ -6,7 +6,7 @@ const props = defineProps< {
   link: string
 }>()
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 const colorMode = useColorMode()
 const color = computed(() => colorMode.preference)
 

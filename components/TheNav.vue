@@ -10,7 +10,7 @@ const show = useVModel(props, 'show', emits)
 const menu = ref()
 const closeButton = ref()
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 const { navigation } = useContent()
 const { x: buttonX, y: buttonY, height, width } = useElementBounding(closeButton)

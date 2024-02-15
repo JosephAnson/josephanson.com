@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 const show = ref(false)
 

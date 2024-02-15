@@ -3,7 +3,7 @@ const props = defineProps<{
   tags: string[]
 }>()
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 </script>
 
 <template>

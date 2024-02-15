@@ -4,7 +4,7 @@ import './styles/base.css'
 import './styles/prose.css'
 import './styles/animations.css'
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 useHead({
   title: appName,

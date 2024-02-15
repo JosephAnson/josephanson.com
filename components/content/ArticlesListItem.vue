@@ -16,7 +16,7 @@ defineProps({
   },
 })
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 </script>
 
 <template>

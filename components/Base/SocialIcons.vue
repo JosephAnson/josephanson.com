@@ -14,7 +14,7 @@ const socialsMap = {
   medium: 'i-ph:medium-logo-duotone',
 }
 
-const { currentTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 
 const icons = computed<any>(() => {
   return Object.entries(socials)
