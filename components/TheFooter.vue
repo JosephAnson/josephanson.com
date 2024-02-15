@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { useWavesStore } from '~/stores/useWavesStore'
 
-const { currentTheme, rotateTheme } = useTheme()
+const { rotateTheme } = useTheme()
+const currentTheme = useCurrentTheme()
 const { changeWaves } = useWavesStore()
 </script>
 
 <template>
-  <footer class="fixed bottom-0 z-20 mt-2 w-full pt-2 md:mb-16 md:mt-10 md:pt-8">
+  <footer class="fixed bottom-6 z-20 mt-2 w-full pt-2 md:bottom-12 md:mt-10 md:pt-8">
     <BaseContainer>
       <div class="flex items-center justify-between">
         <div

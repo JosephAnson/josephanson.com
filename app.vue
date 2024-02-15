@@ -33,7 +33,7 @@ useHead({
 </script>
 
 <template>
-  <div class="h-100vh of-y-auto scroll-smooth">
+  <div class="h-100vh of-y-auto scroll-smooth pb-20">
     <TheHeader />
 
     <main>
