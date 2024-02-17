@@ -32,7 +32,7 @@ export default defineCachedEventHandler(async (event) => {
     await page.emulateMediaFeatures([
       query.colorMode === 'light' ? { name: 'prefers-color-scheme', value: 'light' } : { name: 'prefers-color-scheme', value: 'dark' },
     ])
-    await page.goto(query.url, { timeout: 10000000, waitUntil: 'networkidle2' })
+    await page.goto(query.url, { timeout: 10000000, waitUntil: 'load' })
 
     await new Promise(resolve => setTimeout(resolve, 10000))
 

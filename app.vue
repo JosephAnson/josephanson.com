@@ -4,7 +4,11 @@ import './styles/base.css'
 import './styles/prose.css'
 import './styles/animations.css'
 
-const currentTheme = useCurrentTheme()
+const { classes } = useTheme()
+
+const htmlClasses = computed(() => {
+  return `transition will-change-background ${classes.value.gradient} ${classes.value.text}`
+})
 
 useHead({
   title: appName,
@@ -22,12 +26,7 @@ useHead({
     class: 'flex flex-col h-100vh overflow-hidden',
   },
   bodyAttrs: {
-    class: () => [
-      `transition bg-gradient-to-b`,
-      `from-${currentTheme.value}-200 via-${currentTheme.value}-100 to-${currentTheme.value}-50`,
-      `dark:from-${currentTheme.value}-800 dark:via-${currentTheme.value}-900 dark:to-${currentTheme.value}-950`,
-      `text-${currentTheme.value}-950 dark:text-${currentTheme.value}-50`,
-    ].join(' '),
+    class: htmlClasses,
   },
 })
 </script>

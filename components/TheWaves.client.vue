@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useWavesStore } from '~/stores/useWavesStore'
 
-const currentTheme = useCurrentTheme()
+const { classes } = useTheme()
 
 const { state: waves, waveOptions } = useWavesStore()
 
@@ -43,7 +43,7 @@ useStyleTag(styles)
   >
     <path
       class="transition"
-      :class="`path-${index} fill-${currentTheme}-300 dark:fill-${currentTheme}-800`"
+      :class="`path-${index} ${classes.fill}`"
       :d="wave.d"
       :fill-opacity="(1 / waveOptions.layerCount) * (index + 2)"
     />

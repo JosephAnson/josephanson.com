@@ -10,7 +10,7 @@ const props = defineProps({
   },
 })
 
-const currentTheme = useCurrentTheme()
+const { classes } = useTheme()
 
 function isHttpUrl(string) {
   let url
@@ -33,7 +33,8 @@ if (isExternal || props.blank)
 <template>
   <NuxtLink
     v-bind="bindProps"
-    :class="`text-${currentTheme}-600 dark:text-${currentTheme}-400`"
+    :class="classes.link"
+    :prefetch="true"
   >
     <slot />
   </NuxtLink>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const currentTheme = useCurrentTheme()
+const { classes } = useTheme()
 </script>
 
 <template>
-  <code :class="`text-${currentTheme}-600 dark:text-${currentTheme}-400`"><slot /></code>
+  <code :class="classes.highlight"><slot /></code>
 </template>

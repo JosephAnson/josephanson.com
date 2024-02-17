@@ -3,6 +3,31 @@ import type { UserConfig } from '@unocss/core'
 export const appName = 'Joseph Anson'
 export const appDescription = 'Joseph Anson\'s personal website'
 
+export const tailwindColors = [
+  'green',
+  'violet',
+  'amber',
+  'slate',
+  'pink',
+  'lime',
+  'indigo',
+  'gray',
+  'red',
+  'cyan',
+  'stone',
+  'blue',
+  'orange',
+  'rose',
+  'neutral',
+  'teal',
+  'yellow',
+  'fuchsia',
+  'sky',
+  'purple',
+  'zinc',
+  'emerald',
+]
+
 export const themeConfig: UserConfig<any>['theme'] = {
   container: {
     center: true,
@@ -47,19 +72,6 @@ export const themeConfig: UserConfig<any>['theme'] = {
       800: '#6621a8',
       900: '#531c87',
       950: '#370764',
-    },
-    emerald: {
-      50: '#ecfdf7',
-      100: '#d1faec',
-      200: '#a7f3da',
-      300: '#6ee7bf',
-      400: '#34d39e',
-      500: '#10b981',
-      600: '#059666',
-      700: '#047852',
-      800: '#065f42',
-      900: '#064e36',
-      950: '#022c1e',
     },
   },
 }

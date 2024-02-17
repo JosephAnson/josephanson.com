@@ -17,7 +17,7 @@ const { data: _articles } = await useAsyncData(
 
 <template>
   <div class="not-prose">
-    <ul v-if="_articles?.length" class="slide-enter-content not-prose mt-8 space-y-8 md:px-0 sm:px-12">
+    <ul v-if="_articles?.length" class="slide-enter-content not-prose mt-8 space-y-8">
       <ArticlesListItem
         v-for="(article, index) in _articles"
         :key="index"

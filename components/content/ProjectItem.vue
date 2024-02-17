@@ -6,8 +6,8 @@ const props = defineProps< {
   link: string
 }>()
 
-const currentTheme = useCurrentTheme()
 const colorMode = useColorMode()
+const { classes } = useTheme()
 const color = computed(() => colorMode.preference)
 
 const { data: imageUrl } = await useFetch(`/screenshot`, {
@@ -16,7 +16,7 @@ const { data: imageUrl } = await useFetch(`/screenshot`, {
     url: props.link,
     title: props.title,
   },
-  watch: [() => colorMode.value, currentTheme],
+  watch: [() => colorMode.preference],
 })
 
 function isHttpUrl(string: string) {
@@ -40,20 +40,23 @@ if (isHttpUrl(props.link))
   <NuxtLink
     v-bind="bindProps"
     :to="props.link"
-    :class="`relative overflow-hidden transition rounded bg-${currentTheme}-500:20 dark:bg-${currentTheme}-500:20`"
+    :class="`relative overflow-hidden rounded ${classes.card}`"
   >
     <div class="aspect-video">
       <NuxtImg
         width="400"
         class="aspect-video w-full object-cover"
-        :src="imageUrl"
+        :src="imageUrl!"
         :placeholder="[50, 25, 75, 5]"
       />
     </div>
     <div class="p-4">
-      <h3 :class="`mb-1 block text-lg transition text-${currentTheme}-900 font-bold dark:text-${currentTheme}-200`">
-        {{ props.title }}
-      </h3>
+      <div class="flex justify-between">
+        <h3 :class="`mb-1 block text-lg font-bold ${classes.textLight}`">
+          {{ props.title }}
+        </h3>
+        <span class="i-ph:arrow-square-in-duotone" />
+      </div>
       <p>
         {{ props.description }}
       </p>

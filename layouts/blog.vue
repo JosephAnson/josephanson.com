@@ -3,7 +3,7 @@ const { page } = useContent()
 const route = useRoute()
 
 const article = ref<HTMLElement | null>(null)
-const currentTheme = useCurrentTheme()
+const { classes } = useTheme()
 
 if (page.value && page.value.cover) {
   useHead({
@@ -26,7 +26,7 @@ const parentPath = computed(() => {
       <NuxtLink
         :to="parentPath"
         class="inline-flex items-center text-sm"
-        :class="`text-${currentTheme}-600 dark:text-${currentTheme}-400`"
+        :class="classes.link"
       >
         <div class="i-ph:arrow-left mr-2 h-4 w-4" />
         <span>

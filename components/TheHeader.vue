@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-const currentTheme = useCurrentTheme()
-
 const show = ref(false)
 
 function toggleMenu() {
@@ -10,7 +8,7 @@ function toggleMenu() {
 
 <template>
   <header>
-    <div class="relative py-4 md:py-16">
+    <div class="relative z-20 py-4 md:py-16">
       <BaseContainer>
         <div class="flex items-center justify-between gap-16">
           <NuxtLink to="/" class="flex text-2xl font-serif">
@@ -18,8 +16,7 @@ function toggleMenu() {
           </NuxtLink>
 
           <div class="flex items-center gap-4">
-            <BaseToggleTheme />
-            <BaseButton :theme="currentTheme" aria-label="Navigation Menu" @click="toggleMenu()">
+            <BaseButton aria-label="Navigation Menu" @click="toggleMenu()">
               Menu
             </BaseButton>
           </div>

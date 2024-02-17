@@ -3,7 +3,7 @@ const props = defineProps<{
   tags: string[]
 }>()
 
-const currentTheme = useCurrentTheme()
+const { classes } = useTheme()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const currentTheme = useCurrentTheme()
     <span
       v-for="tag in props.tags"
       :key="tag"
-      :class="`relative z-10 rounded-full bg-${currentTheme}-50 px-3 py-1.5 text-${currentTheme}-800 dark:text-${currentTheme}-800 font-medium`"
+      :class="classes.tag"
     >
       {{ tag }}
     </span>

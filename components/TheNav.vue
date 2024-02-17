@@ -10,13 +10,13 @@ const show = useVModel(props, 'show', emits)
 const menu = ref()
 const closeButton = ref()
 
-const currentTheme = useCurrentTheme()
-
 const { navigation } = useContent()
+const { classes } = useTheme()
+
 const { x: buttonX, y: buttonY, height, width } = useElementBounding(closeButton)
 
-const x = computed(() => buttonX.value + width.value / 2)
-const y = computed(() => buttonY.value + height.value / 2)
+const x = computed(() => (buttonX.value + width.value / 2) + 13)
+const y = computed(() => (buttonY.value + height.value / 2) + 13)
 
 const endRadius = computed(() => Math.hypot(
   Math.max(x.value, innerWidth - x.value),
@@ -32,7 +32,7 @@ function onClose() {
   <div
     ref="menu"
     :class="{
-      [`pointer-events-none absolute bottom-0 left-0 right-0 top-0 !z-500 bg-${currentTheme}-300 py-8 transition ease-out dark:bg-${currentTheme}-800 md:py-16`]: true,
+      [`pointer-events-none absolute bottom-0 left-0 right-0 top-0 !z-500 ${classes.menu} py-4 will-change transition-all duration-800 md:py-16`]: true,
       '!pointer-events-auto': show,
     }"
     :style="{
@@ -61,13 +61,11 @@ function onClose() {
                 :to="link._path"
                 class="group relative text-5xl font-bold leading-loose md:text-7xl md:leading-loose"
                 :class="{
-                  [`text-${currentTheme}-900 dark:text-${currentTheme}-300`]: $route.path === link._path,
+                  [classes.textLight]: $route.path === link._path,
                 }"
                 @click="onClose"
               >
-                <span
-                  :class="`absolute bottom--4px h-2px w-0 bg-${currentTheme}-900 dark:bg-${currentTheme}-300 transition-width duration-200 ease-in-out group-hover:w-full`"
-                />
+                <span :class="`absolute bottom--4px h-2px w-0 ${classes.menuUnderline} transition-width duration-200 ease-in-out group-hover:w-full`" />
                 {{ link.title }}
               </NuxtLink>
             </li>
