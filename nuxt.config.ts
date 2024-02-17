@@ -1,4 +1,7 @@
 export default defineNuxtConfig({
+  site: {
+    url: 'https://josephanson.com', // production URL
+  },
   extends: ['nuxt-umami'],
   appConfig: {
     umami: {
@@ -19,6 +22,9 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
     '@nuxt/image',
+    '@nuxtjs/sitemap',
+    'nuxt-og-image',
+    'nuxt-schema-org',
   ],
   devtools: {
     enabled: true,
@@ -26,6 +32,7 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     preference: 'dark',
+    fallback: 'light',
   },
   content: {
     documentDriven: true,

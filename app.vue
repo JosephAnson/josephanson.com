@@ -33,12 +33,24 @@ useHead({
     { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
   ],
   htmlAttrs: {
+    lang: 'en',
     class: 'flex flex-col h-100vh overflow-hidden',
   },
   bodyAttrs: {
     class: htmlClasses,
   },
 })
+
+useSeoMeta({
+  ogTitle: 'Vue.js Expert & Web Developer - Joseph Anson',
+  ogDescription: 'Explore the portfolio of Joseph Anson, a Vue.js expert, and discover cutting-edge web applications that blend functionality with sleek design.',
+  ogUrl: 'https://www.josephanson.com',
+  twitterTitle: 'Vue.js Expert & Web Developer - Joseph Anson',
+  twitterDescription: 'Discover the work of Joseph Anson, a Vue.js expert with a passion for creating accessible and engaging web applications.',
+  twitterCard: 'summary',
+})
+
+defineOgImageComponent('BlogPost')
 </script>
 
 <template>

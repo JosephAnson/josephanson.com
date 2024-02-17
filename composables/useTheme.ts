@@ -32,6 +32,7 @@ export function useTheme() {
 
   return {
     classes,
+    currentTheme,
     rotateTheme,
   }
 }
