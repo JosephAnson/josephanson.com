@@ -39,7 +39,13 @@ const { classes } = useTheme()
               {{ article.title }}
             </a>
           </h3>
-          <time class="text-xs" :datetime="article.date" :class="classes.textTint">{{ article.date }}</time>
+          <time
+            class="text-xs"
+            :datetime="article.date"
+            :class="classes.textTint"
+          >
+            {{ article.date }}
+          </time>
           <p :class="`line-clamp-3 mt-2 text-sm ${classes.text}`">
             {{ article.description }}
           </p>

@@ -31,7 +31,7 @@ const styles = computed(() => waves.value.map((wave, index) => `
 
 useStyleTag(styles)
 
-// z--10 z--9 z--8 z--7 z--6 z--5 z--4 z--3 z--2 z--1 z-0 z-1 z-2 z-3 z-4 z-5 z-6 z-7 z-8 z-9 z-10
+// z-0 z-1 z-2 z-3 z-4 z-5 z-6 z-7 z-8 z-9 z-10
 </script>
 
 <template>
@@ -45,7 +45,7 @@ useStyleTag(styles)
       class="transition"
       :class="`path-${index} ${classes.fill}`"
       :d="wave.d"
-      :fill-opacity="(1 / waveOptions.layerCount) * (index + 1) "
+      :fill-opacity="(1 / waveOptions.layerCount) * (index + 1)"
       stroke="rgba(255,255,255,0.1)"
     />
   </svg>
