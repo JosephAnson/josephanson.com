@@ -63,7 +63,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false,
-      routes: [],
+      routes: ['/', '/blog', '/projects'],
     },
     storage: {
       cache: {
