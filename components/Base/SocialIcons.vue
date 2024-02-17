@@ -3,6 +3,7 @@ const socials = {
   twitter: 'https://twitter.com/josephleeanson',
   instagram: 'https://www.instagram.com/joe.anson',
   github: 'https://github.com/josephAnson',
+  linkedin: 'https://www.linkedin.com/in/josephanson/',
 }
 
 const socialsMap = {
@@ -12,9 +13,10 @@ const socialsMap = {
   youtube: 'i-ph:youtube-logo-duotone',
   github: 'i-ph:github-logo-duotone',
   medium: 'i-ph:medium-logo-duotone',
+  linkedin: 'i-ph:linkedin-logo-duotone',
 }
 
-const currentTheme = useCurrentTheme()
+const { classes } = useTheme()
 
 const icons = computed<any>(() => {
   return Object.entries(socials)
@@ -52,7 +54,7 @@ function getRel(icon: any) {
     :aria-label="icon.label"
     :href="icon.href"
     target="_blank"
-    :class="`h-6 w-6 flex hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300`"
+    :class="`h-6 w-6 flex ${classes.icon}`"
   >
     <div v-if="icon.icon" :class="icon.icon" class="h-full w-full" />
   </NuxtLink>
