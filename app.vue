@@ -11,7 +11,9 @@ const htmlClasses = computed(() => {
 })
 
 useHead({
-  title: appName,
+  titleTemplate(title) {
+    return title ? `${title} - Joseph Anson` : 'Joseph Anson'
+  },
   meta: [
     {
       name: 'viewport',
@@ -21,6 +23,14 @@ useHead({
       name: 'view-transition',
       content: 'same-origin',
     },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'description', content: 'Joseph Anson\'s personal website' },
+    { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+  ],
+  link: [
+    { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+    { rel: 'icon', type: 'image/svg+xml', href: '/nuxt.svg' },
+    { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
   ],
   htmlAttrs: {
     class: 'flex flex-col h-100vh overflow-hidden',

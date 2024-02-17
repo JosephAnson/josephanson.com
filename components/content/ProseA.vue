@@ -23,9 +23,11 @@ function isHttpUrl(string) {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 const isExternal = isHttpUrl(props.href)
+
 const bindProps = {
   to: props.href,
 }
+
 if (isExternal || props.blank)
   bindProps.target = '_blank'
 </script>

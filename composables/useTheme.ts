@@ -1,5 +1,5 @@
-import { tailwindColors, themeConfig } from '../utils/constants'
-import { themeClasses } from '~/uno.config'
+import { tailwindColors } from '~/utils/constants'
+import { themeClasses } from '~/utils/themeClasses'
 
 const useThemeChoices = () => useState<Record<string, string>>('theme-choices', () => ({}))
 export const useCurrentTheme = () => useState<string>('theme', () => '')
@@ -8,7 +8,7 @@ export function useTheme() {
   const themeChoices = useThemeChoices()
   const currentTheme = useCurrentTheme()
   const route = useRoute()
-  const themes = [...Object.keys(themeConfig.colors), ...tailwindColors]
+  const themes = tailwindColors
 
   const classes = computed(() => themeClasses(currentTheme.value))
 
@@ -16,11 +16,11 @@ export function useTheme() {
     if (themeChoices.value?.[path])
       currentTheme.value = themeChoices.value[path]
     else if (path === '/projects')
-      currentTheme.value = 'secondary'
+      currentTheme.value = 'purple'
     else if (path.includes('/blog'))
-      currentTheme.value = 'tertiary'
+      currentTheme.value = 'emerald'
     else
-      currentTheme.value = 'primary'
+      currentTheme.value = 'blue'
   }, { immediate: true })
 
   function rotateTheme() {
