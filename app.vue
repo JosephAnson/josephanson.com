@@ -6,10 +6,6 @@ import './styles/animations.css'
 
 const { classes } = useTheme()
 
-const htmlClasses = computed(() => {
-  return `transition will-change-background ${classes.value.gradient} ${classes.value.text}`
-})
-
 useHead({
   titleTemplate(title) {
     return title ? `${title} - Joseph Anson` : 'Joseph Anson'
@@ -34,10 +30,10 @@ useHead({
   ],
   htmlAttrs: {
     lang: 'en',
-    class: 'flex flex-col h-100vh overflow-hidden',
+    class: 'flex flex-col h-100dvh overflow-hidden',
   },
   bodyAttrs: {
-    class: htmlClasses,
+    class: () => `transition will-change-background ${classes.value.gradient} ${classes.value.text}`,
   },
 })
 

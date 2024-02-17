@@ -21,7 +21,7 @@ const parentPath = computed(() => {
 </script>
 
 <template>
-  <article ref="article" class="slide-enter-content relative max-w-3xl pb-50 prose md:pb-100">
+  <article ref="article" class="slide-enter-content relative max-w-3xl pb-30 prose md:pb-100">
     <div class="not-prose">
       <NuxtLink
         :to="parentPath"
@@ -35,12 +35,17 @@ const parentPath = computed(() => {
       </NuxtLink>
     </div>
 
-    <ProseH1>{{ page.title }}</ProseH1>
+    <ProseH1
+      class="blog-title !animate-duration-900 !animate-delay-75"
+      :style="`view-transition-name: blog-${page._id?.replaceAll(':', '').replaceAll('.', '')}`"
+    >
+      {{ page.title }}
+    </ProseH1>
 
     <BaseTagList :tags="page.categories" />
 
     <div class="slide-enter-content relative m-auto">
-      <slot class="documentDriven" />
+      <slot />
     </div>
   </article>
 </template>

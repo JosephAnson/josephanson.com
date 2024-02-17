@@ -24,8 +24,5 @@ const { data: _articles } = await useAsyncData(
         :article="article"
       />
     </ul>
-    <div v-else class="slide-enter-content tour w-full flex flex-col items-center justify-center">
-      <p>Seems like there are no {{ props.path }} yet.</p>
-    </div>
   </div>
 </template>

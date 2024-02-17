@@ -2,6 +2,9 @@ export default defineNuxtConfig({
   site: {
     url: 'https://josephanson.com', // production URL
   },
+  experimental: {
+    viewTransition: true,
+  },
   extends: ['nuxt-umami'],
   appConfig: {
     umami: {
