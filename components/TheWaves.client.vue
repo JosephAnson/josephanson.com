@@ -45,7 +45,8 @@ useStyleTag(styles)
       class="transition"
       :class="`path-${index} ${classes.fill}`"
       :d="wave.d"
-      :fill-opacity="(1 / waveOptions.layerCount) * (index + 2)"
+      :fill-opacity="(1 / waveOptions.layerCount) * (index + 1) "
+      stroke="rgba(255,255,255,0.1)"
     />
   </svg>
 </template>
