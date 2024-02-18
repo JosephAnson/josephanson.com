@@ -45,7 +45,7 @@ const waves = waveInit({
       <p class="mb-4 text-[24px] text-blue-400 font-semibold uppercase">
         Joseph Anson
       </p>
-      <h1 class="m-0 mb-4 w-[600px] flex items-center text-[75px] text-white font-semibold">
+      <h1 class="m-0 mb-4 flex items-center text-[75px] text-white font-semibold">
         <span>{{ title }}</span>
       </h1>
       <p class="text-[32px] text-blue-100 leading-tight">
