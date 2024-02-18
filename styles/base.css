@@ -11,9 +11,8 @@ html.dark {
 
 html,
 body {
-  height: 100vh;
   --uno: font-sans;
-  background: black;
+  height: 100%;
 }
 
 * {

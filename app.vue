@@ -30,7 +30,6 @@ useHead({
   ],
   htmlAttrs: {
     lang: 'en',
-    class: 'flex flex-col h-100dvh overflow-hidden',
   },
   bodyAttrs: {
     class: () => `transition will-change-background ${classes.value.gradient} ${classes.value.text}`,
@@ -50,7 +49,7 @@ defineOgImageComponent('BlogPost')
 </script>
 
 <template>
-  <div class="h-100vh of-y-auto scroll-smooth pb-20">
+  <div class="max-h-none of-y-auto scroll-smooth">
     <TheHeader />
 
     <main>
