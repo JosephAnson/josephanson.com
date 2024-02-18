@@ -19,8 +19,8 @@ const x = computed(() => (buttonX.value + width.value / 2) + 13)
 const y = computed(() => (buttonY.value + height.value / 2) + 13)
 
 const endRadius = computed(() => Math.hypot(
-  Math.max(x.value, innerWidth - x.value),
-  Math.max(y.value, innerHeight - y.value),
+  Math.max(x.value, innerWidth),
+  Math.max(y.value, innerHeight),
 ))
 
 function onClose() {
@@ -32,7 +32,7 @@ function onClose() {
   <div
     ref="menu"
     :class="{
-      [`pointer-events-none absolute bottom-0 left-0 right-0 top-0 !z-500 ${classes.menu} py-4 will-change transition-all duration-800 md:py-16`]: true,
+      [`pointer-events-none h-dvh fixed bottom-0 left-0 right-0 top-0 !z-500 ${classes.menu} py-4 will-change transition-all duration-800 md:py-16`]: true,
       '!pointer-events-auto': show,
     }"
     :style="{
@@ -41,7 +41,7 @@ function onClose() {
         : `circle(${endRadius}px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`,
     }"
   >
-    <BaseContainer class="h-100%">
+    <BaseContainer class="h-dvh">
       <div class="relative h-full flex items-center">
         <BaseButton
           ref="closeButton"

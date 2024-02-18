@@ -31,7 +31,7 @@ const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.'
         :class="`${classes.card} p-4 rounded flex flex-wrap items-center`"
       >
         <div class="group relative">
-          <div class="mb-1 flex justify-between">
+          <div class="mb-1 justify-between md:flex">
             <h3
               :class="`text-lg ${classes.text} font-semibold`"
             >
