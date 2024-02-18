@@ -43,7 +43,7 @@ function onClick() {
 
     <button
       aria-label="Color Mode"
-      :class="`h-6 hover:text-${currentTheme}-500 dark:hover:text-${currentTheme}-300 w-6 flex bg-transparent`"
+      :class="`h-6 ${classes.icon} w-6 flex bg-transparent`"
       @click="onClick"
     >
       <ColorScheme>

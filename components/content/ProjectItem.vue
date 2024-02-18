@@ -50,6 +50,7 @@ if (isHttpUrl(props.link))
           :src="imageUrl!"
           :alt="`Screenshot of ${props.title} website`"
           :placeholder="[50, 25, 75, 5]"
+          format="webp"
         />
       </div>
       <div class="p-4">
