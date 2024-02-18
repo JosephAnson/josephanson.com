@@ -7,7 +7,7 @@ export function themeClasses(key: string) {
     menu: `bg-${key}-300 dark:bg-${key}-800`,
     menuUnderline: `bg-${key}-900 dark:bg-${key}-200`,
     button: `rounded bg-${key}-500:20 hover:bg-${key}-500:50 px-4 py-2 transition`,
-    link: `text-${key}-600 hover:text-${key}-800 dark:text-${key}-400 dark:hover:text-${key}-200`,
+    link: `text-${key}-600 hover:text-${key}-800 dark:text-${key}-300 dark:hover:text-${key}-200`,
     card: `transition border-${key}-500 border-1 bg-${key}-300:80 hover:bg-${key}-200:80 dark:bg-${key}-700:80 dark:hover:bg-${key}-800:80`,
     fill: `fill-${key}-500 dark:fill-${key}-500`,
     gradient: `bg-gradient-to-b from-${key}-200 via-${key}-100 to-${key}-50 dark:from-${key}-800 dark:via-${key}-900 dark:to-${key}-950`,

@@ -37,29 +37,32 @@ if (isHttpUrl(props.link))
 </script>
 
 <template>
-  <NuxtLink
-    v-bind="bindProps"
-    :to="props.link"
-    :class="`relative overflow-hidden rounded ${classes.card}`"
-  >
-    <div class="aspect-video">
-      <NuxtImg
-        width="400"
-        class="aspect-video w-full object-cover"
-        :src="imageUrl!"
-        :placeholder="[50, 25, 75, 5]"
-      />
-    </div>
-    <div class="p-4">
-      <div class="flex justify-between">
-        <h3 :class="`mb-1 block text-lg font-bold ${classes.textLight}`">
-          {{ props.title }}
-        </h3>
-        <span class="i-ph:arrow-square-in-duotone" />
+  <li class="inline-flex">
+    <NuxtLink
+      v-bind="bindProps"
+      :to="props.link"
+      :class="`relative w-full overflow-hidden rounded ${classes.card}`"
+    >
+      <div class="aspect-video">
+        <NuxtImg
+          width="400"
+          class="aspect-video w-full object-cover"
+          :src="imageUrl!"
+          :alt="`Screenshot of ${props.title} website`"
+          :placeholder="[50, 25, 75, 5]"
+        />
       </div>
-      <p>
-        {{ props.description }}
-      </p>
-    </div>
-  </NuxtLink>
+      <div class="p-4">
+        <div class="flex justify-between">
+          <h2 :class="`mb-1 block text-lg font-bold ${classes.textLight}`">
+            {{ props.title }}
+          </h2>
+          <span class="i-ph:arrow-square-in-duotone" />
+        </div>
+        <p>
+          {{ props.description }}
+        </p>
+      </div>
+    </NuxtLink>
+  </li>
 </template>

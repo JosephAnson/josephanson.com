@@ -12,7 +12,7 @@ html.dark {
 html,
 body {
   --uno: font-sans;
-  height: 100%;
+  min-height: 100vh;
 }
 
 * {

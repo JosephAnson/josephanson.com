@@ -49,7 +49,7 @@ defineOgImageComponent('BlogPost')
 </script>
 
 <template>
-  <div class="max-h-none of-y-auto scroll-smooth">
+  <div class="of-y-auto scroll-smooth">
     <TheHeader />
 
     <main>
