@@ -30,30 +30,32 @@ const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.'
         v-if="article._path && article.title"
         :class="`${classes.card} p-4 rounded flex flex-wrap items-center`"
       >
-        <div class="flex items-center gap-x-4 text-xs">
-          <BaseTagList
-            :tags="article.categories"
-          />
-        </div>
         <div class="group relative">
-          <h3
-            :class="`mt-3 text-lg ${classes.text} font-semibold`"
-          >
-            <a
-              :href="article._path"
-              :style="`animation: 1s; view-transition-name: blog-${id}; contain: layout;`"
-              class="!animate-duration-900 !animate-delay-75"
+          <div class="mb-1 flex justify-between">
+            <h3
+              :class="`text-lg ${classes.text} font-semibold`"
             >
-              {{ article.title }}
-            </a>
-          </h3>
-          <time
-            class="text-xs"
-            :datetime="article.date"
-            :class="classes.textTint"
-          >
-            {{ article.date }}
-          </time>
+              <a
+                :href="article._path"
+                :style="`view-transition-name: blog-${id};`"
+              >
+                {{ article.title }}
+              </a>
+            </h3>
+            <time
+              class="text-xs"
+              :datetime="article.date"
+              :class="classes.textTint"
+            >
+              {{ article.date }}
+            </time>
+          </div>
+
+          <BaseTagList
+            class="mb-1"
+            :tags="article.categories"
+            :style="`view-transition-name: blog-tags-${id};`"
+          />
           <p :class="`line-clamp-3 mt-2 text-sm ${classes.text}`">
             {{ article.description }}
           </p>
