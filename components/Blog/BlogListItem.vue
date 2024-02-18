@@ -32,7 +32,7 @@ const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.'
       >
         <div class="group relative">
           <div class="mb-1 justify-between md:flex">
-            <h3
+            <h2
               :class="`text-lg ${classes.text} font-semibold`"
             >
               <a
@@ -41,7 +41,7 @@ const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.'
               >
                 {{ article.title }}
               </a>
-            </h3>
+            </h2>
             <time
               class="text-xs"
               :datetime="article.date"

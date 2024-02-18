@@ -37,16 +37,17 @@ export default defineNuxtConfig({
     preference: 'dark',
     fallback: 'light',
   },
+  components: {
+    global: true,
+    dirs: ['~/components'],
+  },
   content: {
     documentDriven: true,
     navigation: {
       fields: ['navTitle'],
     },
     highlight: {
-      theme: {
-        default: 'vitesse-light',
-        dark: 'vitesse-dark',
-      },
+
       preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
     },
   },

@@ -18,7 +18,7 @@ const { data: _articles } = await useAsyncData(
 <template>
   <div class="not-prose">
     <ul v-if="_articles?.length" class="not-prose mt-8 space-y-8">
-      <ArticlesListItem
+      <BlogListItem
         v-for="(article, index) in _articles"
         :key="index"
         :article="article"

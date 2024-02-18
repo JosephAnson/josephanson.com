@@ -1,9 +1,18 @@
 <script lang="ts" setup>
+defineProps<{
+  text?: string
+  to?: string
+}>()
 const { classes } = useTheme()
 </script>
 
 <template>
-  <button :class="classes.button" aria-label="Navigation Menu">
-    <slot />
+  <NuxtLink v-if="to" :to="to" class="inline-block">
+    <button :class="classes.button" class="not-prose">
+      <slot> {{ text }} </slot>
+    </button>
+  </NuxtLink>
+  <button v-else :class="classes.button" class="not-prose">
+    <slot> {{ text }} </slot>
   </button>
 </template>
