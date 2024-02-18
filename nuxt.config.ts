@@ -54,6 +54,7 @@ export default defineNuxtConfig({
     domains: [`${process.env.MINIO_URL}:9000`],
   },
   nitro: {
+    compressPublicAssets: true,
     prerender: {
       crawlLinks: false,
       routes: [],
