@@ -8,16 +8,6 @@ const props = defineProps< {
 
 const colorMode = useColorMode()
 const { classes } = useTheme()
-const color = computed(() => colorMode.preference)
-
-const { data: imageUrl } = await useFetch(`/screenshot`, {
-  query: {
-    colorMode: color,
-    url: props.link,
-    title: props.title,
-  },
-  watch: [() => colorMode.preference],
-})
 
 function isHttpUrl(string: string) {
   let url
@@ -34,6 +24,8 @@ const bindProps: { target?: '_blank' } = {}
 
 if (isHttpUrl(props.link))
   bindProps.target = '_blank'
+
+const imageUrl = computed(() => `http://storage.josephanson.com:9000/screenshots/${props.title.replace(' ', '-')}-${colorMode.preference}.jpg`)
 </script>
 
 <template>
@@ -47,7 +39,7 @@ if (isHttpUrl(props.link))
         <NuxtImg
           width="400"
           class="aspect-video w-full object-cover"
-          :src="imageUrl!"
+          :src="imageUrl"
           :alt="`Screenshot of ${props.title} website`"
           :placeholder="[50, 25, 75, 5]"
           format="webp"
