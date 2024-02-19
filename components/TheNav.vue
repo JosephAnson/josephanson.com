@@ -41,7 +41,7 @@ function onClose() {
         : `circle(${endRadius}px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`,
     }"
   >
-    <BaseContainer class="h-dvh">
+    <BaseContainer class="h-full">
       <div class="relative h-full flex items-center">
         <BaseButton
           ref="closeButton"
