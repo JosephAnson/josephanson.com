@@ -31,10 +31,11 @@ function onClose() {
 <template>
   <div
     ref="menu"
-    :class="{
-      [`pointer-events-none h-dvh fixed bottom-0 left-0 right-0 top-0 !z-500 ${classes.menu} py-4 will-change transition-all duration-800 md:py-16`]: true,
-      '!pointer-events-auto': show,
-    }"
+    class="menu pointer-events-none fixed bottom-0 left-0 right-0 top-0 h-full py-4 transition-all duration-1000 !z-500 md:py-16"
+    :class="[
+      classes.menu,
+      { '!pointer-events-auto': show },
+    ]"
     :style="{
       clipPath: !show
         ? `circle(0px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`
@@ -77,3 +78,14 @@ function onClose() {
     </BaseContainer>
   </div>
 </template>
+
+<style scoped>
+.menu {
+  position: fixed;
+  view-transition-name: menu;
+}
+
+::view-transition-group(menu) {
+  z-index: 200;
+}
+</style>
