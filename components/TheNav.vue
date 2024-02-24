@@ -21,7 +21,7 @@ function onClose() {
 <template>
   <div
     ref="menu"
-    class="menu pointer-events-none fixed right-0 top-0 h-full w-full py-4 transition-all duration-850 will-change-transform !z-500 md:py-16"
+    class="menu pointer-events-none fixed right-0 top-0 h-full w-full py-4 transition-all duration-750 will-change-transform !z-500 md:py-16"
     :class="[
       classes.menu,
       { '!pointer-events-auto': show },
@@ -51,9 +51,7 @@ function onClose() {
               <NuxtLink
                 :to="link._path"
                 class="group relative text-5xl font-bold leading-loose md:text-7xl md:leading-loose"
-                :class="{
-                  [classes.textLight]: $route.path === link._path,
-                }"
+                :active-class="classes.textLight"
                 @click="onClose"
               >
                 <span :class="`absolute bottom--4px h-2px w-0 ${classes.menuUnderline} transition-width duration-200 ease-in-out group-hover:w-full`" />
