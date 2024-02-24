@@ -13,16 +13,6 @@ const closeButton = ref()
 const { navigation } = useContent()
 const { classes } = useTheme()
 
-const { x: buttonX, y: buttonY, height, width } = useElementBounding(closeButton)
-
-const x = computed(() => (buttonX.value + width.value / 2) + 13)
-const y = computed(() => (buttonY.value + height.value / 2) + 13)
-
-const endRadius = computed(() => Math.hypot(
-  Math.max(x.value, innerWidth),
-  Math.max(y.value, innerHeight),
-))
-
 function onClose() {
   show.value = false
 }
@@ -31,15 +21,15 @@ function onClose() {
 <template>
   <div
     ref="menu"
-    class="menu pointer-events-none fixed right-0 top-0 h-full w-full py-4 transition-all duration-1000 !z-500 md:py-16"
+    class="menu pointer-events-none fixed right-0 top-0 h-full w-full py-4 transition-all duration-850 will-change-transform !z-500 md:py-16"
     :class="[
       classes.menu,
       { '!pointer-events-auto': show },
     ]"
     :style="{
-      clipPath: !show
-        ? `circle(0px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`
-        : `circle(${endRadius}px at calc(${x}px - 0.75rem) calc(${y}px - 0.75rem))`,
+      transform: !show
+        ? `translateY(-100%)`
+        : `translateY(0)`,
     }"
   >
     <BaseContainer class="h-full">
@@ -81,7 +71,6 @@ function onClose() {
 
 <style scoped>
 .menu {
-  position: fixed;
   view-transition-name: menu;
 }
 
