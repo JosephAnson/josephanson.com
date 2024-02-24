@@ -31,7 +31,7 @@ function onClose() {
 <template>
   <div
     ref="menu"
-    class="menu pointer-events-none fixed bottom-0 left-0 right-0 top-0 h-full py-4 transition-all duration-1000 !z-500 md:py-16"
+    class="menu pointer-events-none fixed right-0 top-0 h-full w-full py-4 transition-all duration-1000 !z-500 md:py-16"
     :class="[
       classes.menu,
       { '!pointer-events-auto': show },

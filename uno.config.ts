@@ -18,9 +18,6 @@ export const colors: string[] = tailwindColors
   ).flat()
 
 export const unocssConfig: UserConfig<any> = {
-  shortcuts: {
-    transition: 'transition-colors',
-  },
   presets: [
     presetUno(),
     presetIcons({
