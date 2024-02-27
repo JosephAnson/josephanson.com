@@ -11,7 +11,9 @@ function toggleMenu() {
     <div class="relative z-20 py-4 md:py-16">
       <BaseContainer>
         <div class="flex items-center justify-between gap-16">
-          <NuxtLink to="/" class="flex text-2xl font-serif">
+          <NuxtLink to="/" class="flex text-2xl">
+            <span class="i-ph:user-circle-duotone mr-2" />
+
             J. Anson
           </NuxtLink>
 

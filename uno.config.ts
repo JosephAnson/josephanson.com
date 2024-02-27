@@ -33,7 +33,6 @@ export const unocssConfig: UserConfig<any> = {
       provider: 'bunny',
       fonts: {
         sans: ['Poppins', 'Poppins:400, 500,700'],
-        serif: ['Yeseva One', 'Yeseva One:400, 500, 700'],
         mono: 'DM Sans Mono',
       },
     }),
