@@ -6,6 +6,10 @@ const { classes } = useTheme()
 const { state: waves, waveOptions } = useWavesStore()
 
 // z-0 z-1 z-2 z-3 z-4 z-5 z-6 z-7 z-8 z-9 z-10
+
+const { y } = useMouse()
+const { height } = useWindowSize()
+const mousePercent = computed(() => y.value / height.value / 10)
 </script>
 
 <template>
@@ -19,7 +23,7 @@ const { state: waves, waveOptions } = useWavesStore()
       class="transition"
       :class="`will-change-contents path-${index} ${classes.fill}`"
       :d="wave.d"
-      :fill-opacity="(1 / waveOptions.layerCount) * (index + 1)"
+      :fill-opacity="(1 / waveOptions.layerCount) * (index + 1) + mousePercent"
       stroke="rgba(255,255,255,0.25)"
     />
   </svg>
