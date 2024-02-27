@@ -43,7 +43,7 @@ const parentPath = computed(() => {
 
     <BaseTagList :tags="page.categories" :style="`view-transition-name: blog-tags-${page._id?.replaceAll(':', '').replaceAll('.', '')}`" />
 
-    <div class="slide-enter-content relative m-auto">
+    <div class="relative m-auto">
       <slot />
     </div>
   </article>

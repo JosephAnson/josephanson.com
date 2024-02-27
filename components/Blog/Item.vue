@@ -34,13 +34,9 @@ const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.'
           <div class="mb-1 justify-between md:flex">
             <h2
               :class="`text-lg ${classes.text} font-semibold`"
+              :style="`view-transition-name: blog-${id};`"
             >
-              <a
-                :href="article._path"
-                :style="`view-transition-name: blog-${id};`"
-              >
-                {{ article.title }}
-              </a>
+              {{ article.title }}
             </h2>
             <time
               class="text-xs"
