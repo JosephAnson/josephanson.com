@@ -121,7 +121,7 @@ export class Wavery {
       this.properties.variance,
     )
 
-    this.aniPoints = Array.from({ length: 3 }, () =>
+    this.aniPoints = Array.from({ length: 12 }, () =>
       generatePoints(
         this.properties.width,
         this.properties.height,
