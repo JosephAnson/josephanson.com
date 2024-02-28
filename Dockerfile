@@ -36,10 +36,10 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # Step 7: Build the application if needed. This step can be omitted if you're running a development server.
-RUN pnpm build
+RUN pnpm run generate
 
 # Step 8: Expose the port that Nuxt will run on
 ENV EXPOSE 3000
 
 # Step 10: Build the application
-CMD ["node", ".output/server/index.mjs"]
+CMD ["npx", "serve", ".output/public"]

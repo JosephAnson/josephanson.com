@@ -45,7 +45,10 @@ useSeoMeta({
   twitterCard: 'summary',
 })
 
-defineOgImageComponent('BlogPost')
+defineOgImage({
+  component: 'Default',
+  renderer: 'santori',
+})
 </script>
 
 <template>
