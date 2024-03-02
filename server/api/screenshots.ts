@@ -1,7 +1,7 @@
 import { serverQueryContent } from '#content/server'
 
 export default eventHandler(async (event) => {
-  const projects = await serverQueryContent(event, 'projects').where({ _dir: { $not: '' } }).sort({ date: -1 }).find()
+  const projects = await serverQueryContent(event, 'projects').where({ _dir: { $not: '' } }).find()
 
   projects.map((project) => {
     project.id = project.title?.toLowerCase().replaceAll(/[ &]/gi, '-').replaceAll(/---/gi, '-')
