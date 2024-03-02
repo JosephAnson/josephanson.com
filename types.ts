@@ -9,3 +9,13 @@ export interface Article {
   categories: string[]
   badges?: { bg: string, text: string, content: string }[]
 }
+
+export interface Project {
+  _id: string
+  _path: string
+  id: string
+  title: string
+  description: string
+  image?: string
+  link: string
+}

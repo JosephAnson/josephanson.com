@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 export default defineNuxtConfig({
   site: {
     url: 'https://josephanson.com', // production URL
@@ -55,5 +57,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     compressPublicAssets: true,
+    experimental: {
+      tasks: true,
+    },
   },
 })

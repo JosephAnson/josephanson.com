@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const props = defineProps< {
+const props = defineProps<{
+  id: string
   title: string
   description: string
   image?: string
@@ -25,7 +26,7 @@ const bindProps: { target?: '_blank' } = {}
 if (isHttpUrl(props.link))
   bindProps.target = '_blank'
 
-const imageUrl = computed(() => `http://storage.josephanson.com:9000/screenshots/${props.title.replaceAll(/[ &]/i, '-')}-${colorMode.preference}.jpg`)
+const imageUrl = computed(() => `http://storage.josephanson.com:9000/screenshots/${props.id}-${colorMode.preference}.jpg`)
 </script>
 
 <template>
@@ -48,7 +49,7 @@ const imageUrl = computed(() => `http://storage.josephanson.com:9000/screenshots
         <NuxtImg
           class="hidden"
           width="400"
-          :src="`http://storage.josephanson.com:9000/screenshots/${props.title.replace(' ', '-')}-light.jpg`"
+          :src="`http://storage.josephanson.com:9000/screenshots/${props.id}-light.jpg`"
           :alt="`Screenshot of ${props.title} website`"
           :placeholder="[50, 25, 75, 5]"
           format="webp"
