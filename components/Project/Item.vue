@@ -25,7 +25,7 @@ const bindProps: { target?: '_blank' } = {}
 if (isHttpUrl(props.link))
   bindProps.target = '_blank'
 
-const imageUrl = computed(() => `http://storage.josephanson.com:9000/screenshots/${props.title.replace(' ', '-')}-${colorMode.preference}.jpg`)
+const imageUrl = computed(() => `http://storage.josephanson.com:9000/screenshots/${props.title.replaceAll(/[ &]/i, '-')}-${colorMode.preference}.jpg`)
 </script>
 
 <template>
@@ -40,6 +40,15 @@ const imageUrl = computed(() => `http://storage.josephanson.com:9000/screenshots
           width="400"
           class="aspect-video w-full object-cover"
           :src="imageUrl"
+          :alt="`Screenshot of ${props.title} website`"
+          :placeholder="[50, 25, 75, 5]"
+          format="webp"
+        />
+        <!-- Force prerender of light mode image -->
+        <NuxtImg
+          class="hidden"
+          width="400"
+          :src="`http://storage.josephanson.com:9000/screenshots/${props.title.replace(' ', '-')}-light.jpg`"
           :alt="`Screenshot of ${props.title} website`"
           :placeholder="[50, 25, 75, 5]"
           format="webp"
