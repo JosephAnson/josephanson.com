@@ -8,7 +8,7 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 import type { UserConfig } from '@unocss/core'
-import { tailwindColors, themeConfig } from './utils/constants'
+import { tailwindColors } from './utils/constants'
 import { themeClasses } from './utils/themeClasses'
 
 export const colors: string[] = tailwindColors
@@ -41,8 +41,12 @@ export const unocssConfig: UserConfig<any> = {
     transformerDirectives(),
     transformerVariantGroup(),
   ],
-  theme: themeConfig,
   safelist: colors,
+  theme: {
+    container: {
+      center: true,
+    },
+  },
 }
 
 export default defineConfig(unocssConfig)

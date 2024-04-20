@@ -5,10 +5,10 @@ export function useWavesStore() {
 
   const breakpoint = computed(() => width.value >= 1000)
   const waveOptions = computed(() => ({
-    height: breakpoint.value ? 580 : 250,
+    height: breakpoint.value ? 480 : 250,
     width: width.value,
     segmentCount: breakpoint.value ? 12 : 6,
-    layerCount: 12,
+    layerCount: 10,
     variance: breakpoint.value ? 1.2 : 1,
   }))
 

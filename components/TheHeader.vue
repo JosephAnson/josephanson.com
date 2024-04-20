@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const show = ref(false)
+const show = useShowMenu()
 
 function toggleMenu() {
   show.value = !show.value

@@ -1,17 +1,10 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  show: boolean
-}>()
-
-const emits = defineEmits(['update:show'])
-
-const show = useVModel(props, 'show', emits)
-
 const menu = ref()
 const closeButton = ref()
 
 const { navigation } = useContent()
 const { classes } = useTheme()
+const show = useShowMenu()
 
 function onClose() {
   show.value = false
@@ -21,17 +14,19 @@ function onClose() {
 <template>
   <div
     ref="menu"
-    class="menu pointer-events-none fixed right-0 top-0 h-full w-full py-4 transition-all duration-750 will-change-transform !z-500 md:py-16"
+    class="menu pointer-events-none fixed right-0 top-0 h-full w-full transform-gpu py-4 transition-all duration-1000 ease-in-out will-change-transform !z-500 md:py-16"
     :class="[
       classes.menu,
       { '!pointer-events-auto': show },
     ]"
     :style="{
       transform: !show
-        ? `translateY(-100%)`
-        : `translateY(0)`,
+        ? `translateY(100%)`
+        : `translateY(0%)`,
     }"
   >
+    <TheWaves :amount="3" class="absolute bottom-0 z-0 translate-y--100dvh transition-all duration-500 ease-in-out" />
+
     <BaseContainer class="h-full">
       <div class="relative h-full flex items-center">
         <BaseButton
@@ -66,13 +61,3 @@ function onClose() {
     </BaseContainer>
   </div>
 </template>
-
-<style scoped>
-.menu {
-  view-transition-name: menu;
-}
-
-::view-transition-group(menu) {
-  z-index: 200;
-}
-</style>

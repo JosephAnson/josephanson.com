@@ -86,8 +86,3 @@
         --enter-stage: 20 !important;
     }
 }
-
-html::view-transition-group(*) {
-    animation-duration: .5s;
-    animation-fill-mode: both;
-}

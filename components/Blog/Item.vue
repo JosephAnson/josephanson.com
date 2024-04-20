@@ -17,7 +17,6 @@ const props = defineProps({
 })
 
 const { classes } = useTheme()
-const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.', ''))
 
 const timeAgo = useTimeAgo(new Date(props.article.date))
 </script>
@@ -36,7 +35,6 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
           <div class="mb-1 justify-between md:flex">
             <h2
               :class="`text-lg ${classes.text} font-semibold`"
-              :style="`view-transition-name: blog-${id};`"
             >
               {{ article.title }}
             </h2>
@@ -52,7 +50,6 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
           <BaseTagList
             class="mb-1"
             :tags="article.categories"
-            :style="`view-transition-name: blog-tags-${id};`"
           />
           <p :class="`line-clamp-3 mt-2 text-sm ${classes.text}`">
             {{ article.description }}

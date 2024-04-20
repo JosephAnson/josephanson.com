@@ -52,11 +52,11 @@ defineOgImage({
 </script>
 
 <template>
-  <div class="of-y-auto scroll-smooth">
+  <div class="h-full of-y-auto scroll-smooth">
     <TheHeader />
 
     <main>
-      <BaseContainer class="relative z-8 text-sm md:text-base">
+      <BaseContainer class="relative z-10 text-sm md:text-base">
         <NuxtPage />
       </BaseContainer>
     </main>

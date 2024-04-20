@@ -1,5 +1,3 @@
-import type { UserConfig } from '@unocss/core'
-
 export const tailwindColors = [
   'green',
   'violet',
@@ -22,9 +20,3 @@ export const tailwindColors = [
   'purple',
   'emerald',
 ]
-
-export const themeConfig: UserConfig<any>['theme'] = {
-  container: {
-    center: true,
-  },
-}

@@ -4,7 +4,7 @@ export function themeClasses(key: string) {
     textLight: `text-${key}-900 dark:text-${key}-300`,
     textTint: `text-${key}-500`,
     highlight: `text-${key}-600 dark:text-${key}-400`,
-    menu: `bg-${key}-300 dark:bg-${key}-800`,
+    menu: `bg-${key}-500 dark:bg-${key}-500`,
     menuUnderline: `bg-${key}-900 dark:bg-${key}-200`,
     button: `rounded bg-${key}-500:20 hover:bg-${key}-500:50 px-4 py-2 transition`,
     link: `text-${key}-600 hover:text-${key}-800 dark:text-${key}-300 dark:hover:text-${key}-200`,
