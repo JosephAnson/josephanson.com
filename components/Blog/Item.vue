@@ -18,6 +18,8 @@ const props = defineProps({
 
 const { classes } = useTheme()
 const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.', ''))
+
+const timeAgo = useTimeAgo(new Date(props.article.date))
 </script>
 
 <template>
@@ -30,7 +32,7 @@ const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.'
         v-if="article._path && article.title"
         :class="`${classes.card} p-4 rounded flex flex-wrap items-center`"
       >
-        <div class="group relative">
+        <div class="group relative w-full">
           <div class="mb-1 justify-between md:flex">
             <h2
               :class="`text-lg ${classes.text} font-semibold`"
@@ -43,7 +45,7 @@ const id = computed(() => props.article?._id?.replaceAll(':', '').replaceAll('.'
               :datetime="article.date"
               :class="classes.textTint"
             >
-              {{ article.date }}
+              {{ timeAgo }}
             </time>
           </div>
 
