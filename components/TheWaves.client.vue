@@ -6,7 +6,6 @@ const props = defineProps<{
 }>()
 
 const { classes } = useTheme()
-const show = useShowMenu()
 const { state: waves, waveOptions } = useWavesStore()
 
 // z-0 z-1 z-2 z-3 z-4 z-5 z-6 z-7 z-8 z-9 z-10
@@ -45,7 +44,7 @@ function opacity(index: number) {
       :class="`path-${reverseIndex(index)} ${classes.fill}`"
       :d="wave.d"
       :fill-opacity="opacity(index)"
-      :stroke="show ? '' : 'rgba(255,255,255,0.25)'"
+      stroke="rgba(255,255,255,0.25)"
     />
   </svg>
 </template>
