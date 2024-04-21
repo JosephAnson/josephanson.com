@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import BaseLogo from '~/components/Base/BaseLogo.vue'
+
 const show = useShowMenu()
 
 function toggleMenu() {
@@ -12,7 +14,7 @@ function toggleMenu() {
       <BaseContainer>
         <div class="flex items-center justify-between gap-16">
           <NuxtLink to="/" class="flex text-2xl">
-            <span class="i-ph:user-circle-duotone mr-2" />
+            <BaseLogo class="mr-2 h-8 w-8" />
 
             J. Anson
           </NuxtLink>
