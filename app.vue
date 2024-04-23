@@ -52,7 +52,7 @@ defineOgImage({
 </script>
 
 <template>
-  <div class="h-full of-y-auto scroll-smooth">
+  <div class="h-full of-y-scroll scroll-smooth">
     <TheHeader />
 
     <main>

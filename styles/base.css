@@ -1,12 +1,9 @@
 :root {
-  --c-scrollbar: #eee;
-  --c-scrollbar-hover: #bbb;
-  --vp-z-index-local-nav: 100;
+  --c-scrollbar: #022C22;
 }
 
 html.dark {
-  --c-scrollbar: #111;
-  --c-scrollbar-hover: #222;
+  --c-scrollbar: #fff;
 }
 
 html,
@@ -19,8 +16,8 @@ body {
   height: 100vh;
 }
 
-* {
-  scrollbar-color: var(--c-scrollbar) var(--c-bg);
+body {
+  scrollbar-color: var(--c-scrollbar) transparent;
 }
 
 #nprogress {
