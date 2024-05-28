@@ -4,6 +4,7 @@ const socials = {
   instagram: 'https://www.instagram.com/joe.anson',
   github: 'https://github.com/josephAnson',
   linkedin: 'https://www.linkedin.com/in/josephanson/',
+  email: 'mailto:me@josephanson.com?Subject=Hello from josephanson.com',
 }
 
 const socialsMap = {
@@ -14,6 +15,7 @@ const socialsMap = {
   github: 'i-ph:github-logo-duotone',
   medium: 'i-ph:medium-logo-duotone',
   linkedin: 'i-ph:linkedin-logo-duotone',
+  email: 'i-ph:envelope-duotone',
 }
 
 const { classes } = useTheme()
@@ -28,7 +30,8 @@ const icons = computed<any>(() => {
         return {
           href: value,
           icon: socialsMap[key as keyof typeof socialsMap],
-          label: value,
+          label: key,
+          target: key !== 'email' ? '_blank' : '_top',
         }
       }
     })
@@ -54,7 +57,7 @@ function getRel(icon: any) {
       :title="icon.label"
       :aria-label="icon.label"
       :href="icon.href"
-      target="_blank"
+      :target="icon.target"
       :class="`h-6 w-6 flex ${classes.icon}`"
     >
       <div v-if="icon.icon" :class="icon.icon" class="h-full w-full" />
