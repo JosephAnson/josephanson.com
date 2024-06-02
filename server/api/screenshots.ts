@@ -4,7 +4,7 @@ export default eventHandler(async (event) => {
   const projects = await serverQueryContent(event, 'projects').where({ _dir: { $not: '' } }).find()
 
   projects.map((project) => {
-    project.id = project.title?.toLowerCase().replaceAll(/[ &]/gi, '-').replaceAll(/---/gi, '-')
+    project.id = project.title?.toLowerCase().replaceAll(/[ &]/g, '-').replaceAll(/---/g, '-')
     return project
   })
 
