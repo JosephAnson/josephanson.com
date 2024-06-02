@@ -14,6 +14,8 @@ const show = useShowMenu()
   </footer>
 
   <TheWaves
+    :amount="6"
+    reverse
     class="pointer-events-none fixed bottom-0 left-0"
     :style="{
       transform: show

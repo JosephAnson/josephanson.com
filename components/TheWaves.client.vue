@@ -3,6 +3,7 @@ import { useWavesStore } from '~/stores/useWavesStore'
 
 const props = defineProps<{
   amount?: number
+  reverse?: boolean
 }>()
 
 const { classes } = useTheme()
@@ -19,14 +20,14 @@ const totalWaves = computed(() => {
 })
 
 function reverseIndex(index: number) {
-  const start = props.amount ? waveOptions.value.layerCount - props.amount - 1 : 0
+  const start = props.amount && !props.reverse ? waveOptions.value.layerCount - props.amount - 1 : 0
   return start + index
 }
 
 function opacity(index: number) {
   const steps = 1 / waveOptions.value.layerCount
   const reverse = reverseIndex(index)
-  return (steps * (reverse - 1)) + mousePercent.value
+  return (steps * (reverse - 1)) + (mousePercent.value + 0.2)
 }
 </script>
 
@@ -40,7 +41,7 @@ function opacity(index: number) {
     :class="`transition-all transform-gpu duration-1000 w-full z-${index}`"
   >
     <path
-      class="transform-gpu transition transition-all ease-in-out"
+      class="transform-gpu ease-in-out"
       :class="`path-${reverseIndex(index)} ${classes.fill}`"
       :d="wave.d"
       :fill-opacity="opacity(index)"
