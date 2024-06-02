@@ -26,7 +26,7 @@ function onClose() {
   >
     <TheWaves :amount="3" class="absolute bottom-[-1px] z-0 translate-y--100dvh transition-all duration-500 ease-in-out" />
 
-    <div class="relative z-10 h-full py-4 md:py-16" :class="[classes.menu]">
+    <div class="relative z-10 h-full py-4 transition-colors duration-300 md:py-16" :class="[classes.menu]">
       <BaseContainer class="h-full">
         <div class="relative h-full flex items-center">
           <BaseButton
@@ -45,7 +45,7 @@ function onClose() {
               >
                 <NuxtLink
                   :to="link._path"
-                  class="group relative text-5xl font-bold leading-loose md:text-7xl md:leading-loose"
+                  class="group relative text-5xl font-bold leading-loose transition-colors duration-300 md:text-7xl md:leading-loose"
                   :active-class="classes.textLight"
                   @click="onClose"
                 >
