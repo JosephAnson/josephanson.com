@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const socials = {
-  twitter: 'https://twitter.com/josephleeanson',
-  instagram: 'https://www.instagram.com/joe.anson',
   github: 'https://github.com/josephAnson',
   linkedin: 'https://www.linkedin.com/in/josephanson/',
   email: 'mailto:me@josephanson.com?Subject=Hello from josephanson.com',
