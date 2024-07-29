@@ -7,7 +7,7 @@ const { classes } = useTheme()
 </script>
 
 <template>
-  <div class="flex items-center gap-x-4 text-xs">
+  <div class="flex flex-wrap items-center gap-1 text-xs md:gap-x-2">
     <span
       v-for="tag in props.tags"
       :key="tag"

@@ -47,13 +47,14 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
             </time>
           </div>
 
-          <BaseTagList
-            class="mb-1"
-            :tags="article.categories"
-          />
-          <p :class="`line-clamp-3 mt-2 text-sm ${classes.text}`">
+          <p :class="`line-clamp-3 text-sm ${classes.text}`">
             {{ article.description }}
           </p>
+
+          <BaseTagList
+            class="mt-4"
+            :tags="article.categories"
+          />
         </div>
       </article>
     </NuxtLink>

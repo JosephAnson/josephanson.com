@@ -39,10 +39,10 @@ const parentPath = computed(() => {
       {{ page.title }}
     </ProseH1>
 
-    <BaseTagList :tags="page.categories" />
-
     <div class="relative m-auto">
       <slot />
     </div>
+
+    <BaseTagList class="mt-6" :tags="page.categories" />
   </article>
 </template>
