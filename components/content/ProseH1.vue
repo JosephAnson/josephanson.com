@@ -4,6 +4,7 @@ import { computed, useRuntimeConfig } from '#imports'
 const props = defineProps<{ id?: string }>()
 
 const { headings } = useRuntimeConfig().public.mdc
+// @ts-expect-error mdc type issue
 const generate = computed(() => props.id && headings?.anchorLinks?.h1)
 </script>
 

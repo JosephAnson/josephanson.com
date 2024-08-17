@@ -15,6 +15,7 @@ function isHttpUrl(string: string) {
   try {
     url = new URL(string)
   }
+  // eslint-disable-next-line unused-imports/no-unused-vars
   catch (_) {
     return false
   }
