@@ -1,15 +1,15 @@
+import type { TaskPayload } from 'nitropack/runtime'
 import { serverQueryContent } from '#content/server'
 
 export default eventHandler(async (event) => {
-  const projects = await serverQueryContent(event, 'projects').where({ _dir: { $not: '' } }).find()
+  const payload = await serverQueryContent(event, 'projects').where({ _dir: { $not: '' } }).find()
 
-  projects.map((project) => {
+  payload.map((project) => {
     project.id = project.title?.toLowerCase().replaceAll(/[ &]/g, '-').replaceAll(/---/g, '-')
     return project
   })
 
-  const projectPromises = projects.map(project => runTask('screenshots', { payload: project }))
-  const projectResults = await Promise.all(projectPromises)
+  const projectResults = await runTask('screenshots', { payload } as TaskPayload)
 
   return {
     result: projectResults,
