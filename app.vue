@@ -53,14 +53,6 @@ defineOgImage({
 
 <template>
   <div class="h-full of-y-scroll scroll-smooth">
-    <TheHeader />
-
-    <main>
-      <BaseContainer class="relative z-10 text-sm md:text-base">
-        <NuxtPage />
-      </BaseContainer>
-    </main>
-
-    <TheFooter />
+    <NuxtPage />
   </div>
 </template>
