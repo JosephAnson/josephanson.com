@@ -37,11 +37,6 @@ export default defineNuxtConfig({
     global: true,
     dirs: ['~/components'],
   },
-  routeRules: {
-    '/resume': { robots: false },
-    '/projects/**': { robots: false },
-    '/projects': { robots: true },
-  },
   content: {
     documentDriven: true,
     navigation: {

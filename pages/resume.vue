@@ -1,4 +1,11 @@
 <script setup lang="ts">
+definePageMeta({
+  documentDriven: {
+    page: false, // Keep page fetching enabled
+    surround: false, // Disable surround fetching
+  },
+})
+
 const contactInfo = [
   { icon: 'i-ph:map-pin-duotone', text: 'Amsterdam' },
   { icon: 'i-ph:phone-duotone', text: '+447902738455' },
@@ -116,9 +123,9 @@ const experience: {
         <div class="grid gap-1 text-blue-950">
           <div v-for="(item, index) in contactInfo" :key="index">
             <div :class="item.icon" class="mr-2 h-5 w-5" />
-            <NuxtLink v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
+            <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
               {{ item.text }}
-            </NuxtLink>
+            </a>
             <span v-else>{{ item.text }}</span>
           </div>
         </div>

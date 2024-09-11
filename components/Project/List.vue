@@ -7,7 +7,7 @@ const props = defineProps<{
 
 const { data: _articles } = await useAsyncData(
   'projects',
-  async () => await queryContent('projects').where({ _dir: { $not: '' } }).find() as unknown as Project[],
+  async () => await queryContent('projects').where({ _partial: true, _dir: { $not: '' } }).find() as unknown as Project[],
   {
     watch: [() => props.path],
   },
