@@ -37,7 +37,7 @@ const waves = waveInit({
         :d="wave.d"
         :fill-opacity="(1 / 12) * (index + 1) "
         stroke="rgba(255,255,255,0.1)"
-        class="absolute bottom-0 fill-blue-300"
+        class="absolute bottom-0"
       />
     </svg>
 

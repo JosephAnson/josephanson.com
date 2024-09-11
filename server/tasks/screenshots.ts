@@ -1,6 +1,6 @@
 import { Buffer } from 'node:buffer'
-import type { Browser } from 'puppeteer'
 import puppeteer from 'puppeteer'
+import type { Browser } from 'puppeteer'
 import type { Project } from '~/types'
 
 export default defineTask({

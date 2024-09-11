@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { capitalize } from 'vue'
-import type { ColorModes } from '~/types'
 import { useWavesStore } from '~/stores/useWavesStore'
+import type { ColorModes } from '~/types'
 
 const colorMode = useColorMode()
 const currentTheme = useCurrentTheme()

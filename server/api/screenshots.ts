@@ -1,5 +1,5 @@
-import type { TaskPayload } from 'nitropack/runtime'
 import { serverQueryContent } from '#content/server'
+import type { TaskPayload } from 'nitropack/runtime'
 
 export default eventHandler(async (event) => {
   const payload = await serverQueryContent(event, 'projects').where({ _dir: { $not: '' } }).find()

@@ -1,5 +1,5 @@
-import { setupRouterScroller } from 'vue-router-better-scroller'
 import NProgress from 'nprogress'
+import { setupRouterScroller } from 'vue-router-better-scroller'
 import type { Router } from 'vue-router'
 
 export default defineNuxtPlugin(() => {

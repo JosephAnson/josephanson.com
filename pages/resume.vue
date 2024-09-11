@@ -102,9 +102,9 @@ const experience: {
 </script>
 
 <template>
-  <div class="min-h-screen bg-blue-50 p-10 text-blue-950">
-    <div class="mx-auto max-w-4xl">
-      <header class="mb-4 flex justify-between">
+  <NuxtLayout name="resume">
+    <div class="min-h-screen bg-blue-50 p-10 text-blue-950">
+      <header class="mb-4 justify-between md:flex">
         <div>
           <h1 class="mb-2 text-4xl">
             Joseph Lee Anson
@@ -116,7 +116,9 @@ const experience: {
         <div class="grid gap-1 text-blue-950">
           <div v-for="(item, index) in contactInfo" :key="index">
             <div :class="item.icon" class="mr-2 h-5 w-5" />
-            <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">{{ item.text }}</a>
+            <NuxtLink v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
+              {{ item.text }}
+            </NuxtLink>
             <span v-else>{{ item.text }}</span>
           </div>
         </div>
@@ -137,13 +139,13 @@ const experience: {
           <h2 class="heading">
             Core Skills
           </h2>
-          <p class="section">
+          <div class="section">
             <ul class="list-disc list-inside">
               <li v-for="(item, idx) in coreSkills" :key="idx">
                 <strong>{{ item.title }}</strong> {{ item.tags.join(', ') }}
               </li>
             </ul>
-          </p>
+          </div>
         </section>
 
         <section>
@@ -157,7 +159,7 @@ const experience: {
                   <h3 class="subheading">
                     {{ job.position }}
                   </h3>
-                  <p class="text-lg text-blue-400">
+                  <p class="period">
                     {{ job.company }}
                   </p>
                 </div>
@@ -193,14 +195,14 @@ const experience: {
                 University of South Wales
               </p>
             </div>
-            <p class="text-sm">
+            <p class="period">
               2011-2015
             </p>
           </div>
         </section>
       </div>
     </div>
-  </div>
+  </NuxtLayout>
 </template>
 
 <style>

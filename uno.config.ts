@@ -14,8 +14,8 @@ import { themeClasses } from './utils/themeClasses'
 export const colors: string[] = tailwindColors
   .map((key) => {
     return Object.values(themeClasses(key))?.map(item => item.split(' ')).flat()
-  },
-  ).flat()
+  })
+  .flat()
 
 export const unocssConfig: UserConfig<any> = {
   presets: [

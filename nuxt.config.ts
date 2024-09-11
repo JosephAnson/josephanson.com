@@ -4,21 +4,17 @@ export default defineNuxtConfig({
   site: {
     url: 'https://josephanson.com', // production URL
   },
-  extends: ['nuxt-umami'],
-  appConfig: {
-    umami: {
-      host: 'https://unami.josephanson.com/',
-      id: '12879b25-2e43-4ce5-8c63-b14c309854a8',
-      version: 2,
-    },
+  umami: {
+    host: 'https://unami.josephanson.com/',
+    id: '12879b25-2e43-4ce5-8c63-b14c309854a8',
   },
   plugins: [
     '~/plugins/router.client.ts',
   ],
   pages: true,
   modules: [
-    '@nuxthq/studio',
-    'nuxt-content-twoslash', // this needs to be before `@nuxt/content`
+    '@nuxthq/studio', // this needs to be before `@nuxt/content`
+    'nuxt-content-twoslash',
     '@nuxt/content',
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -27,6 +23,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     'nuxt-og-image',
     'nuxt-schema-org',
+    'nuxt-umami',
   ],
   devtools: {
     enabled: true,
@@ -39,6 +36,11 @@ export default defineNuxtConfig({
   components: {
     global: true,
     dirs: ['~/components'],
+  },
+  routeRules: {
+    '/resume': { robots: false },
+    '/projects/**': { robots: false },
+    '/projects': { robots: true },
   },
   content: {
     documentDriven: true,
@@ -56,6 +58,9 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     experimental: {
       tasks: true,
+    },
+    prerender: {
+      routes: ['/sitemap.xml'],
     },
   },
 })
