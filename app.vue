@@ -43,6 +43,7 @@ useSeoMeta({
   twitterTitle: 'Vue.js Expert & Web Developer - Joseph Anson',
   twitterDescription: 'Discover the work of Joseph Anson, a Vue.js expert with a passion for creating accessible and engaging web applications.',
   twitterCard: 'summary',
+  ogType: 'website',
 })
 
 defineOgImage({

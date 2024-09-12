@@ -30,14 +30,14 @@ const waves = waveInit({
       v-for="(wave, index) in waves"
       :key="index"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 900 300"
-      class="absolute bottom-0 left-0 w-[2000px]"
+      viewBox="0 0 3000 250"
+      class="absolute bottom-0 left-0 z-0 w-[3000px]"
     >
       <path
         :d="wave.d"
         :fill-opacity="(1 / 12) * (index + 1) "
         stroke="rgba(255,255,255,0.1)"
-        class="absolute bottom-0"
+        class="absolute bottom-0 z-0"
       />
     </svg>
 
@@ -45,11 +45,11 @@ const waves = waveInit({
       <p class="mb-4 text-[24px] text-blue-400 font-semibold uppercase">
         Joseph Anson
       </p>
-      <h1 class="m-0 mb-4 flex items-center text-[75px] text-white font-semibold">
+      <h1 class="m-0 mb-4 flex items-center text-[75px] text-white font-semibold leading-1">
         <span>{{ title }}</span>
       </h1>
       <p class="text-[32px] text-blue-100 leading-tight">
-        {{ description.slice(0, 200) }}
+        {{ description.slice(0, 220) }}
       </p>
     </div>
   </div>

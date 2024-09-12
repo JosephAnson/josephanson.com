@@ -1,4 +1,16 @@
 <script setup lang="ts">
+const title = 'Senior Web Developer Resume'
+const description = 'Experienced Senior Web Developer with 8+ years of expertise in building web applications using Vue.js, TypeScript, and Node.js. Skilled in team leadership and delivering high-quality web solutions. Download Resume.'
+
+useSeoMeta({
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  twitterTitle: title,
+  twitterDescription: description,
+})
+
 definePageMeta({
   documentDriven: {
     page: false, // Keep page fetching enabled
@@ -9,8 +21,8 @@ definePageMeta({
 const { classes } = useTheme()
 
 const contactInfo = [
-  { icon: 'i-ph:map-pin-duotone', text: 'Amsterdam' },
-  { icon: 'i-ph:phone-duotone', text: '+447902738455' },
+  { icon: 'i-ph:map-pin-duotone', text: 'Netherlands', link: 'https://maps.app.goo.gl/7c71JwZ7aB9Yjb6SA' },
+  { icon: 'i-ph:phone-duotone', text: '+447902738455', link: 'tel:+447902738455' },
   { icon: 'i-ph:linkedin-logo-duotone', text: 'linkedin.com/in/josephanson/', link: 'https://linkedin.com/in/josephanson/' },
   { icon: 'i-ph:globe-duotone', text: 'josephanson.com', link: 'https://josephanson.com' },
   { icon: 'i-ph:envelope-simple-duotone', text: 'me@josephanson.com', link: 'mailto:me@josephanson.com' },
@@ -27,7 +39,7 @@ const coreSkills: { title: string, tags: string[] }[] = [
   },
   {
     title: 'DevOps',
-    tags: ['Docker', 'Azure', 'Serverless architecture'],
+    tags: ['Docker', 'Azure', 'Serverless Architecture'],
   },
   {
     title: 'Leadership',
@@ -35,7 +47,7 @@ const coreSkills: { title: string, tags: string[] }[] = [
   },
   {
     title: 'Soft Skills',
-    tags: ['Problem-solving', 'Communication', 'Adaptability'],
+    tags: ['Problem Solving', 'Communication', 'Adaptability'],
   },
 ]
 
@@ -55,10 +67,9 @@ const experience: {
     responsibilitiesTitle: 'Key Contributions',
     responsibilities: [
       'Leading the frontend development for the new loan application, focusing on delivering a seamless and accessible user experience.',
-      'Serving as TypeScript Guild Lead, organising and conducting bi-weekly meetings to facilitate TypeScript adoption across the organisation. This involves creating learning materials, conducting bi-weekly TypeScript Guild meetings to mentor developers and ease the adoption of TypeScript.',
+      'Serving as TypeScript Guild Lead, mentoring developers by creating learning materials and conducting bi-weekly meetings to facilitate TypeScript adoption across the organisation.',
       'Implementing robust schema validation using TypeScript and Zod, which has been instrumental in improving form accuracy and data integrity',
       'Establishing a comprehensive testing framework with Vue Testing Library, Vitest, and Playwright, ensuring feature stability and accessibility compliance.',
-      'Prioritised accessibility, making sure our applications are compliant with WCAG standards and accessible to all users.',
     ],
   },
   {
@@ -109,31 +120,36 @@ const experience: {
   },
 ]
 
+const { status, execute, data, error } = useFetch<Blob>('/download-resume', { immediate: false })
+
 async function onPrint() {
-  const data = await $fetch<Blob>('/api/resume')
-  const url = URL.createObjectURL(data)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = 'Joseph Anson - Resume.pdf'
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
-  URL.revokeObjectURL(url)
+  await execute()
+
+  if (!error.value && data.value) {
+    const url = URL.createObjectURL(data.value)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'Joseph Anson - Resume.pdf'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
 }
 </script>
 
 <template>
   <NuxtLayout name="plain">
     <teleport to="#teleport-menu">
-      <BaseButton class="flex items-center gap-2" @click="onPrint">
+      <BaseButton class="flex items-center gap-2" :disabled="status === 'pending'" @click="onPrint">
         <span class="hidden md:inline">Download</span>
-        <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" />
+        <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" :class="{ 'i-ph:spinner-gap-duotone animate-spin': status === 'pending' }" />
       </BaseButton>
     </teleport>
-    <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-1 border-black/20 text-sm backdrop-blur print:mb-0 print:max-w-none print:border-0 dark:border-white/20 md:text-base print:text-base print:text-blue-950">
+    <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-black/20 text-sm backdrop-blur print:mb-0 print:max-w-none md:border-1 print:border-0 dark:border-white/20 md:text-base print:text-[17px] print:text-blue-950">
       <div class="slide-enter-content origin-top-left p-6 py-10 md:p-10 print:p-0">
-        <header class="mb-8 justify-between gap-2 md:mb-2 print:mb-2 md:flex print:flex">
-          <div class="mb-4 md:mb-0 print:mb-0">
+        <header class="mb-8 justify-between gap-2 md:mb-4 print:mb-4 md:flex print:flex">
+          <div class="mb-2 md:mb-0 print:mb-0">
             <h1 class="mb-2 text-3xl font-medium md:text-5xl print:text-5xl">
               Joseph Lee Anson
             </h1>
@@ -144,7 +160,7 @@ async function onPrint() {
           <div class="grid gap-1">
             <div v-for="(item, index) in contactInfo" :key="index">
               <div :class="item.icon" class="mr-2 h-5 w-5" />
-              <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" :class="classes.link">
+              <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" :class="classes.highlight">
                 {{ item.text }}
               </a>
               <span v-else>{{ item.text }}</span>
@@ -168,9 +184,13 @@ async function onPrint() {
               Core Skills
             </h2>
             <div class="section">
-              <ul class="list-disc list-inside">
-                <li v-for="(item, idx) in coreSkills" :key="idx">
-                  <strong>{{ item.title }}</strong> {{ item.tags.join(', ') }}
+              <ul class="list-inside md:list-disc print:list-disc">
+                <li v-for="(item, idx) in coreSkills" :key="idx" class="mb-3 md:mb-1 print:mb-1">
+                  <strong class="mb-1 mr-2 inline-block md:mb-0 print:mb-0">{{ item.title }}</strong>
+                  <div class="flex flex-wrap items-center gap-1 md:inline-flex print:inline-flex">
+                    <span v-for="tag in item.tags" :key="tag" :class="classes.tag" class="!print:bg-blue-50 !print:text-blue-950">
+                      {{ tag }}</span>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -195,13 +215,13 @@ async function onPrint() {
                     {{ job.period }}
                   </p>
                 </div>
-                <p v-if="job.description" class="mb-2">
+                <p v-if="job.description" class="mb-4">
                   {{ job.description }}
                 </p>
-                <p v-if="job.responsibilitiesTitle" class="mb-2">
+                <p v-if="job.responsibilitiesTitle" class="mb-4">
                   {{ job.responsibilitiesTitle }}:
                 </p>
-                <ul class="grid list-disc list-inside gap-2">
+                <ul class="grid list-disc list-inside gap-4">
                   <li
                     v-for="(responsibility, respIndex) in job.responsibilities" :key="respIndex"
                     class="list-disc list-inside break-inside-avoid last:mb-0"
@@ -243,7 +263,7 @@ async function onPrint() {
 }
 
 .subheading {
-  --uno: text-xl font-medium mb-1
+  --uno: text-xl font-medium
 }
 
 .section {
