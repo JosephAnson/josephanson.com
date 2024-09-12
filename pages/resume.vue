@@ -106,11 +106,27 @@ const experience: {
     ],
   },
 ]
+
+async function onPrint() {
+  const data = await $fetch<Blob>('/api/resume')
+  const url = URL.createObjectURL(data)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'Joseph Anson - Resume.pdf'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}
 </script>
 
 <template>
+  <BaseButton class="fixed right-10 top-10 flex items-center gap-2 print:hidden" @click="onPrint">
+    Print
+    <span class="i-ph:printer-duotone h-4 w-4 text-lg" />
+  </BaseButton>
   <NuxtLayout name="resume">
-    <div class="min-h-screen bg-blue-50 p-10 text-blue-950">
+    <div class="bg-blue-50 p-10 text-blue-950 print:origin-top-left">
       <header class="mb-4 justify-between md:flex">
         <div>
           <h1 class="mb-2 text-4xl">
@@ -155,12 +171,12 @@ const experience: {
           </div>
         </section>
 
-        <section>
+        <section class="block break-before-page break-inside-avoid">
           <h2 class="heading">
             Work Experience
           </h2>
           <div class="section grid gap-10">
-            <div v-for="(job, jobIndex) in experience" :key="jobIndex">
+            <div v-for="(job, jobIndex) in experience" :key="jobIndex" class="break-before-page break-inside-avoid">
               <div class="mb-4 flex justify-between">
                 <div>
                   <h3 class="subheading">
@@ -181,7 +197,10 @@ const experience: {
                 {{ job.responsibilitiesTitle }}:
               </p>
               <ul class="grid list-disc list-inside gap-2">
-                <li v-for="(responsibility, respIndex) in job.responsibilities" :key="respIndex" class="mb-2 last:mb-0">
+                <li
+                  v-for="(responsibility, respIndex) in job.responsibilities" :key="respIndex"
+                  class="mb-2 block break-before-page break-inside-avoid last:mb-0"
+                >
                   {{ responsibility }}
                 </li>
               </ul>
