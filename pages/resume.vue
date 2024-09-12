@@ -6,7 +6,7 @@ definePageMeta({
   },
 })
 
-const { currentTheme, classes } = useTheme()
+const { classes } = useTheme()
 
 const contactInfo = [
   { icon: 'i-ph:map-pin-duotone', text: 'Amsterdam' },
@@ -131,7 +131,7 @@ async function onPrint() {
       </BaseButton>
     </teleport>
     <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-1 border-black/20 backdrop-blur print:mb-0 print:max-w-none print:border-0 dark:border-white/20 print:text-blue-950">
-      <div class="origin-top-left p-6 py-10 md:p-10 print:p-0">
+      <div class="slide-enter-content origin-top-left p-6 py-10 md:p-10 print:p-0">
         <header class="mb-2 justify-between gap-2 md:flex print:flex">
           <div>
             <h1 class="mb-2 text-5xl font-medium">
@@ -151,7 +151,7 @@ async function onPrint() {
             </div>
           </div>
         </header>
-        <div class="grid gap-y-6">
+        <div class="slide-enter-content grid gap-y-5">
           <section>
             <h2 class="heading">
               Summary

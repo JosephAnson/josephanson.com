@@ -30,7 +30,7 @@ export default eventHandler(async (event) => {
       },
       printBackground: true,
       pageRanges: '1-',
-      scale: 0.8,
+      scale: 0.77,
     })
   }
   catch (err) {
