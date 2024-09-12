@@ -1,6 +1,7 @@
 import process from 'node:process'
 
 export default defineNuxtConfig({
+  compatibilityDate: '2024-09-11',
   site: {
     url: 'https://josephanson.com', // production URL
   },

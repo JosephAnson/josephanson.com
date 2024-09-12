@@ -6,6 +6,8 @@ definePageMeta({
   },
 })
 
+const { currentTheme, classes } = useTheme()
+
 const contactInfo = [
   { icon: 'i-ph:map-pin-duotone', text: 'Amsterdam' },
   { icon: 'i-ph:phone-duotone', text: '+447902738455' },
@@ -121,119 +123,115 @@ async function onPrint() {
 </script>
 
 <template>
-  <div class="fixed left-4 top-4 z-10 flex gap-2 print:hidden">
-    <NuxtLink to="/">
-      <BaseButton class="flex items-center gap-2">
-        Home
-        <span class="i-ph:house-duotone h-4 w-4 text-lg" />
+  <NuxtLayout name="plain">
+    <teleport to="#teleport-menu">
+      <BaseButton class="flex items-center gap-2" @click="onPrint">
+        <span class="hidden md:inline">Download</span>
+        <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" />
       </BaseButton>
-    </NuxtLink>
-    <BaseButton class="flex items-center gap-2" @click="onPrint">
-      Print
-      <span class="i-ph:printer-duotone h-4 w-4 text-lg" />
-    </BaseButton>
-  </div>
-  <NuxtLayout name="resume">
-    <div class="bg-blue-50 p-10 text-blue-950 print:origin-top-left">
-      <header class="mb-4 justify-between md:flex">
-        <div>
-          <h1 class="mb-2 text-4xl">
-            Joseph Lee Anson
-          </h1>
-          <h2 class="text-2xl text-blue-600">
-            Senior Web Developer
-          </h2>
-        </div>
-        <div class="grid gap-1 text-blue-950">
-          <div v-for="(item, index) in contactInfo" :key="index">
-            <div :class="item.icon" class="mr-2 h-5 w-5" />
-            <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">
-              {{ item.text }}
-            </a>
-            <span v-else>{{ item.text }}</span>
+    </teleport>
+    <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-1 border-black/20 backdrop-blur print:mb-0 print:max-w-none print:border-0 dark:border-white/20 print:text-blue-950">
+      <div class="origin-top-left p-6 py-10 md:p-10 print:p-0">
+        <header class="mb-2 justify-between gap-2 md:flex print:flex">
+          <div>
+            <h1 class="mb-2 text-5xl font-medium">
+              Joseph Lee Anson
+            </h1>
+            <h2 class="text-2xl" :class="classes.highlight">
+              Senior Web Developer
+            </h2>
           </div>
-        </div>
-      </header>
-      <div class="grid gap-y-10">
-        <section>
-          <h2 class="heading">
-            Summary
-          </h2>
-          <div class="section">
-            <p>
-              Senior Frontend Developer with over 8 years of experience in building and managing web applications using modern technologies like Vue.js, TypeScript, and Node.js. Expertise in leading teams, implementing technical innovations, and delivering high-quality, accessible web solutions. Strong focus on TypeScript adoption, accessibility standards, and improving user experience through clean, maintainable code.
-            </p>
+          <div class="grid gap-1">
+            <div v-for="(item, index) in contactInfo" :key="index">
+              <div :class="item.icon" class="mr-2 h-5 w-5" />
+              <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" :class="classes.link">
+                {{ item.text }}
+              </a>
+              <span v-else>{{ item.text }}</span>
+            </div>
           </div>
-        </section>
-
-        <section>
-          <h2 class="heading">
-            Core Skills
-          </h2>
-          <div class="section">
-            <ul class="list-disc list-inside">
-              <li v-for="(item, idx) in coreSkills" :key="idx">
-                <strong>{{ item.title }}</strong> {{ item.tags.join(', ') }}
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="block break-before-page break-inside-avoid">
-          <h2 class="heading">
-            Work Experience
-          </h2>
-          <div class="section grid gap-10">
-            <div v-for="(job, jobIndex) in experience" :key="jobIndex" class="break-before-page break-inside-avoid">
-              <div class="mb-4 flex justify-between">
-                <div>
-                  <h3 class="subheading">
-                    {{ job.position }}
-                  </h3>
-                  <p class="period">
-                    {{ job.company }}
-                  </p>
-                </div>
-                <p class="period">
-                  {{ job.period }}
-                </p>
-              </div>
-              <p v-if="job.description" class="mb-4">
-                {{ job.description }}
+        </header>
+        <div class="grid gap-y-6">
+          <section>
+            <h2 class="heading">
+              Summary
+            </h2>
+            <div class="section">
+              <p>
+                Senior Frontend Developer with over 8 years of experience in building and managing web applications using modern technologies like Vue.js, TypeScript, and Node.js. Expertise in leading teams, implementing technical innovations, and delivering high-quality, accessible web solutions. Strong focus on TypeScript adoption, accessibility standards, and improving user experience through clean, maintainable code.
               </p>
-              <p v-if="job.responsibilitiesTitle" class="mb-4">
-                {{ job.responsibilitiesTitle }}:
-              </p>
-              <ul class="grid list-disc list-inside gap-2">
-                <li
-                  v-for="(responsibility, respIndex) in job.responsibilities" :key="respIndex"
-                  class="mb-2 list-disc list-inside break-before-page break-inside-avoid last:mb-0"
-                >
-                  {{ responsibility }}
+            </div>
+          </section>
+
+          <section>
+            <h2 class="heading">
+              Core Skills
+            </h2>
+            <div class="section">
+              <ul class="list-disc list-inside">
+                <li v-for="(item, idx) in coreSkills" :key="idx">
+                  <strong>{{ item.title }}</strong> {{ item.tags.join(', ') }}
                 </li>
               </ul>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section>
-          <h2 class="heading">
-            Education
-          </h2>
-          <div class="section flex justify-between">
-            <div class="mb-2">
-              <h3 class="subheading">
-                Software Engineering
-              </h3>
-              <p class="period">
-                University of South Wales
+          <section class="block">
+            <h2 class="heading">
+              Work Experience
+            </h2>
+            <div class="section grid gap-6">
+              <div v-for="(job, jobIndex) in experience" :key="jobIndex" class="break-inside-avoid">
+                <div class="mb-2 flex justify-between">
+                  <div>
+                    <h3 class="subheading">
+                      {{ job.position }}
+                    </h3>
+                    <p class="text-lg" :class="classes.highlight">
+                      {{ job.company }}
+                    </p>
+                  </div>
+                  <p class="text-lg" :class="classes.highlight">
+                    {{ job.period }}
+                  </p>
+                </div>
+                <p v-if="job.description" class="mb-2">
+                  {{ job.description }}
+                </p>
+                <p v-if="job.responsibilitiesTitle" class="mb-2">
+                  {{ job.responsibilitiesTitle }}:
+                </p>
+                <ul class="grid list-disc list-inside gap-2">
+                  <li
+                    v-for="(responsibility, respIndex) in job.responsibilities" :key="respIndex"
+                    class="list-disc list-inside break-inside-avoid last:mb-0"
+                  >
+                    {{ responsibility }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="heading">
+              Education
+            </h2>
+            <div class="section flex justify-between">
+              <div class="mb-2">
+                <h3 class="subheading">
+                  Software Engineering
+                </h3>
+                <p class="text-lg" :class="classes.highlight">
+                  University of South Wales
+                </p>
+              </div>
+              <p class="text-lg" :class="classes.highlight">
+                2011 - 2015
               </p>
             </div>
-            <p class="period">
-              2011 - 2015
-            </p>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </div>
   </NuxtLayout>
@@ -241,18 +239,14 @@ async function onPrint() {
 
 <style>
 .heading {
-  --uno: mb-4 text-2xl font-semibold
+  --uno: mb-2 text-2xl font-semibold
 }
 
 .subheading {
   --uno: text-xl font-medium mb-1
 }
 
-.period {
-  --uno: text-lg text-blue-400
-}
-
 .section {
-  --uno: md\:pl-8
+  --uno: md\:pl-8 print\:pl-8
 }
 </style>

@@ -9,10 +9,10 @@ function toggleMenu() {
 </script>
 
 <template>
-  <header>
+  <header class="print:hidden">
     <div class="relative z-20 py-4 md:py-16">
       <BaseContainer>
-        <div class="flex items-center justify-between gap-16">
+        <div class="flex items-center justify-between gap-4">
           <NuxtLink to="/" class="flex text-2xl">
             <BaseLogo class="mr-2 h-8 w-8" />
 
@@ -20,6 +20,7 @@ function toggleMenu() {
           </NuxtLink>
 
           <div class="flex items-center gap-4">
+            <div id="teleport-menu" />
             <BaseButton aria-label="Navigation Menu" @click="toggleMenu()">
               Menu
             </BaseButton>

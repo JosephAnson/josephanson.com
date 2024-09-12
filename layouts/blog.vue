@@ -21,36 +21,30 @@ const parentPath = computed(() => {
 </script>
 
 <template>
-  <TheHeader />
+  <BaseContainer class="relative z-10 text-sm md:text-base">
+    <article ref="article" class="slide-enter-content relative max-w-3xl pb-30 prose md:pb-100">
+      <div class="not-prose">
+        <NuxtLink
+          :to="parentPath"
+          class="inline-flex items-center text-sm"
+          :class="classes.link"
+        >
+          <div class="i-ph:arrow-left mr-2 h-4 w-4" />
+          <span>
+            Back
+          </span>
+        </NuxtLink>
+      </div>
 
-  <main>
-    <BaseContainer class="relative z-10 text-sm md:text-base">
-      <article ref="article" class="slide-enter-content relative max-w-3xl pb-30 prose md:pb-100">
-        <div class="not-prose">
-          <NuxtLink
-            :to="parentPath"
-            class="inline-flex items-center text-sm"
-            :class="classes.link"
-          >
-            <div class="i-ph:arrow-left mr-2 h-4 w-4" />
-            <span>
-              Back
-            </span>
-          </NuxtLink>
-        </div>
+      <ProseH1>
+        {{ page.title }}
+      </ProseH1>
 
-        <ProseH1>
-          {{ page.title }}
-        </ProseH1>
+      <div class="relative m-auto">
+        <slot />
+      </div>
 
-        <div class="relative m-auto">
-          <slot />
-        </div>
-
-        <BaseTagList class="mt-6" :tags="page.categories" />
-      </article>
-    </BaseContainer>
-  </main>
-
-  <TheFooter />
+      <BaseTagList class="mt-6" :tags="page.categories" />
+    </article>
+  </BaseContainer>
 </template>

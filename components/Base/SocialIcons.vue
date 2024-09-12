@@ -1,8 +1,26 @@
 <script setup lang="ts">
-const socials = {
-  github: 'https://github.com/josephAnson',
-  linkedin: 'https://www.linkedin.com/in/josephanson/',
-  email: 'mailto:me@josephanson.com?Subject=Hello from josephanson.com',
+import type { NuxtLinkProps } from '#app'
+
+const socials: Record<string, NuxtLinkProps & { label: string }> = {
+  github: {
+    label: 'Github',
+    href: 'https://github.com/josephAnson',
+    target: '_blank',
+  },
+  linkedin: {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/josephanson/',
+    target: '_blank',
+  },
+  email: {
+    label: 'Email me',
+    href: 'mailto:me@josephanson.com?Subject=Hello from josephanson.com',
+    target: '_blank',
+  },
+  resume: {
+    label: 'View my resume',
+    href: '/resume',
+  },
 }
 
 const socialsMap = {
@@ -14,6 +32,7 @@ const socialsMap = {
   medium: 'i-ph:medium-logo-duotone',
   linkedin: 'i-ph:linkedin-logo-duotone',
   email: 'i-ph:envelope-duotone',
+  resume: 'i-ph:file-pdf-duotone',
 }
 
 const { classes } = useTheme()
@@ -21,16 +40,9 @@ const { classes } = useTheme()
 const icons = computed<any>(() => {
   return Object.entries(socials)
     .map(([key, value]) => {
-      if (typeof value === 'object') {
-        return value
-      }
-      else {
-        return {
-          href: value,
-          icon: socialsMap[key as keyof typeof socialsMap],
-          label: key,
-          target: key !== 'email' ? '_blank' : '_top',
-        }
+      return {
+        icon: socialsMap[key as keyof typeof socialsMap],
+        ...value,
       }
     })
     .filter(Boolean)

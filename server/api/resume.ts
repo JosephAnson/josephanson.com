@@ -13,23 +13,24 @@ export default eventHandler(async (event) => {
     })
     const page = await browser.newPage()
 
-    await page.goto('https://josephanson.com/resume', { timeout: 10000000, waitUntil: 'load' })
+    await page.goto('https://josephanson.com/resume', { timeout: 10000000, waitUntil: 'networkidle0' })
 
     consola.info('loading page resume')
 
-    await page.setViewport({ height: 3500, width: 900 })
-    consola.info('loaded page resume')
+    await page.emulateMediaType('print')
+    await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }])
 
     return await page.pdf({
       format: 'a4',
       margin: {
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
+        left: 40,
+        top: 40,
+        right: 40,
+        bottom: 40,
       },
       printBackground: true,
-      pageRanges: '1-2',
+      pageRanges: '1-',
+      scale: 0.8,
     })
   }
   catch (err) {

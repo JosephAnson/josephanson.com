@@ -32,7 +32,7 @@ export const unocssConfig: UserConfig<any> = {
     presetWebFonts({
       provider: 'bunny',
       fonts: {
-        sans: ['Poppins', 'Poppins:400, 500,700'],
+        sans: ['Poppins', 'Poppins:400,500,600,700'],
         mono: 'DM Sans Mono',
       },
     }),

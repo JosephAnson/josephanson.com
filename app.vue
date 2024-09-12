@@ -32,7 +32,7 @@ useHead({
     lang: 'en',
   },
   bodyAttrs: {
-    class: () => `transition will-change-background ${classes.value.gradient} ${classes.value.text}`,
+    class: () => `print:bg-none ${classes.value.gradient} ${classes.value.text}`,
   },
 })
 
@@ -52,7 +52,11 @@ defineOgImage({
 </script>
 
 <template>
-  <div class="h-full of-y-scroll scroll-smooth">
-    <NuxtPage />
+  <div class="h-full of-y-scroll scroll-smooth print:h-auto">
+    <TheHeader />
+    <main>
+      <NuxtPage />
+    </main>
+    <TheFooter />
   </div>
 </template>
