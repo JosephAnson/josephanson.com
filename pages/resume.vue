@@ -121,10 +121,18 @@ async function onPrint() {
 </script>
 
 <template>
-  <BaseButton class="fixed right-10 top-10 flex items-center gap-2 print:hidden" @click="onPrint">
-    Print
-    <span class="i-ph:printer-duotone h-4 w-4 text-lg" />
-  </BaseButton>
+  <div class="fixed left-4 top-4 z-10 flex gap-2 print:hidden">
+    <NuxtLink to="/">
+      <BaseButton class="flex items-center gap-2">
+        Home
+        <span class="i-ph:house-duotone h-4 w-4 text-lg" />
+      </BaseButton>
+    </NuxtLink>
+    <BaseButton class="flex items-center gap-2" @click="onPrint">
+      Print
+      <span class="i-ph:printer-duotone h-4 w-4 text-lg" />
+    </BaseButton>
+  </div>
   <NuxtLayout name="resume">
     <div class="bg-blue-50 p-10 text-blue-950 print:origin-top-left">
       <header class="mb-4 justify-between md:flex">
@@ -199,7 +207,7 @@ async function onPrint() {
               <ul class="grid list-disc list-inside gap-2">
                 <li
                   v-for="(responsibility, respIndex) in job.responsibilities" :key="respIndex"
-                  class="mb-2 block break-before-page break-inside-avoid last:mb-0"
+                  class="mb-2 list-disc list-inside break-before-page break-inside-avoid last:mb-0"
                 >
                   {{ responsibility }}
                 </li>
@@ -222,7 +230,7 @@ async function onPrint() {
               </p>
             </div>
             <p class="period">
-              2011-2015
+              2011 - 2015
             </p>
           </div>
         </section>
