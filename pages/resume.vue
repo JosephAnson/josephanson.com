@@ -130,14 +130,14 @@ async function onPrint() {
         <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" />
       </BaseButton>
     </teleport>
-    <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-1 border-black/20 backdrop-blur print:mb-0 print:max-w-none print:border-0 dark:border-white/20 print:text-blue-950">
+    <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-1 border-black/20 text-sm backdrop-blur print:mb-0 print:max-w-none print:border-0 dark:border-white/20 md:text-base print:text-base print:text-blue-950">
       <div class="slide-enter-content origin-top-left p-6 py-10 md:p-10 print:p-0">
-        <header class="mb-2 justify-between gap-2 md:flex print:flex">
-          <div>
-            <h1 class="mb-2 text-5xl font-medium">
+        <header class="mb-8 justify-between gap-2 md:mb-2 print:mb-2 md:flex print:flex">
+          <div class="mb-4 md:mb-0 print:mb-0">
+            <h1 class="mb-2 text-3xl font-medium md:text-5xl print:text-5xl">
               Joseph Lee Anson
             </h1>
-            <h2 class="text-2xl" :class="classes.highlight">
+            <h2 class="text-xl md:text-2xl print:text-2xl" :class="classes.highlight">
               Senior Web Developer
             </h2>
           </div>
@@ -182,16 +182,16 @@ async function onPrint() {
             </h2>
             <div class="section grid gap-6">
               <div v-for="(job, jobIndex) in experience" :key="jobIndex" class="break-inside-avoid">
-                <div class="mb-2 flex justify-between">
+                <div class="mb-2 justify-between md:flex print:flex">
                   <div>
                     <h3 class="subheading">
                       {{ job.position }}
                     </h3>
-                    <p class="text-lg" :class="classes.highlight">
+                    <p class="md:text-lg print:text-lg" :class="classes.highlight">
                       {{ job.company }}
                     </p>
                   </div>
-                  <p class="text-lg" :class="classes.highlight">
+                  <p class="md:text-lg print:text-lg" :class="classes.highlight">
                     {{ job.period }}
                   </p>
                 </div>
@@ -218,15 +218,15 @@ async function onPrint() {
               Education
             </h2>
             <div class="section flex justify-between">
-              <div class="mb-2">
+              <div>
                 <h3 class="subheading">
                   Software Engineering
                 </h3>
-                <p class="text-lg" :class="classes.highlight">
+                <p class="md:text-lg print:text-lg" :class="classes.highlight">
                   University of South Wales
                 </p>
               </div>
-              <p class="text-lg" :class="classes.highlight">
+              <p class="pt-1 md:pt-0 print:pt-0 md:text-lg print:text-lg" :class="classes.highlight">
                 2011 - 2015
               </p>
             </div>
