@@ -1,3 +1,7 @@
+<script setup>
+const { classes } = useTheme()
+</script>
+
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,7 +31,7 @@
         filter="url(#inner-blur)"
       />
       <path
-        d="M350 467.5Q400 517.5 450 467.5 " stroke-width="24" stroke="hsl(3, 100%, 51%)" fill="none"
+        d="M350 467.5Q400 517.5 450 467.5 " stroke-width="24" :class="classes.stroke" fill="none"
         filter="url(#mouth-shadow)"
       />
       <path

@@ -29,7 +29,7 @@ function onClick() {
       @click="rotateTheme"
     >
       <span class="mr-2 text-sm">{{ capitalizedCurrentTheme }}</span>
-      <span class="i-ph:paint-brush-duotone h-6 flex-shrink-0 bg-none" />
+      <span class="i-ph:palette-duotone h-6 flex-shrink-0 bg-none" />
     </button>
 
     <button
