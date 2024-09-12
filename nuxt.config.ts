@@ -58,4 +58,10 @@ export default defineNuxtConfig({
       routes: ['/sitemap.xml'],
     },
   },
+  routeRules: {
+    '/': { prerender: true },
+    '/blog': { prerender: true },
+    '/blog/**': { prerender: true },
+    '/projects': { prerender: true },
+  },
 })
