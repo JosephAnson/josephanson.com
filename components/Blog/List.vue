@@ -8,7 +8,7 @@ const props = defineProps<{
 
 const { data: _articles } = await useAsyncData(
   'blog-articles',
-  async () => await queryContent(withTrailingSlash(props.path)).sort({ date: -1 }).find() as unknown as Article[],
+  async () => (await queryContent(withTrailingSlash(props.path)).find()).reverse() as unknown as Article[],
   {
     watch: [() => props.path],
   },
