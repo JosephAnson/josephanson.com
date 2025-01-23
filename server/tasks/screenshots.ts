@@ -1,7 +1,7 @@
-import { Buffer } from 'node:buffer'
-import puppeteer from 'puppeteer'
 import type { Browser } from 'puppeteer'
 import type { Project } from '~/types'
+import { Buffer } from 'node:buffer'
+import puppeteer from 'puppeteer'
 
 export default defineTask({
   meta: {

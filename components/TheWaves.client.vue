@@ -38,7 +38,7 @@ function opacity(index: number) {
     :key="index"
     xmlns="http://www.w3.org/2000/svg"
     :viewBox="`0 0 ${waveOptions.width} ${waveOptions.height}`"
-    :class="`transition-all transform-gpu duration-1000 w-full z-${index}`"
+    :class="`transition-all transform-gpu duration-1000 w-full z-${index} wave-fade-in ${reverse ? 'reverse' : ''}`"
   >
     <path
       class="transform-gpu ease-in-out"
@@ -49,3 +49,33 @@ function opacity(index: number) {
     />
   </svg>
 </template>
+
+<style scoped>
+.wave-fade-in {
+  opacity: 0;
+  animation: fadeInUp 2s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Add staggered delays for each wave */
+
+.wave-fade-in.reverse:nth-child(9) { animation-delay: 0.3s; }
+.wave-fade-in.reverse:nth-child(8) { animation-delay: 0.4s; }
+.wave-fade-in.reverse:nth-child(7) { animation-delay: 0.5s; }
+.wave-fade-in.reverse:nth-child(6) { animation-delay: 0.6s; }
+.wave-fade-in.reverse:nth-child(5) { animation-delay: 0.7s; }
+.wave-fade-in.reverse:nth-child(4) { animation-delay: 0.8s; }
+.wave-fade-in.reverse:nth-child(3) { animation-delay: 0.9s; }
+.wave-fade-in.reverse:nth-child(2) { animation-delay: 1s; }
+.wave-fade-in.reverse:nth-child(1) { animation-delay: 1.1s; }
+.wave-fade-in.reverse:nth-child(0) { animation-delay: 1.2s; }
+
+.wave-fade-in:nth-child(3) { animation-delay: 0s; }
+.wave-fade-in:nth-child(2) { animation-delay: 0.1s; }
+.wave-fade-in:nth-child(1) { animation-delay: 0.2s; }
+</style>

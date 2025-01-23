@@ -1,3 +1,4 @@
+import type { UserConfig } from '@unocss/core'
 import {
   defineConfig,
   presetIcons,
@@ -7,7 +8,6 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import type { UserConfig } from '@unocss/core'
 import { tailwindColors } from './utils/constants'
 import { themeClasses } from './utils/themeClasses'
 

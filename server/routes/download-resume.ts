@@ -1,6 +1,6 @@
+import type { Browser } from 'puppeteer'
 import consola from 'consola'
 import puppeteer from 'puppeteer'
-import type { Browser } from 'puppeteer'
 
 export default eventHandler(async (event) => {
   defaultContentType(event, 'application/pdf')

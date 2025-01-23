@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { withTrailingSlash } from 'ufo'
 import type { Article } from '~/types'
+import { withTrailingSlash } from 'ufo'
 
 const props = defineProps<{
   path: string
