@@ -25,36 +25,40 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
   <li>
     <NuxtLink
       :to="article._path"
-      class="mb-2 block text-xl"
+      class="group block transform transition-all duration-300 hover:scale-[1.02]"
     >
       <article
         v-if="article._path && article.title"
-        :class="`${classes.card} p-4 rounded flex flex-wrap items-center`"
+        :class="`${classes.card} p-6 rounded-xl flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300`"
       >
-        <div class="group relative w-full">
-          <div class="mb-1 justify-between md:flex">
-            <h2
-              :class="`text-lg ${classes.text} font-semibold`"
-            >
-              {{ article.title }}
-            </h2>
+        <div class="h-full flex flex-col">
+          <div class="mb-2 flex items-start justify-between">
             <time
-              class="text-xs"
+              class="text-xs font-medium"
               :datetime="article.date"
               :class="classes.textTint"
             >
               {{ timeAgo }}
             </time>
+            <div class="i-ph:arrow-right text-lg" :class="classes.textTint" />
           </div>
 
-          <p :class="`line-clamp-3 text-sm ${classes.text}`">
+          <h2
+            :class="`text-xl font-bold mb-2 group-hover:underline ${classes.text}`"
+          >
+            {{ article.title }}
+          </h2>
+
+          <p :class="`line-clamp-3 text-sm mb-2 ${classes.text}`">
             {{ article.description }}
           </p>
 
-          <BaseTagList
-            class="mt-4"
-            :tags="article.categories"
-          />
+          <div class="mt-auto">
+            <BaseTagList
+              class="mt-4"
+              :tags="article.categories"
+            />
+          </div>
         </div>
       </article>
     </NuxtLink>

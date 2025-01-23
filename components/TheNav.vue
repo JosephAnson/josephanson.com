@@ -35,7 +35,22 @@ function onClose() {
             aria-label="Navigation Menu"
             @click="onClose"
           >
-            Close
+            <span class="sr-only">Close</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </BaseButton>
           <nav>
             <ul class="flex flex-col">

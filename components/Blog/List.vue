@@ -16,7 +16,7 @@ const { data: _articles } = await useAsyncData(
 </script>
 
 <template>
-  <div class="not-prose">
+  <div class="not-prose pb-16">
     <ul v-if="_articles?.length" class="not-prose slide-enter-content mt-8 block space-y-8">
       <BlogItem
         v-for="article in _articles"
