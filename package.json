@@ -31,7 +31,6 @@
     "@nuxt/content": "^3.0.1",
     "@nuxt/devtools": "^2.0.0-beta.3",
     "@nuxt/image": "1.9.0",
-    "@nuxthq/studio": "^2.2.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@types/nprogress": "^0.2.3",
     "@unocss/eslint-config": "^65.4.3",

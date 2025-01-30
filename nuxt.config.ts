@@ -18,7 +18,6 @@ export default defineNuxtConfig({
   ],
   pages: true,
   modules: [
-    '@nuxthq/studio', // this needs to be before `@nuxt/content`
     'nuxt-content-twoslash',
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -50,6 +49,11 @@ export default defineNuxtConfig({
   image: {
     domains: [`${process.env.MINIO_URL}:9000`],
   },
+  content: {
+    preview: {
+      api: 'https://api.nuxt.studio',
+    },
+  },
   nitro: {
     compressPublicAssets: true,
     experimental: {
@@ -61,8 +65,10 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true },
-    '/article': { prerender: true },
-    '/article/**': { prerender: true },
+    '/articles': { prerender: true },
+    '/articles/**': { prerender: true },
     '/projects': { prerender: true },
+    '/talks': { prerender: true },
+    '/talks/**': { prerender: true },
   },
 })
