@@ -1,5 +1,5 @@
+import type { Collections } from '@nuxt/content'
 import type { Browser } from 'puppeteer'
-import type { Project } from '~/types'
 import { Buffer } from 'node:buffer'
 import puppeteer from 'puppeteer'
 
@@ -9,7 +9,7 @@ export default defineTask({
     description: 'Create screenshots of all projects',
   },
   async run({ payload }) {
-    const projects = payload as unknown as Project[]
+    const projects = payload as unknown as Collections['projects'][]
 
     for (const project of projects) {
       for (const mode of ['dark', 'light']) {
@@ -37,6 +37,11 @@ export default defineTask({
                   value: 'dark',
                 },
           ])
+
+          if (!project.link) {
+            throw new Error('Project link is required')
+          }
+
           await page.goto(project.link, { timeout: 10000000, waitUntil: 'load' })
 
           await new Promise(resolve => setTimeout(resolve, 10000))

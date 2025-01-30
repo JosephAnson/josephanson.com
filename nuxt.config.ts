@@ -32,8 +32,8 @@ export default defineNuxtConfig({
   ],
   ogImage: {
     defaults: {
-      renderer: 'satori'
-    }
+      renderer: 'satori',
+    },
   },
   devtools: {
     enabled: true,

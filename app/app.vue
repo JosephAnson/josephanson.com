@@ -53,7 +53,9 @@ defineOgImageComponent('Default')
   <div class="h-full of-y-scroll scroll-smooth print:h-auto">
     <TheHeader />
     <main>
-      <NuxtPage />
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </main>
     <TheFooter />
   </div>

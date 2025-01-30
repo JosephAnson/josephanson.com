@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { waveInit } from '~/utils/wave';
+import { computed } from 'vue'
+import { waveInit } from '~/utils/wave'
 
 const props = withDefaults(
   defineProps<{

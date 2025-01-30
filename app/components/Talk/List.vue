@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { Collections } from '@nuxt/content';
+import type { Collections } from '@nuxt/content'
 
 defineProps<{
   talks: Collections['talks'][]
 }>()
-
 </script>
 
 <template>

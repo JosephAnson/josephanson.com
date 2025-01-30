@@ -137,7 +137,7 @@ export class Wavery {
         pointLayer,
         { x: 0, y: this.properties.height },
         { x: this.properties.width, y: this.properties.height },
-        this.aniPoints.map(aniPoint => aniPoint[i]),
+        this.aniPoints.map(aniPoint => aniPoint[i]!),
       ),
     )
   }

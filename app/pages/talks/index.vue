@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: talks } = await useAsyncData(() => queryCollection('talks').all())
+const { data: talks } = await useAsyncData(() => queryCollection('talks').order('date', 'DESC').all())
 
 useSeoMeta({
   title: 'My Talks',
@@ -8,11 +8,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <BaseContainer class="relative z-10 text-sm md:text-base">
-    <div class="max-w-none pb-30 prose">
-      <ProseH1>My Talks</ProseH1>
+  <ProseH1>My Talks</ProseH1>
 
-      <TalkList v-if="talks" :talks="talks" />
-    </div>
-  </BaseContainer>
+  <TalkList v-if="talks" :talks="talks" />
 </template>

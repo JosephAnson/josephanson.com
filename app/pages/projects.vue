@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: projects } = await useAsyncData(() => queryCollection('projects').all())
+const { data: projects } = await useAsyncData(() => queryCollection('projects').order('date', 'DESC').all())
 
 useSeoMeta({
   title: 'My Portfolio Highlights',
@@ -8,11 +8,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <BaseContainer class="relative z-10 text-sm md:text-base">
-    <div class="max-w-none pb-30 prose">
-      <ProseH1>My Portfolio Highlights</ProseH1>
+  <ProseH1>My Portfolio Highlights</ProseH1>
 
-      <ProjectList v-if="projects" :projects="projects" />
-    </div>
-  </BaseContainer>
+  <ProjectList v-if="projects" :projects="projects" />
 </template>

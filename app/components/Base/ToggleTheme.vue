@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ColorModes } from '~/types'
+import type { ColorModes } from '~~/types'
 import { capitalize } from 'vue'
 import { useWavesStore } from '~/stores/useWavesStore'
 
@@ -16,7 +16,8 @@ function onClick() {
   const index = values.indexOf(colorMode.preference)
   const next = (index + 1) % values.length
 
-  colorMode.preference = values[next]
+  if (values[next])
+    colorMode.preference = values[next]
 }
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Collections } from '@nuxt/content';
+import type { Collections } from '@nuxt/content'
 
 const props = defineProps<{
   talk: Collections['talks']
@@ -24,8 +24,9 @@ const timeAgo = useTimeAgo(new Date(props.talk.date))
       <div class="relative z-10 h-full flex flex-col">
         <div class="mb-2 flex items-start justify-between">
           <time
+            v-if="talk.date"
             class="text-xs font-medium"
-            :datetime="talk.date"
+            :datetime="talk.date.toString()"
             :class="classes.textTint"
           >
             {{ timeAgo }}
@@ -44,8 +45,6 @@ const timeAgo = useTimeAgo(new Date(props.talk.date))
         </p>
 
         <div class="mt-auto">
-        
-
           <div v-if="talk.url" class="flex items-center gap-2">
             <div class="i-ph:link text-sm" :class="classes.textTint" />
             <a

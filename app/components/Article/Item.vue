@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Collections } from '@nuxt/content';
+import type { Collections } from '@nuxt/content'
 
 const props = defineProps<{
   article: Collections['articles']

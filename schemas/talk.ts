@@ -5,7 +5,7 @@ export const talkSchema = z.object({
   description: z.string().min(1, 'Description is required'),
   date: z.coerce.date(),
   tags: z.array(z.string()).optional(),
-  url: z.string().url().optional(),
+  url: z.string().url(),
   event: z.string().optional(),
   location: z.string().optional(),
 })

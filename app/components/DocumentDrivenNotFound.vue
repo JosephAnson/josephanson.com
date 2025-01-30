@@ -10,7 +10,7 @@
 
     <NuxtLink to="/" class="relative flex items-center">
       Back to homepage
-      <div class="- var(--tw-space-1))] right-[calc(0px i-ph:arrow-right absolute h-5 w-5 translate-x-full transform" />
+      <div class="i-ph:arrow-right - var(--tw-space-1))] right-[calc(0px absolute h-5 w-5 translate-x-full transform" />
     </NuxtLink>
   </section>
 </template>

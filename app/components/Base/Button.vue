@@ -12,14 +12,13 @@ const { classes } = useTheme()
 
 <template>
   <NuxtLink v-if="to" :to="to" :aria-disabled="disabled" class="inline-block" :class="{ 'opacity-50 cursor-not-allowed': disabled }">
-    <button class="not-prose" :disabled="disabled" :class="[classes.button, { 'opacity-50 cursor-not-allowed': disabled }]">
+    <button class="not-prose" :disabled="disabled" :class="[classes.button, { 'opacity-50 cursor-not-allowed': disabled }, $attrs.class]">
+      <span v-if="icon" class="mr-2 h-5 w-5" :class="icon" />
       <slot> {{ text }} </slot>
-
-      <span v-if="icon" class="ml-2 h-5 w-5" :class="icon" />
     </button>
   </NuxtLink>
-  <button v-else class="not-prose" :disabled="disabled" :class="[classes.button, { 'opacity-50 cursor-not-allowed': disabled }]">
+  <button v-else class="not-prose" :disabled="disabled" :class="[classes.button, { 'opacity-50 cursor-not-allowed': disabled }, $attrs.class]">
+    <span v-if="icon" class="mr-2 h-5 w-5" :class="icon" />
     <slot> {{ text }} </slot>
-    <span v-if="icon" class="ml-2 h-5 w-5" :class="icon" />
   </button>
 </template>

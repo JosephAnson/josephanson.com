@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Collections } from '@nuxt/content';
+import type { Collections } from '@nuxt/content'
 
-const props = defineProps<{project:Collections['projects']}>()
+const props = defineProps<{ project: Collections['projects'] }>()
 
 const colorMode = useColorMode()
 const { classes } = useTheme()
@@ -20,11 +20,12 @@ function isHttpUrl(string: string) {
 
 const bindProps: { target?: '_blank' } = {}
 
-if (isHttpUrl(props.project.link))
+if (props.project?.link && isHttpUrl(props.project.link))
   bindProps.target = '_blank'
 
 const imageUrl = computed(
-  () => `http://storage.josephanson.com:9000/screenshots/${props.project.title.toLowerCase().replaceAll(/[ &]/gi, '-').replaceAll(/---/gi, '-')}-${colorMode.preference}.jpg`)
+  () => `http://storage.josephanson.com:9000/screenshots/${props.project.title.toLowerCase().replaceAll(/[ &]/g, '-').replaceAll(/---/g, '-')}-${colorMode.preference}.jpg`,
+)
 </script>
 
 <template>
