@@ -2,8 +2,12 @@ import process from 'node:process'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-09-11',
+  future: {
+    compatibilityVersion: 4,
+  },
   site: {
-    url: 'https://josephanson.com', // production URL
+    name: 'Joseph Anson\'s Portfolio',
+    url: 'https://josephanson.com',
   },
   umami: {
     host: 'https://unami.josephanson.com/',
@@ -16,16 +20,21 @@ export default defineNuxtConfig({
   modules: [
     '@nuxthq/studio', // this needs to be before `@nuxt/content`
     'nuxt-content-twoslash',
-    '@nuxt/content',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
     '@nuxt/image',
     '@nuxtjs/sitemap',
-    'nuxt-og-image',
     'nuxt-schema-org',
     'nuxt-umami',
+    '@nuxt/content',
+    'nuxt-og-image',
   ],
+  ogImage: {
+    defaults: {
+      renderer: 'satori'
+    }
+  },
   devtools: {
     enabled: true,
   },
@@ -37,15 +46,6 @@ export default defineNuxtConfig({
   components: {
     global: true,
     dirs: ['~/components'],
-  },
-  content: {
-    documentDriven: true,
-    navigation: {
-      fields: ['navTitle'],
-    },
-    highlight: {
-      preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp'],
-    },
   },
   image: {
     domains: [`${process.env.MINIO_URL}:9000`],
@@ -61,8 +61,8 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true },
-    '/blog': { prerender: true },
-    '/blog/**': { prerender: true },
+    '/article': { prerender: true },
+    '/article/**': { prerender: true },
     '/projects': { prerender: true },
   },
 })

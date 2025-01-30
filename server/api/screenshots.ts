@@ -1,8 +1,7 @@
 import type { TaskPayload } from 'nitropack/types'
-import { serverQueryContent } from '#content/server'
 
 export default eventHandler(async (event) => {
-  const payload = await serverQueryContent(event, 'projects').where({ _dir: { $not: '' } }).find()
+  const payload = await queryCollection(event, 'projects').all()
 
   payload.map((project) => {
     project.id = project.title?.toLowerCase().replaceAll(/[ &]/g, '-').replaceAll(/---/g, '-')

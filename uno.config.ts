@@ -8,8 +8,8 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import { tailwindColors } from './utils/constants'
-import { themeClasses } from './utils/themeClasses'
+import { tailwindColors } from './app/utils/constants'
+import { themeClasses } from './app/utils/themeClasses'
 
 export const colors: string[] = tailwindColors
   .map((key) => {
