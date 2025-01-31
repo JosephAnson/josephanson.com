@@ -71,14 +71,8 @@ useSeoMeta({
           <div class="i-ph:arrow-right text-lg" />
         </NuxtLink>
       </div>
-      <div class="not-prose grid grid-cols-1 gap-6 md:grid-cols-3">
-        <TalkItem
-          v-for="talk in talks"
-          :key="talk.id"
-          :talk="talk"
-          class="slide-enter-content"
-        />
-      </div>
+
+      <TalkList :talks="talks" class="slide-enter-content grid-cols-1 gap-6 md:grid-cols-3" />
     </section>
   </div>
 </template>

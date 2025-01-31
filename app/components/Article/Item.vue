@@ -11,38 +11,40 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
 </script>
 
 <template>
-  <BaseCard>
-    <NuxtLink
-      :to="article.path"
-      class="group block h-full w-full"
-    >
-      <div class="h-full flex flex-col">
-        <div class="mb-2 flex items-start justify-between">
-          <time
-            class="text-xs font-medium"
-            :datetime="article.date.toString()"
-            :class="classes.textTint"
-          >
-            {{ timeAgo }}
-          </time>
-          <div class="i-ph:arrow-right text-lg" :class="classes.textTint" />
+  <li>
+    <BaseCard>
+      <NuxtLink
+        :to="article.path"
+        class="group block h-full w-full"
+      >
+        <div class="h-full flex flex-col">
+          <div class="mb-2 flex items-start justify-between">
+            <time
+              class="text-xs font-medium"
+              :datetime="article.date.toString()"
+              :class="classes.textLight"
+            >
+              {{ timeAgo }}
+            </time>
+            <div class="i-ph:arrow-right text-lg" :class="classes.textTint" />
+          </div>
+
+          <h2 class="mb-2 text-xl font-bold group-hover:underline" :class="classes.text">
+            {{ article.title }}
+          </h2>
+
+          <p class="line-clamp-3 mb-2 text-sm" :class="classes.text">
+            {{ article.description }}
+          </p>
+
+          <div class="mt-auto">
+            <BaseTagList
+              class="mt-4"
+              :tags="article.tags || []"
+            />
+          </div>
         </div>
-
-        <h2 class="mb-2 text-xl font-bold group-hover:underline" :class="classes.text">
-          {{ article.title }}
-        </h2>
-
-        <p class="line-clamp-3 mb-2 text-sm" :class="classes.text">
-          {{ article.description }}
-        </p>
-
-        <div class="mt-auto">
-          <BaseTagList
-            class="mt-4"
-            :tags="article.tags || []"
-          />
-        </div>
-      </div>
-    </NuxtLink>
-  </BaseCard>
+      </NuxtLink>
+    </BaseCard>
+  </li>
 </template>

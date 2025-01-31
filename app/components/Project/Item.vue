@@ -54,7 +54,7 @@ const imageUrl = computed(
               <h2 class="text-xl font-bold" :class="classes.textLight">
                 {{ project.title }}
               </h2>
-              <span class="i-ph:arrow-square-in-duotone text-xl transition-transform duration-300 group-hover:translate-x-1" :class="classes.textTint" />
+              <span class="i-ph:arrow-square-in-duotone text-xl transition-transform duration-300 group-hover:translate-x-1" :class="classes.textLight" />
             </div>
 
             <p class="line-clamp-3 mb-3 text-sm" :class="classes.text">
@@ -62,7 +62,7 @@ const imageUrl = computed(
             </p>
           </div>
 
-          <div class="flex items-center gap-2 text-xs" :class="classes.textTint">
+          <div class="flex items-center gap-2 text-xs" :class="classes.textLight">
             <span class="i-ph:link-simple-duotone" />
             <span>Visit Project</span>
           </div>

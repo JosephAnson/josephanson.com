@@ -35,7 +35,7 @@ useSeoMeta({
   description: talk.value?.description,
 })
 
-const timeAgo = useTimeAgo(new Date(talk.value?.date))
+const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
 </script>
 
 <template>
@@ -70,7 +70,7 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date))
           {{ talk?.title }}
         </ProseH1>
 
-        <div class="flex gap-4 mb-8" :class="classes.textTint">
+        <div class="mb-8 flex gap-4" :class="classes.textTint">
           <div class="flex items-center gap-2 text-xs" :class="classes.textTint">
             <span class="i-ph:calendar-star-duotone" />
             <span>{{ talk?.event }}</span>
@@ -80,7 +80,7 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date))
             <span class="i-ph:map-pin-duotone" />
             <span>{{ talk?.location }}</span>
           </div>
-  
+
           <div class="flex items-center gap-2 text-xs" :class="classes.textTint">
             <span class="i-ph-clock-countdown-duotone" />
             <span>{{ timeAgo }}</span>

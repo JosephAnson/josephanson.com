@@ -6,10 +6,10 @@ categories:
   - API Development
   - TypeScript
 tags:
-  - Result pattern
-  - API endpoints
-  - error handling
-  - try-catch
+  - Result Pattern
+  - API Endpoints
+  - Error Handling
+  - Try-catch
   - TypeScript
 ---
 

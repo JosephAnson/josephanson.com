@@ -6,9 +6,9 @@ categories:
   - Web Development
   - Web Components
 tags:
-  - web components
-  - web development
-  - failure
+  - Web Components
+  - Web Development
+  - Failure
   - Vue
   - React
   - Angular

@@ -7,11 +7,11 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="talks?.length" class="not-prose slide-enter-content grid gap-6">
+  <ul v-if="talks?.length" class="not-prose slide-enter-content grid gap-6">
     <TalkItem
       v-for="talk in talks"
       :key="talk.id"
       :talk="talk"
     />
-  </div>
+  </ul>
 </template>

@@ -7,8 +7,8 @@ categories:
   - TypeScript
   - Errors
 tags:
-  - return types
-  - errors
+  - Return Types
+  - Errors
   - JavaScript
   - TypeScript
 ---
