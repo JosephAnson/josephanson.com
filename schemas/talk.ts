@@ -6,8 +6,7 @@ export const talkSchema = z.object({
   date: z.coerce.date(),
   tags: z.array(z.string()).optional(),
   url: z.string().url(),
-  event: z.string().optional(),
-  location: z.string().optional(),
+  event: z.string(),
 })
 
 export type Talk = z.infer<typeof talkSchema>

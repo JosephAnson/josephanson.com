@@ -10,5 +10,5 @@ useSeoMeta({
 <template>
   <ProseH1>My Articles</ProseH1>
 
-  <ArticleList v-if="articles" :articles="articles" class="pb-16" />
+  <ArticleList v-if="articles" :articles="articles" class="mt-8 pb-32" />
 </template>

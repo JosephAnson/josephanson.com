@@ -1,10 +1,20 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
 const route = useRoute()
 const { data: talk } = await useAsyncData(route.path, () => {
   return queryCollection('talks').path(route.path).first()
 })
 
 const { classes } = useTheme()
+
+const iframeRef = ref<HTMLIFrameElement | null>(null)
+
+onMounted(() => {
+  if (iframeRef.value) {
+    iframeRef.value.focus()
+  }
+})
 
 if (talk.value && talk.value.seo.image) {
   useHead({
@@ -24,6 +34,8 @@ useSeoMeta({
   title: talk.value?.title,
   description: talk.value?.description,
 })
+
+const timeAgo = useTimeAgo(new Date(talk.value?.date))
 </script>
 
 <template>
@@ -41,10 +53,15 @@ useSeoMeta({
 
     <div class="grid-cols-2 w-full gap-12 md:grid">
       <div class="mt-4 w-full">
-        <iframe v-if="talk?.url" :src="talk.url" class="aspect-video w-full border border-gray-200" />
+        <iframe
+          v-if="talk?.url"
+          ref="iframeRef"
+          :src="talk.url"
+          class="aspect-video w-full border border-gray-200"
+        />
 
-        <div class="mt-2 text-sm">
-          Tip: Use the arrow keys to navigate through the presentation in the iframe.
+        <div class="mt-4 text-sm" :class="classes.textTint">
+          Tip: swipe or use the arrow keys (<span class="i-ph:arrow-left-duotone" /> <span class="i-ph:arrow-right-duotone" />) to navigate through the presentation.
         </div>
       </div>
 
@@ -53,8 +70,25 @@ useSeoMeta({
           {{ talk?.title }}
         </ProseH1>
 
+        <div class="flex gap-4 mb-8" :class="classes.textTint">
+          <div class="flex items-center gap-2 text-xs" :class="classes.textTint">
+            <span class="i-ph:calendar-star-duotone" />
+            <span>{{ talk?.event }}</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-xs">
+            <span class="i-ph:map-pin-duotone" />
+            <span>{{ talk?.location }}</span>
+          </div>
+  
+          <div class="flex items-center gap-2 text-xs" :class="classes.textTint">
+            <span class="i-ph-clock-countdown-duotone" />
+            <span>{{ timeAgo }}</span>
+          </div>
+        </div>
+
         <div class="relative m-auto">
-          <ContentRenderer v-if="talk" :value="talk" />
+          <ContentRenderer v-if="talk" :value="talk" class="slide-enter-content" />
         </div>
       </div>
     </div>

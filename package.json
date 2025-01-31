@@ -18,9 +18,11 @@
   "dependencies": {
     "@nuxtjs/sitemap": "^7.2.4",
     "@vueuse/core": "^12.5.0",
+    "clsx": "^2.1.1",
     "nprogress": "^0.2.0",
     "nuxt-content-twoslash": "^0.1.2",
     "puppeteer": "^24.1.1",
+    "tailwind-merge": "^2.6.0",
     "ufo": "^1.5.4",
     "vue-router-better-scroller": "^0.0.0"
   },

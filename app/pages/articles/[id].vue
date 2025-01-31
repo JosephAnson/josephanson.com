@@ -46,7 +46,7 @@ useSeoMeta({
     </ProseH1>
 
     <div class="relative m-auto">
-      <ContentRenderer v-if="article" :value="article" />
+      <ContentRenderer v-if="article" :value="article" class="slide-enter-content" />
     </div>
 
     <BaseTagList class="mt-6" :tags="article?.tags || []" />

@@ -12,5 +12,5 @@ useSeoMeta({
 <template>
   <ProseH1>My Talks</ProseH1>
 
-  <TalkList v-if="talks" :talks="talks" />
+  <TalkList v-if="talks" :talks="talks" class="pb-32 pt-8" />
 </template>

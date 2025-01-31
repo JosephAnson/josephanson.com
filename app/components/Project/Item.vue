@@ -30,12 +30,12 @@ const imageUrl = computed(
 
 <template>
   <li class="h-full inline-flex">
-    <NuxtLink
-      v-bind="bindProps"
-      :to="project.link"
-      class="group block h-full w-full transform transition-all duration-300 hover:scale-[1.02]"
-    >
-      <div :class="`relative w-full overflow-hidden rounded-xl ${classes.card} shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col`">
+    <BaseCard class="overflow-hidden p-0">
+      <NuxtLink
+        v-bind="bindProps"
+        :to="project.link"
+        class="group block h-full w-full"
+      >
         <div class="relative aspect-video">
           <NuxtImg
             width="400"
@@ -51,7 +51,7 @@ const imageUrl = computed(
         <div class="flex flex-1 flex-col justify-between p-4">
           <div>
             <div class="mb-2 flex items-center justify-between">
-              <h2 :class="`text-xl font-bold ${classes.textLight}`">
+              <h2 class="text-xl font-bold" :class="classes.textLight">
                 {{ project.title }}
               </h2>
               <span class="i-ph:arrow-square-in-duotone text-xl transition-transform duration-300 group-hover:translate-x-1" :class="classes.textTint" />
@@ -67,7 +67,7 @@ const imageUrl = computed(
             <span>Visit Project</span>
           </div>
         </div>
-      </div>
-    </NuxtLink>
+      </NuxtLink>
+    </BaseCard>
   </li>
 </template>

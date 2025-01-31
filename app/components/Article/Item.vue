@@ -11,45 +11,38 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
 </script>
 
 <template>
-  <li>
+  <BaseCard>
     <NuxtLink
       :to="article.path"
-      class="group block transform transition-all duration-300 hover:scale-[1.02]"
+      class="group block h-full w-full"
     >
-      <article
-        v-if="article.path && article.title"
-        :class="`${classes.card} p-6 rounded-xl flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300`"
-      >
-        <div class="h-full flex flex-col">
-          <div class="mb-2 flex items-start justify-between">
-            <time
-              class="text-xs font-medium"
-              :datetime="article.date.toString()"
-              :class="classes.textTint"
-            >
-              {{ timeAgo }}
-            </time>
-            <div class="i-ph:arrow-right text-lg" :class="classes.textTint" />
-          </div>
-
-          <h2
-            :class="`text-xl font-bold mb-2 group-hover:underline ${classes.text}`"
+      <div class="h-full flex flex-col">
+        <div class="mb-2 flex items-start justify-between">
+          <time
+            class="text-xs font-medium"
+            :datetime="article.date.toString()"
+            :class="classes.textTint"
           >
-            {{ article.title }}
-          </h2>
-
-          <p :class="`line-clamp-3 text-sm mb-2 ${classes.text}`">
-            {{ article.description }}
-          </p>
-
-          <div class="mt-auto">
-            <BaseTagList
-              class="mt-4"
-              :tags="article.tags || []"
-            />
-          </div>
+            {{ timeAgo }}
+          </time>
+          <div class="i-ph:arrow-right text-lg" :class="classes.textTint" />
         </div>
-      </article>
+
+        <h2 class="mb-2 text-xl font-bold group-hover:underline" :class="classes.text">
+          {{ article.title }}
+        </h2>
+
+        <p class="line-clamp-3 mb-2 text-sm" :class="classes.text">
+          {{ article.description }}
+        </p>
+
+        <div class="mt-auto">
+          <BaseTagList
+            class="mt-4"
+            :tags="article.tags || []"
+          />
+        </div>
+      </div>
     </NuxtLink>
-  </li>
+  </BaseCard>
 </template>

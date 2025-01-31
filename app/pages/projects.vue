@@ -10,5 +10,5 @@ useSeoMeta({
 <template>
   <ProseH1>My Portfolio Highlights</ProseH1>
 
-  <ProjectList v-if="projects" :projects="projects" />
+  <ProjectList v-if="projects" class="mt-8 pb-20" :projects="projects" />
 </template>

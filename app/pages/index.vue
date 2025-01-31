@@ -12,11 +12,11 @@ useSeoMeta({
 
 <template>
   <div class="slide-enter-content">
-    <ContentRenderer :value="home!" />
+    <ContentRenderer :value="home!" class="slide-enter-content" />
 
     <!-- Projects Section -->
     <section v-if="projects?.length" class="mt-16">
-      <div class="mb-8 flex items-center justify-between">
+      <div class="slide-enter-content mb-8 flex items-center justify-between">
         <ProseH2 class="m-0">
           Recent Projects
         </ProseH2>
@@ -28,7 +28,7 @@ useSeoMeta({
           <div class="i-ph:arrow-right text-lg" />
         </NuxtLink>
       </div>
-      <div class="not-prose grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="not-prose slide-enter-content grid grid-cols-1 gap-6 md:grid-cols-3">
         <ProjectItem
           v-for="project in projects"
           :key="project.id"
@@ -40,7 +40,7 @@ useSeoMeta({
 
     <!-- Articles Section -->
     <section v-if="articles?.length" class="slide-enter-content mt-16">
-      <div class="mb-8 flex items-center justify-between">
+      <div class="slide-enter-content mb-8 flex items-center justify-between">
         <ProseH2 class="m-0">
           Recent Articles
         </ProseH2>
@@ -53,11 +53,11 @@ useSeoMeta({
           <div class="i-ph:arrow-right text-lg" />
         </NuxtLink>
       </div>
-      <ArticleList :articles="articles" />
+      <ArticleList :articles="articles" class="slide-enter-content" />
     </section>
 
     <!-- Talks Section -->
-    <section v-if="talks?.length" class="mt-16">
+    <section v-if="talks?.length" class="mb-32 mt-16">
       <div class="mb-8 flex items-center justify-between">
         <ProseH2 class="m-0">
           Recent Talks
@@ -76,46 +76,8 @@ useSeoMeta({
           v-for="talk in talks"
           :key="talk.id"
           :talk="talk"
-          class="transition-transform duration-300 hover:scale-[1.02]"
+          class="slide-enter-content"
         />
-      </div>
-    </section>
-
-    <!-- Get in Touch Section -->
-    <section class="mb-32 mt-16">
-      <ProseH2 class="mb-4">
-        Get in Touch
-      </ProseH2>
-      <div class="max-w-none prose">
-        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
-        <p>Feel free to reach out through any of these channels:</p>
-        <div class="mt-6 flex flex-col gap-4 md:flex-row">
-          <BaseButton
-            to="mailto:me@josephanson.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            icon="i-ph:envelope-simple-duotone"
-          >
-            <span>me@josephanson.com</span>
-          </BaseButton>
-          <BaseButton
-            to="https://linkedin.com/in/josephanson"
-            target="_blank"
-            rel="noopener noreferrer"
-            icon="i-ph:linkedin-logo-duotone"
-          >
-            <span>LinkedIn Profile</span>
-          </BaseButton>
-
-          <BaseButton
-            to="https://github.com/josephAnson"
-            target="_blank"
-            rel="noopener noreferrer"
-            icon="i-ph:github-logo-duotone"
-          >
-            <span>GitHub Profile</span>
-          </BaseButton>
-        </div>
       </div>
     </section>
   </div>
