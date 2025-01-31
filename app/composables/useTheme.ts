@@ -16,11 +16,11 @@ export function useTheme() {
     if (themeChoices.value?.[path])
       currentTheme.value = themeChoices.value[path]
     else if (path === '/projects')
-      currentTheme.value = 'purple'
+      currentTheme.value = 'indigo'
     else if (path.includes('/articles'))
       currentTheme.value = 'emerald'
     else if (path.includes('/talks'))
-      currentTheme.value = 'amber'
+      currentTheme.value = 'cyan'
     else
       currentTheme.value = 'blue'
   }, { immediate: true })

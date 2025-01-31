@@ -2,8 +2,10 @@
 const { data: talks } = await useAsyncData(() => queryCollection('talks').order('date', 'DESC').all())
 
 useSeoMeta({
-  title: 'My Talks',
-  description: 'Explore a curated selection of talks that I have given.',
+  title: 'Conference & Meetup Talks',
+  ogTitle: 'Insightful Tech Talks by Joseph Anson',
+  description: 'Discover engaging conference and meetup presentations by Joseph Anson, covering cutting-edge topics in software engineering. Explore slides, videos, and resources from past events.',
+  ogDescription: 'Dive into a collection of professional tech talks and presentations by Joseph Anson, featuring in-depth insights and practical knowledge from various conferences and meetups.',
 })
 </script>
 

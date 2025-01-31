@@ -12,6 +12,7 @@ useSeoMeta({
 })
 
 definePageMeta({
+  layout: 'plain',
   documentDriven: {
     page: false, // Keep page fetching enabled
     surround: false, // Disable surround fetching

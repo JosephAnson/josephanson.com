@@ -42,11 +42,11 @@ const waves = waveInit({
     </svg>
 
     <div class="w-[1000px] pl-[100px]">
-      <p class="mb-12 text-[24px] text-blue-400 font-semibold uppercase">
+      <p class="mb-2 text-[24px] text-blue-400 font-semibold uppercase">
         Joseph Anson
       </p>
-      <h1 class="m-0 mb-12 flex items-center text-[75px] text-white font-semibold leading-1">
-        <span>{{ title }}</span>
+      <h1 class="m-0 mb-4 text-[75px] text-white font-semibold leading-20">
+        {{ title }}
       </h1>
       <p class="text-[32px] text-blue-100 leading-tight">
         {{ description.slice(0, 220) }}

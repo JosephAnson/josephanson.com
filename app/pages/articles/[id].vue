@@ -19,6 +19,11 @@ const parentPath = computed(() => {
   pathTable.pop()
   return pathTable.join('/') || '/'
 })
+
+useSeoMeta({
+  title: article.value?.title,
+  description: article.value?.description,
+})
 </script>
 
 <template>

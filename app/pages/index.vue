@@ -3,9 +3,10 @@ const { data: home } = await useAsyncData('home', () => queryCollection('content
 const { data: talks } = await useAsyncData('home-talks', () => queryCollection('talks').limit(3).order('date', 'DESC').all())
 const { data: projects } = await useAsyncData('home-projects', () => queryCollection('projects').limit(3).order('date', 'DESC').all())
 const { data: articles } = await useAsyncData('home-articles', () => queryCollection('articles').limit(3).order('date', 'DESC').all())
+
 useSeoMeta({
-  title: home.value?.title,
-  description: home.value?.description,
+  title: home.value?.seo?.title,
+  description: home.value?.seo?.description,
 })
 </script>
 
@@ -88,7 +89,7 @@ useSeoMeta({
       <div class="max-w-none prose">
         <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
         <p>Feel free to reach out through any of these channels:</p>
-        <div class="mt-6 flex flex-col md:flex-row gap-4">
+        <div class="mt-6 flex flex-col gap-4 md:flex-row">
           <BaseButton
             to="mailto:me@josephanson.com"
             target="_blank"
