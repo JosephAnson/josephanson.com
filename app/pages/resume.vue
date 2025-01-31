@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const title = 'Senior Web Developer Resume'
-const description = 'Experienced Senior Web Developer with 8+ years of expertise in building web applications using Vue.js, TypeScript, and Node.js. Skilled in team leadership and delivering high-quality web solutions. Download Resume.'
+const description = 'Experienced Senior Web Developer with 8+ years of expertise in building scalable web applications using Vue.js, React, and TypeScript. Proficient in containerized deployments and modern web technologies. Passionate about open-source and cloud-native development. Download Resume.'
 
 useSeoMeta({
   title,
@@ -35,20 +35,24 @@ const coreSkills: { title: string, tags: string[] }[] = [
     tags: ['Vue.js (v2 & v3)', 'Nuxt.js', 'React', 'TypeScript', 'JavaScript', 'CSS', 'HTML'],
   },
   {
-    title: 'Backend Technologies',
-    tags: ['Node.js (Express, H3, Nitro)', 'RESTful APIs', 'GraphQL', 'Redis'],
+    title: 'Testing & Quality Assurance',
+    tags: ['Vitest', 'Vue Testing Library', 'Playwright', 'End-to-End Testing', 'Unit Testing', 'Integration Testing'],
   },
   {
-    title: 'DevOps & Infrastructure',
-    tags: ['Docker', 'Azure', 'Serverless Architecture', 'CI/CD Pipelines'],
+    title: 'Cloud & Infrastructure',
+    tags: ['Docker', 'Kubernetes Basics', 'CI/CD Pipelines', 'Serverless Architecture'],
+  },
+  {
+    title: 'Backend Technologies',
+    tags: ['Node.js (Express, H3, Nitro)', 'RESTful APIs', 'GraphQL', 'Redis', 'Python (Basic)'],
   },
   {
     title: 'Software Engineering Practices',
-    tags: ['Clean Architecture', 'Domain-Driven Design', 'Code Reviews', 'Agile Methodologies'],
+    tags: ['Clean Architecture', 'Domain-Driven Design', 'Code Reviews', 'Agile Methodologies', 'Test-Driven Development'],
   },
   {
     title: 'Leadership & Collaboration',
-    tags: ['Technical Roadmapping', 'Mentoring & Code Reviews', 'Stakeholder Communication', 'Accessibility Advocacy'],
+    tags: ['Mentoring', 'Stakeholder Communication', 'TypeScript Advocacy', 'Team Leadership'],
   },
 ]
 
@@ -67,11 +71,12 @@ const experience: {
     description: 'Technical lead for frontend development at one of the largest Dutch banks, driving TypeScript adoption and accessibility compliance across enterprise-level financial applications.',
     responsibilitiesTitle: 'Key Contributions',
     responsibilities: [
-      'Spearheaded the migration of legacy JavaScript codebases to TypeScript, implementing advanced type safety patterns and reducing runtime errors by 40%',
-      'Designed and implemented a comprehensive testing strategy using Vitest, Vue Testing Library, and Playwright, achieving 95% test coverage for critical user flows',
-      'Championed accessibility improvements, ensuring compliance with WCAG 2.1 AA standards across all customer-facing applications',
-      'Mentored a team of 5 developers, conducting regular code reviews and technical workshops to improve code quality and team productivity',
-      'Acted as TypeScript Guild Lead, mentoring developers by creating learning materials and conducting bi-weekly meetings to facilitate TypeScript adoption across the organisation',
+      'Spearheaded the migration of legacy JavaScript codebases to TypeScript, implementing advanced type safety patterns and reducing runtime errors',
+      'Designed and implemented a comprehensive accessibility first testing strategy using Vitest, Vue Testing Library, and Playwright, achieving 80% test coverage',
+      'Led feature development by breaking down complex requirements into manageable components and creating detailed implementation plans',
+      'Mentored a team of 5 developers through regular code reviews and technical workshops to improve code quality and team productivity',
+      'Collaborated with UX designers to implement accessible components following design system patterns',
+      'Implemented containerised deployment strategies using Docker for frontend applications',
     ],
   },
   {
@@ -91,14 +96,14 @@ const experience: {
   {
     company: 'Passionate People - JavaScript Consultancy',
     position: 'Senior Frontend Consultant',
-    description: 'Technical consultant specializing in Vue.js and TypeScript, delivering high-quality solutions for enterprise clients across various industries.',
+    description: 'Technical consultant specialising in Vue.js and TypeScript, delivering high-quality solutions for enterprise clients across various industries.',
     period: 'Feb 2022 - Present',
     responsibilitiesTitle: 'Key Contributions',
     responsibilities: [
-      'Technical Leadership: Lead the architecture and development of complex web applications, leveraging Vue.js, Nuxt, and TypeScript. Ensure best practices in code quality, performance optimisation, and scalability across multiple client projects.',
-      'Mentoring junior developers and collaborating with cross-functional teams, providing guidance on best practices in frontend development, code reviews, and problem-solving strategies.',
-      'Client Collaboration: Work closely with clients to understand their unique requirements, provide technical recommendations, and translate business needs into effective technical solutions. Regularly present progress updates and technical insights to stakeholders.',
-      'Organising and facilitating team-building events to strengthen team dynamics in a distributed work environment. These events focus on improving communication, fostering creativity, and building a strong, collaborative team culture despite physical distances.',
+      'Led the architecture and development of complex web applications, leveraging Vue.js, Nuxt, and TypeScript. Ensured best practices in code quality, performance optimisation, and scalability across multiple client projects.',
+      'Mentored junior developers and collaborated with cross-functional teams, providing guidance on best practices in frontend development, code reviews, and problem-solving strategies.',
+      'Worked closely with clients to understand their requirements, provided technical recommendations, and translated business needs into effective technical solutions. Regularly presented progress updates and technical insights to stakeholders.',
+      'Organised and facilitated team-building events to strengthen team dynamics in a distributed work environment. These events focused on improving communication, fostering creativity, and building a strong, collaborative team culture despite physical distances.',
     ],
   },
   {
@@ -107,8 +112,7 @@ const experience: {
     period: '2015 - 2022',
     responsibilities: [
       'Developed a sophisticated InDesign plugin using Vue.js, Vuex, and TypeScript, enabling users to efficiently edit and export products directly within InDesign. This plugin streamlined the workflow for designers, significantly reducing the time required for product catalog creation and updates.',
-      'Redesigned the customer-facing e-commerce platform, focusing on improving user experience through better architecture and faster load times. This involved implementing lazy loading techniques, optimising database queries, and refactoring the frontend to use modern JavaScript frameworks.',
-      'Spearheaded the implementation of a Single Page Application (SPA) framework to replace the traditional MVC.NET routing system. This gradual migration from a .NET Razor application to a full Vue-based application improved performance, enhanced user experience, and simplified future development and maintenance.',
+      'Redesigned the customer-facing e-commerce platform, focusing on improving user experience. This involved refactoring the frontend to use Vue. This gradual migration from a .NET Razor application to a full Vue-based application improved performance, enhanced user experience, and simplified future development and maintenance.',
     ],
   },
 ]
@@ -139,7 +143,7 @@ async function onPrint() {
         <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" :class="{ 'i-ph:spinner-gap-duotone animate-spin': status === 'pending' }" />
       </BaseButton>
     </teleport>
-    <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-black/20 text-sm backdrop-blur print:mb-0 print:max-w-none md:border-1 print:border-0 dark:border-white/20 md:text-base print:text-[17px] print:text-blue-950">
+    <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-black/20 text-sm backdrop-blur print:mb-0 print:max-w-none md:border-1 print:border-0 dark:border-white/20 md:text-base print:text-[17px]/6 print:text-black">
       <div class="slide-enter-content origin-top-left p-6 py-10 md:p-10 print:p-0">
         <header class="mb-8 justify-between gap-2 md:mb-4 print:mb-4 md:flex print:flex">
           <div class="mb-2 md:mb-0 print:mb-0">
@@ -160,14 +164,14 @@ async function onPrint() {
             </div>
           </div>
         </header>
-        <div class="slide-enter-content grid gap-y-5">
+        <div class="slide-enter-content grid gap-y-5 print:gap-y-4">
           <section>
             <h2 class="heading">
               Summary
             </h2>
             <div class="section">
               <p>
-                Senior Frontend Developer with 8+ years of experience in building scalable, maintainable web applications using Vue.js, TypeScript, and Node.js. Proven track record of leading technical initiatives, improving development processes, and delivering high-quality solutions. Expertise in modern web technologies, architectural patterns, and accessibility standards. Passionate about clean code, type safety, and mentoring developers to achieve technical excellence.
+                Senior Frontend Developer with 8+ years of experience in building scalable, maintainable web applications using Vue.js, React, and TypeScript. Proven track record of leading technical initiatives, improving development processes, and delivering high-quality solutions. Experienced in containerized deployments and modern web technologies. Passionate about open-source, clean code, type safety, and mentoring developers to achieve technical excellence.
               </p>
             </div>
           </section>
@@ -178,7 +182,7 @@ async function onPrint() {
             </h2>
             <div class="section">
               <ul class="list-inside md:list-disc print:list-disc">
-                <li v-for="(item, idx) in coreSkills" :key="idx" class="mb-3 md:mb-1 print:mb-1">
+                <li v-for="(item, idx) in coreSkills" :key="idx" class="mb-4 md:mb-2 print:mb-2">
                   <strong class="mb-1 mr-1 inline-block md:mb-0 print:mb-0">{{ item.title }}:</strong>
                   {{ item.tags.join(', ') }}
                 </li>
@@ -205,13 +209,13 @@ async function onPrint() {
                     {{ job.period }}
                   </p>
                 </div>
-                <p v-if="job.description" class="mb-4">
+                <p v-if="job.description" class="mb-2">
                   {{ job.description }}
                 </p>
-                <p v-if="job.responsibilitiesTitle" class="mb-4">
+                <p v-if="job.responsibilitiesTitle" class="mb-2">
                   {{ job.responsibilitiesTitle }}:
                 </p>
-                <ul class="grid list-disc list-inside gap-4">
+                <ul class="grid list-disc list-inside gap-2">
                   <li
                     v-for="(responsibility, respIndex) in job.responsibilities" :key="respIndex"
                     class="list-disc list-inside break-inside-avoid last:mb-0"
