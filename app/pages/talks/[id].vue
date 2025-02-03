@@ -63,9 +63,38 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
         <div class="mt-4 text-sm" :class="classes.textTint">
           Tip: swipe or use the arrow keys (<span class="i-ph:arrow-left-duotone" /> <span class="i-ph:arrow-right-duotone" />) to navigate through the presentation.
         </div>
+
+        <!-- Add video recording section -->
+        <div v-if="talk?.recordingUrl" class="mb-8">
+          <ProseH3>
+            Video Recording
+          </ProseH3>
+          <a
+            :href="talk.recordingUrl"
+            class="hover:text-primary inline-flex items-center gap-2 text-sm transition-colors"
+          >
+            <span class="i-ph:video-duotone" />
+            <span>Watch the full recording</span>
+          </a>
+        </div>
+
+        <!-- Add resources section -->
+        <div v-if="talk?.resources?.length" class="mt-6">
+          <ProseH3>
+            Resources
+          </ProseH3>
+          <ul class="space-y-2">
+            <li v-for="resource in talk.resources" :key="resource.url" class="text-sm">
+              <a :href="resource.url" class="hover:text-primary flex items-center gap-2 transition-colors">
+                <span class="i-ph:link-simple" />
+                <span>{{ resource.title || 'Resource Link' }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="prose">
+      <div class="max-w-full prose">
         <ProseH1>
           {{ talk?.title }}
         </ProseH1>
@@ -90,6 +119,17 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
             <span class="i-ph-clock-countdown-duotone" />
             <span>{{ timeAgo }}</span>
           </div>
+        </div>
+
+        <!-- Add tags section -->
+        <div v-if="talk?.tags?.length" class="mb-8 flex flex-wrap gap-2">
+          <span
+            v-for="tag in talk.tags"
+            :key="tag"
+            :class="classes.tag"
+          >
+            {{ tag }}
+          </span>
         </div>
 
         <div class="relative m-auto">

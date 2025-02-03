@@ -12,6 +12,14 @@ tags:
   - Runtime Validation
   - Microservices
   - Best Practices
+resources:
+  - title: Presentation Slides
+    url: https://github.com/JosephAnson/talks/raw/refs/heads/main/2025-02-27/2025-02-27-devworld-en.pdf
+  - title: Demo Repository
+    url: https://github.com/JosephAnson/demo-devworld-2025
+  - title: Zod
+    url: https://zod.dev/
+# recordingUrl: https://youtube.com/watch?v=example123
 ---
 
 In this talk, you'll discover:
