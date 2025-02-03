@@ -7,6 +7,7 @@ export const talkSchema = z.object({
   tags: z.array(z.string()).optional(),
   url: z.string().url(),
   event: z.string(),
+  eventUrl: z.string().url(),
   location: z.string(),
 })
 

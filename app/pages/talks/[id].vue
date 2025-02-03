@@ -71,10 +71,15 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
         </ProseH1>
 
         <div class="mb-8 flex gap-4" :class="classes.textTint">
-          <div class="flex items-center gap-2 text-xs" :class="classes.textTint">
+          <component
+            :is="talk?.eventUrl ? 'a' : 'div'"
+            :href="talk?.eventUrl"
+            class="flex items-center gap-2 text-xs"
+            :class="classes.textTint"
+          >
             <span class="i-ph:calendar-star-duotone" />
             <span>{{ talk?.event }}</span>
-          </div>
+          </component>
 
           <div class="flex items-center gap-2 text-xs">
             <span class="i-ph:map-pin-duotone" />
