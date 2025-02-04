@@ -70,5 +70,7 @@ export default defineNuxtConfig({
     '/projects': { prerender: true },
     '/talks': { prerender: true },
     '/talks/**': { prerender: true },
+    '/blogs/': { redirect: { to: '/articles/', statusCode: 301 } },
+    '/blog/**': { redirect: { to: '/articles/**', statusCode: 301 } },
   },
 })

@@ -36,7 +36,7 @@ const coreSkills: { title: string, tags: string[] }[] = [
   },
   {
     title: 'Testing & Quality Assurance',
-    tags: ['Vitest', 'Vue Testing Library', 'Playwright', 'End-to-End Testing', 'Unit Testing', 'Integration Testing'],
+    tags: ['Vitest', 'Vue Testing Library', 'Playwright', 'End-to-End Testing', 'Unit Testing'],
   },
   {
     title: 'Cloud & Infrastructure',
@@ -44,11 +44,11 @@ const coreSkills: { title: string, tags: string[] }[] = [
   },
   {
     title: 'Backend Technologies',
-    tags: ['Node.js (Express, H3, Nitro)', 'RESTful APIs', 'GraphQL', 'Redis', 'Python (Basic)'],
+    tags: ['Node.js (Express, H3, Nitro)', 'RESTful APIs', 'GraphQL', 'Redis'],
   },
   {
     title: 'Software Engineering Practices',
-    tags: ['Clean Architecture', 'Domain-Driven Design', 'Code Reviews', 'Agile Methodologies', 'Test-Driven Development'],
+    tags: ['Clean Architecture', 'Domain-Driven Design', 'Code Reviews', 'Agile Methodologies'],
   },
   {
     title: 'Leadership & Collaboration',
@@ -72,7 +72,7 @@ const experience: {
     responsibilitiesTitle: 'Key Contributions',
     responsibilities: [
       'Spearheaded the migration of legacy JavaScript codebases to TypeScript, implementing advanced type safety patterns and reducing runtime errors',
-      'Designed and implemented a comprehensive accessibility first testing strategy using Vitest, Vue Testing Library, and Playwright, achieving 80% test coverage',
+      'Designed and implemented a comprehensive accessibility first testing strategy using Vitest, Vue Testing Library, and Playwright',
       'Led feature development by breaking down complex requirements into manageable components and creating detailed implementation plans',
       'Mentored a team of 5 developers through regular code reviews and technical workshops to improve code quality and team productivity',
       'Collaborated with UX designers to implement accessible components following design system patterns',
@@ -87,7 +87,7 @@ const experience: {
     responsibilitiesTitle: 'Technical Achievements',
     responsibilities: [
       'Led the development of a bi-directional Vue 2/Vue 3 component library using vue-demi and Composition API, enabling seamless migration to Vue 3',
-      'Optimized critical user flows (product search, basket management) resulting in a 20% improvement in page load times',
+      'Optimized critical user flows (product search, basket management) resulting in faster page load times',
       'Implemented a real-time dietary preferences system, enhancing the product detail page experience for millions of users',
       'Introduced modern state management patterns using Pinia, reducing code complexity and improving maintainability of complex features',
       'Collaborated with UX designers to implement responsive and accessible components',
