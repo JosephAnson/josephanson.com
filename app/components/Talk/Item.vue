@@ -26,8 +26,8 @@ const timeAgo = useTimeAgo(new Date(props.talk.date))
             {{ talk.description }}
           </p>
 
-          <div class="flex justify-between gap-4" :class="classes.textLight">
-            <div class="flex gap-4">
+          <div class="flex flex-wrap justify-between gap-4" :class="classes.textLight">
+            <div class="flex flex-wrap gap-4">
               <div class="flex items-center gap-2 text-xs">
                 <span class="i-ph:calendar-star-duotone" />
                 <span>{{ talk?.event }}</span>

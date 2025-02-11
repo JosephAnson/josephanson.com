@@ -35,6 +35,7 @@ useHead({
   ],
   htmlAttrs: {
     lang: 'en',
+    class: () => `print:bg-none ${classes.value.htmlBackground}`,
   },
   bodyAttrs: {
     class: () => `print:bg-none ${classes.value.gradient} ${classes.value.text}`,
@@ -52,10 +53,18 @@ useSeoMeta({
 })
 
 defineOgImageComponent('Default')
+
+const el = useTemplateRef<HTMLElement>('page')
+const router = useRouter()
+const { y } = useScroll(el)
+
+watch(() => router.currentRoute.value.fullPath, () => {
+  y.value = 0
+})
 </script>
 
 <template>
-  <div class="h-full of-y-scroll scroll-smooth print:h-auto">
+  <div ref="page" class="h-full of-y-scroll scroll-smooth print:h-auto">
     <TheHeader />
     <main>
       <NuxtLayout>

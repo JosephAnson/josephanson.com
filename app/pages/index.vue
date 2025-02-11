@@ -28,7 +28,7 @@ useSeoMeta({
           <div class="i-ph:arrow-right text-lg" />
         </NuxtLink>
       </div>
-      <div class="not-prose slide-enter-content grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="not-prose slide-enter-content grid grid-cols-1 gap-6 lg:grid-cols-3 md:grid-cols-2">
         <ProjectItem
           v-for="project in projects"
           :key="project.id"
@@ -72,7 +72,7 @@ useSeoMeta({
         </NuxtLink>
       </div>
 
-      <TalkList :talks="talks" class="slide-enter-content grid-cols-1 gap-6 md:grid-cols-3" />
+      <TalkList :talks="talks" class="slide-enter-content grid-cols-1 gap-6 lg:grid-cols-3 md:grid-cols-2" />
     </section>
   </div>
 </template>

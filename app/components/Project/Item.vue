@@ -29,7 +29,7 @@ const imageUrl = computed(
 </script>
 
 <template>
-  <li class="h-full inline-flex">
+  <li class="h-full w-full inline-flex">
     <BaseCard class="overflow-hidden p-0">
       <NuxtLink
         v-bind="bindProps"

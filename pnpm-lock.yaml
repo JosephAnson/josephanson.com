@@ -29,9 +29,6 @@ dependencies:
   ufo:
     specifier: ^1.5.4
     version: 1.5.4
-  vue-router-better-scroller:
-    specifier: ^0.0.0
-    version: 0.0.0(vue-router@4.5.0)(vue@3.5.13)
 
 devDependencies:
   '@antfu/eslint-config':
@@ -3465,6 +3462,7 @@ packages:
 
   /@vue/devtools-api@6.6.4:
     resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
+    dev: true
 
   /@vue/devtools-core@7.6.8(vite@6.0.11)(vue@3.5.13):
     resolution: {integrity: sha512-8X4roysTwzQ94o7IobjVcOd1aZF5iunikrMrHPI2uUdigZCi2kFTQc7ffYiFiTNaLElCpjOhCnM7bo7aK1yU7A==}
@@ -11263,16 +11261,6 @@ packages:
       vue: 3.5.13(typescript@5.6.3)
     dev: false
 
-  /vue-router-better-scroller@0.0.0(vue-router@4.5.0)(vue@3.5.13):
-    resolution: {integrity: sha512-E+ovMBUOgr0TU6rYnc5X8h7rlu+QUkK2AMBXt2S6yMrAlW86cq6k5OExM4WnL4vfHbmJEtf+SbAtZ3H3bxYoBQ==}
-    peerDependencies:
-      vue: ^3.3.4
-      vue-router: ^4.2.2
-    dependencies:
-      vue: 3.5.13(typescript@5.7.3)
-      vue-router: 4.5.0(vue@3.5.13)
-    dev: false
-
   /vue-router@4.5.0(vue@3.5.13):
     resolution: {integrity: sha512-HDuk+PuH5monfNuY+ct49mNmkCRK4xJAV9Ts4z9UFc4rzdDnxQLyCMGGc8pKhZhHTVzfanpNwB/lwqevcBwI4w==}
     peerDependencies:
@@ -11280,6 +11268,7 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.7.3)
+    dev: true
 
   /vue-tsc@2.2.0(typescript@5.7.3):
     resolution: {integrity: sha512-gtmM1sUuJ8aSb0KoAFmK9yMxb8TxjewmxqTJ1aKphD5Cbu0rULFY6+UQT51zW7SpUcenfPUuflKyVwyx9Qdnxg==}
