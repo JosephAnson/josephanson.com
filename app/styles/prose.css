@@ -8,3 +8,11 @@
   color: inherit;
   font-weight: inherit;
 }
+
+.prose :where(p,ul,ol,pre):not(:where(.not-prose,.not-prose *)) {
+  margin-top: 0
+}
+
+.prose :where(p,ul,ol,pre):not(:where(.not-prose,.not-prose *)):last-child {
+  margin-bottom: 0
+}

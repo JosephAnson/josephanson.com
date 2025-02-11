@@ -20,6 +20,13 @@ body {
   scrollbar-color: var(--c-scrollbar) transparent;
 }
 
+@media print {
+  .print\:bg-none {
+      background-image: none !important;
+      background: none !important;
+  }
+}
+
 #nprogress {
   pointer-events: none;
 }

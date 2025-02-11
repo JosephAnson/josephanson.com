@@ -22,7 +22,7 @@ definePageMeta({
 const { classes } = useTheme()
 
 const contactInfo = [
-  { icon: 'i-ph:map-pin-duotone', text: 'Netherlands', link: 'https://maps.app.goo.gl/7c71JwZ7aB9Yjb6SA' },
+  { icon: 'i-ph:map-pin-duotone', text: 'Madrid,Spain', link: 'https://maps.app.goo.gl/M7PLvUNrsVhQPcYKA' },
   { icon: 'i-ph:phone-duotone', text: '+447902738455', link: 'tel:+447902738455' },
   { icon: 'i-ph:linkedin-logo-duotone', text: 'linkedin.com/in/josephanson/', link: 'https://linkedin.com/in/josephanson/' },
   { icon: 'i-ph:globe-duotone', text: 'josephanson.com', link: 'https://josephanson.com' },
@@ -48,7 +48,7 @@ const coreSkills: { title: string, tags: string[] }[] = [
   },
   {
     title: 'Software Engineering Practices',
-    tags: ['Clean Architecture', 'Domain-Driven Design', 'Code Reviews', 'Agile Methodologies'],
+    tags: ['Micro-frontends', 'Domain-Driven Design', 'Code Reviews', 'Agile Methodologies'],
   },
   {
     title: 'Leadership & Collaboration',
@@ -66,15 +66,16 @@ const experience: {
 }[] = [
   {
     company: 'ABN AMRO Bank N.V.',
-    position: 'Senior Frontend Developer',
+    position: 'Lead Frontend Developer',
     period: 'Mar 2023 - Present',
     description: 'Technical lead for frontend development at one of the largest Dutch banks, driving TypeScript adoption and accessibility compliance across enterprise-level financial applications.',
     responsibilitiesTitle: 'Key Contributions',
     responsibilities: [
+      'Led the successful launch of a new Loan Application platform, implementing modern frontend architecture with Vue 3 and TypeScript, resulting in a 4% increase in loan application conversions',
       'Spearheaded the migration of legacy JavaScript codebases to TypeScript, implementing advanced type safety patterns and reducing runtime errors',
       'Designed and implemented a comprehensive accessibility first testing strategy using Vitest, Vue Testing Library, and Playwright',
       'Led feature development by breaking down complex requirements into manageable components and creating detailed implementation plans',
-      'Mentored a team of 5 developers through regular code reviews and technical workshops to improve code quality and team productivity',
+      'Mentored a team of 4 developers through regular code reviews and technical workshops to improve code quality and team productivity',
       'Collaborated with UX designers to implement accessible components following design system patterns',
       'Implemented containerised deployment strategies using Docker for frontend applications',
     ],
@@ -146,8 +147,8 @@ async function onPrint() {
     <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-black/20 text-sm backdrop-blur print:mb-0 print:max-w-none md:border-1 print:border-0 dark:border-white/20 md:text-base print:text-[17px]/6 print:text-black">
       <div class="slide-enter-content origin-top-left p-6 py-10 md:p-10 print:p-0">
         <header class="mb-8 justify-between gap-2 md:mb-4 print:mb-4 md:flex print:flex">
-          <div class="mb-2 md:mb-0 print:mb-0">
-            <h1 class="mb-2 text-3xl font-medium md:text-5xl print:text-5xl">
+          <div class="mb-3 md:mb-0 print:mb-0">
+            <h1 class="mb-3 text-3xl font-medium md:text-5xl print:text-5xl">
               Joseph Lee Anson
             </h1>
             <h2 class="text-xl md:text-2xl print:text-2xl" :class="classes.highlight">
@@ -182,7 +183,7 @@ async function onPrint() {
             </h2>
             <div class="section">
               <ul class="list-inside md:list-disc print:list-disc">
-                <li v-for="(item, idx) in coreSkills" :key="idx" class="mb-4 md:mb-2 print:mb-2">
+                <li v-for="(item, idx) in coreSkills" :key="idx" class="mb-4 md:mb-3 print:mb-3">
                   <strong class="mb-1 mr-1 inline-block md:mb-0 print:mb-0">{{ item.title }}:</strong>
                   {{ item.tags.join(', ') }}
                 </li>
@@ -196,7 +197,7 @@ async function onPrint() {
             </h2>
             <div class="section grid gap-6">
               <div v-for="(job, jobIndex) in experience" :key="jobIndex" class="break-inside-avoid">
-                <div class="mb-2 justify-between md:flex print:flex">
+                <div class="mb-3 justify-between md:flex print:flex">
                   <div>
                     <h3 class="subheading">
                       {{ job.position }}
@@ -209,10 +210,10 @@ async function onPrint() {
                     {{ job.period }}
                   </p>
                 </div>
-                <p v-if="job.description" class="mb-2">
+                <p v-if="job.description" class="mb-3">
                   {{ job.description }}
                 </p>
-                <p v-if="job.responsibilitiesTitle" class="mb-2">
+                <p v-if="job.responsibilitiesTitle" class="mb-3">
                   {{ job.responsibilitiesTitle }}:
                 </p>
                 <ul class="grid list-disc list-inside gap-2">
@@ -253,7 +254,7 @@ async function onPrint() {
 
 <style>
 .heading {
-  --uno: mb-2 text-2xl font-semibold
+  --uno: mb-3 text-2xl font-semibold
 }
 
 .subheading {

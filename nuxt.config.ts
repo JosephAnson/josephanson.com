@@ -1,4 +1,5 @@
 import process from 'node:process'
+import { definePerson } from 'nuxt-schema-org/schema'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-09-11',
@@ -16,6 +17,18 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/router.client.ts',
   ],
+  schemaOrg: {
+    identity: definePerson({
+      name: 'Joseph Anson',
+      image: '/me.jpg',
+      description: 'Experienced Senior Web Developer with 8+ years of expertise in building scalable web applications using Vue.js, React, and TypeScript. Proficient in containerized deployments and modern web technologies. Passionate about open-source and cloud-native development.',
+      url: 'https://josephanson.com',
+      sameAs: [
+        'https://linkedin.com/in/josephanson/',
+        'https://github.com/josephanson',
+      ],
+    }),
+  },
   pages: true,
   modules: [
     'nuxt-content-twoslash',

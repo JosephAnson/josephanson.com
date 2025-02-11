@@ -32,7 +32,7 @@ const socialsMap = {
   medium: 'i-ph:medium-logo-duotone',
   linkedin: 'i-ph:linkedin-logo-duotone',
   email: 'i-ph:envelope-duotone',
-  resume: 'i-ph:file-pdf-duotone',
+  resume: 'i-ph-read-cv-logo-duotone',
 }
 
 const { classes } = useTheme()
