@@ -1,16 +1,18 @@
-import { tailwindColors } from '~/utils/constants'
+import { colorPairs, tailwindColors } from '~/utils/constants'
 import { themeClasses } from '~/utils/themeClasses'
 
 const useThemeChoices = () => useState<Record<string, string>>('theme-choices', () => ({}))
 export const useCurrentTheme = () => useState<string>('theme', () => '')
 
 export function useTheme() {
-  const themeChoices = useThemeChoices()
-  const currentTheme = useCurrentTheme()
   const route = useRoute()
   const themes = tailwindColors
 
+  const themeChoices = useThemeChoices()
+  const currentTheme = useCurrentTheme()
   const classes = computed(() => themeClasses(currentTheme.value))
+  const pairTheme = computed(() => colorPairs[currentTheme.value] ?? currentTheme.value)
+  const pairClasses = computed(() => themeClasses(pairTheme.value))
 
   watch(() => route.path, (path) => {
     if (themeChoices.value?.[path])
@@ -34,7 +36,9 @@ export function useTheme() {
 
   return {
     classes,
+    pairClasses,
     currentTheme,
+    pairTheme,
     rotateTheme,
   }
 }

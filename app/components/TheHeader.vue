@@ -2,6 +2,7 @@
 import BaseLogo from '~/components/Base/BaseLogo.vue'
 
 const show = useShowMenu()
+const { pairTheme } = useTheme()
 
 function toggleMenu() {
   show.value = !show.value
@@ -20,7 +21,17 @@ function toggleMenu() {
           </NuxtLink>
 
           <div class="flex items-center gap-4">
+            <BaseButton
+              :override-theme="pairTheme"
+              to="/open-for-work"
+              icon="i-ph-briefcase-duotone"
+              class="animate-pulse hover:animate-none"
+            >
+              Open for Work
+            </BaseButton>
+
             <div id="teleport-menu" />
+
             <BaseButton
               aria-label="Navigation Menu"
               @click="toggleMenu()"
