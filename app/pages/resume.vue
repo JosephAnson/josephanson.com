@@ -22,7 +22,7 @@ definePageMeta({
 const { classes } = useTheme()
 
 const contactInfo = [
-  { icon: 'i-ph:map-pin-duotone', text: 'Madrid,Spain', link: 'https://maps.app.goo.gl/M7PLvUNrsVhQPcYKA' },
+  { icon: 'i-ph:map-pin-duotone', text: 'Madrid, Spain', link: 'https://maps.app.goo.gl/M7PLvUNrsVhQPcYKA' },
   { icon: 'i-ph:phone-duotone', text: '+447902738455', link: 'tel:+447902738455' },
   { icon: 'i-ph:linkedin-logo-duotone', text: 'linkedin.com/in/josephanson/', link: 'https://linkedin.com/in/josephanson/' },
   { icon: 'i-ph:globe-duotone', text: 'josephanson.com', link: 'https://josephanson.com' },

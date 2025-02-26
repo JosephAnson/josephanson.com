@@ -2,7 +2,7 @@
 import BaseLogo from '~/components/Base/BaseLogo.vue'
 
 const show = useShowMenu()
-
+const route = useRoute()
 function toggleMenu() {
   show.value = !show.value
 }
@@ -13,14 +13,19 @@ function toggleMenu() {
     <div class="relative z-20 py-4 md:py-16">
       <BaseContainer>
         <div class="flex items-center justify-between gap-4">
-          <NuxtLink to="/" class="flex text-2xl">
+          <NuxtLink to="/" class="flex items-center whitespace-nowrap text-xl md:text-2xl">
             <BaseLogo class="mr-2 h-8 w-8" />
 
             J. Anson
           </NuxtLink>
 
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 md:gap-4">
+            <BaseGradientButton v-if="route.path !== '/resume'" to="/open-for-work">
+              Open for Work
+            </BaseGradientButton>
+
             <div id="teleport-menu" />
+
             <BaseButton
               aria-label="Navigation Menu"
               @click="toggleMenu()"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '@unocss/reset/tailwind-compat.css'
+import '@unocss/reset/tailwind.css'
 import './styles/animations.css'
 import './styles/base.css'
 import './styles/prose.css'
