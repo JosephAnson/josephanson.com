@@ -8,10 +8,8 @@ defineProps<{
 
 <template>
   <ul v-if="talks?.length" class="not-prose slide-enter-content grid gap-6">
-    <TalkItem
-      v-for="talk in talks"
-      :key="talk.id"
-      :talk="talk"
-    />
+    <li v-for="talk in talks" :key="talk.id">
+      <TalkItem :talk="talk" />
+    </li>
   </ul>
 </template>

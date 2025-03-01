@@ -1,5 +1,6 @@
 ---
 title: "Beyond Type Checking: Building Bulletproof TypeScript Applications"
+image: /images/devworld-2025.jpg
 date: 2025-02-27
 description: In an era where microservices and external data sources dominate our applications, relying on TypeScript's static type checking alone isn't enough. This practical session demonstrates how to build truly type-safe applications that validate data at runtime, preventing the most common sources of production bugs.
 location: Amsterdam

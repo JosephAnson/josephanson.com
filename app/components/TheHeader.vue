@@ -20,9 +20,11 @@ function toggleMenu() {
           </NuxtLink>
 
           <div class="flex items-center gap-2 md:gap-4">
-            <BaseGradientButton v-if="route.path !== '/resume'" to="/open-for-work">
-              Open for Work
-            </BaseGradientButton>
+            <BaseGradientBorder v-if="route.path !== '/resume'">
+              <BaseButton to="/open-for-work">
+                Open for Work
+              </BaseButton>
+            </BaseGradientBorder>
 
             <div id="teleport-menu" />
 

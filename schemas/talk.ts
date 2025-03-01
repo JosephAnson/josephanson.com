@@ -12,6 +12,7 @@ const resourceSchema = z.object({
 })
 
 export const talkSchema = z.object({
+  image: z.string().url().optional(),
   title: z.string().min(1, 'Title is required'),
   description: z.string().min(1, 'Description is required'),
   date: z.coerce.date(),

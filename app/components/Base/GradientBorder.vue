@@ -30,23 +30,20 @@ const props = withDefaults(defineProps<GradientButtonProps>(), {
 const durationInMilliseconds = computed(() => `${props.duration}ms`)
 const allColors = computed(() => props.colors.join(', '))
 const borderWidthInPx = computed(() => `${props.borderWidth}px`)
-const borderRadiusInPx = computed(() => `${props.borderRadius}px`)
 const blurPx = computed(() => `${props.blur}px`)
 </script>
 
 <template>
-  <button
+  <div
     :class="
       cn(
-        'relative flex items-center justify-center min-w-28 min-h-10 overflow-hidden before:absolute before:-inset-[200%] animate-rainbow rainbow-btn',
+        'relative flex items-center justify-center min-w-28 min-h-10 overflow-hidden before:absolute before:-inset-[200%] rounded animate-rainbow rainbow-btn',
         props.class,
       )
     "
   >
-    <BaseButton v-bind="$attrs" class="z-10 size-full inline-flex items-center justify-center px-4 py-2">
-      <slot />
-    </BaseButton>
-  </button>
+    <slot />
+  </div>
 </template>
 
 <style scoped>
@@ -56,11 +53,11 @@ const blurPx = computed(() => `${props.blur}px`)
   animation: rotate-rainbow v-bind(durationInMilliseconds) linear infinite;
   filter: blur(v-bind(blurPx));
   padding: v-bind(borderWidthInPx);
+  z-index: -1;
 }
 
 .rainbow-btn {
   padding: v-bind(borderWidthInPx);
-  border-radius: v-bind(borderRadiusInPx);
 }
 
 @keyframes rotate-rainbow {

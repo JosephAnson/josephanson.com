@@ -30,44 +30,28 @@ const imageUrl = computed(
 
 <template>
   <li class="h-full w-full inline-flex">
-    <BaseCard class="overflow-hidden p-0">
-      <NuxtLink
-        v-bind="bindProps"
-        :to="project.link"
-        class="group block h-full w-full"
-      >
-        <div class="relative aspect-video">
-          <NuxtImg
-            width="400"
-            class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            :src="imageUrl"
-            :alt="`Screenshot of ${project.title} website`"
-            :placeholder="[50, 25, 75, 5]"
-            format="webp"
-          />
-          <div class="absolute inset-0 from-black/50 to-transparent bg-gradient-to-t opacity-0 transition-opacity duration-300 group-hover:scale-105 group-hover:opacity-10" />
+    <NuxtLink
+      v-bind="bindProps"
+      :to="project.link"
+      class="group block h-full w-full"
+    >
+      <BaseCard :image="{ src: imageUrl, alt: `Screenshot of ${project.title} website` }" class="overflow-hidden p-0">
+        <div class="mb-2 flex items-center justify-between">
+          <h2 class="text-xl font-bold" :class="classes.textLight">
+            {{ project.title }}
+          </h2>
+          <span class="i-ph:arrow-square-in-duotone text-xl transition-transform duration-300 group-hover:translate-x-1" :class="classes.textLight" />
         </div>
 
-        <div class="flex flex-1 flex-col justify-between p-4">
-          <div>
-            <div class="mb-2 flex items-center justify-between">
-              <h2 class="text-xl font-bold" :class="classes.textLight">
-                {{ project.title }}
-              </h2>
-              <span class="i-ph:arrow-square-in-duotone text-xl transition-transform duration-300 group-hover:translate-x-1" :class="classes.textLight" />
-            </div>
+        <p class="line-clamp-3 mb-3 text-sm" :class="classes.text">
+          {{ project.description }}
+        </p>
 
-            <p class="line-clamp-3 mb-3 text-sm" :class="classes.text">
-              {{ project.description }}
-            </p>
-          </div>
-
-          <div class="flex items-center gap-2 text-xs" :class="classes.textLight">
-            <span class="i-ph:link-simple-duotone" />
-            <span>Visit Project</span>
-          </div>
+        <div class="flex items-center gap-2 text-xs" :class="classes.textLight">
+          <span class="i-ph:link-simple-duotone" />
+          <span>Visit Project</span>
         </div>
-      </NuxtLink>
-    </BaseCard>
+      </BaseCard>
+    </NuxtLink>
   </li>
 </template>

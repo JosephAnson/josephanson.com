@@ -8,7 +8,7 @@ export function themeClasses(key: string) {
     menuUnderline: `bg-${key}-900 dark:bg-${key}-200`,
     button: `rounded text-white dark:text-white bg-${key}-700 hover:bg-${key}-800 dark:bg-${key}-700 dark:hover:bg-${key}-600 transition`,
     link: `text-${key}-600 hover:text-${key}-800 dark:text-${key}-300 dark:hover:text-${key}-200`,
-    card: `border-${key}-500 border-1 bg-${key}-300:80 dark:bg-${key}-700:80`,
+    card: `border-${key}-500 border-1 bg-${key}-300 dark:bg-${key}-700`,
     cardHover: `transition hover:bg-${key}-200:80 dark:hover:bg-${key}-800:80`,
     fill: `fill-${key}-500 dark:fill-${key}-500`,
     stroke: `stroke-${key}-500`,

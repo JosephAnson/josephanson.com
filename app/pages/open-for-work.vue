@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Configure SEO
 const title = 'Open for Work in Madrid, Spain'
-const description = 'Currently available for remote web development opportunities based in Madrid, Spain. Senior Web Developer specializing in Vue.js, React, and TypeScript with 8+ years of experience building scalable web applications.'
+const description = 'Currently available for in-office, hybrid, or remote web development opportunities based in Madrid, Spain. Senior Web Developer specializing in Vue.js, React, and TypeScript with 8+ years of experience building scalable web applications.'
 
 useHead({
   title: 'Open for Work | Joseph Anson',
