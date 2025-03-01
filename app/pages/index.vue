@@ -15,12 +15,12 @@ useSeoMeta({
   <div class="slide-enter-content">
     <div class="slide-enter-content grid grid-cols-1 gap-6 lg:grid-cols-2 md:gap-20">
       <div>
-        <ProseH1 class="mb-8 mt-0">
-          Hi there!
+        <ProseH1 class="mb-8 mt-4 text-5xl md:mt-0 md:text-6xl">
+          Hi <BaseLineShadowText>there!</BaseLineShadowText>
         </ProseH1>
 
-        <ProseH2 class="mt-0">
-          I'm a seasoned Frontend expert with <YearsSince /> years of experience crafting innovative web applications.
+        <ProseH2 class="mt-0 text-3xl leading-tight">
+          I'm a seasoned <span class="rounded bg-white px-2" :class="classes.textTint">Frontend</span> expert with <YearsSince /> years of experience crafting innovative web applications.
         </ProseH2>
       </div>
 
