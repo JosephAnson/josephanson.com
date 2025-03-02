@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <ul v-if="articles?.length" class="not-prose slide-enter-content block space-y-8">
+  <ul v-if="articles?.length" class="not-prose slide-enter-content grid grid-cols-1 gap-6">
     <ArticleItem
       v-for="article in articles"
       :key="article.id"

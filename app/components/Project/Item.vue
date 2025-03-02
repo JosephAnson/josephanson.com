@@ -29,7 +29,7 @@ const imageUrl = computed(
 </script>
 
 <template>
-  <li class="h-full w-full inline-flex">
+  <div class="h-full w-full inline-flex">
     <NuxtLink
       v-bind="bindProps"
       :to="project.link"
@@ -53,5 +53,5 @@ const imageUrl = computed(
         </div>
       </BaseCard>
     </NuxtLink>
-  </li>
+  </div>
 </template>

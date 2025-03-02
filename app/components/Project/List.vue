@@ -7,11 +7,11 @@ defineProps<{
 </script>
 
 <template>
-  <ul class="slide-enter-content not-prose grid list-none gap-4 lg:grid-cols-3 sm:grid-cols-2">
-    <ProjectItem
-      v-for="project in projects"
-      :key="project.id"
-      :project="project"
-    />
+  <ul class="slide-enter-content not-prose grid list-none gap-6 lg:grid-cols-3 sm:grid-cols-2">
+    <li v-for="project in projects" :key="project.id">
+      <ProjectItem
+        :project="project"
+      />
+    </li>
   </ul>
 </template>

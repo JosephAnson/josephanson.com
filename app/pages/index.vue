@@ -76,14 +76,7 @@ useSeoMeta({
           <div class="i-ph:arrow-right text-lg" />
         </NuxtLink>
       </div>
-      <div class="not-prose slide-enter-content grid grid-cols-1 gap-6 lg:grid-cols-3 md:grid-cols-2">
-        <ProjectItem
-          v-for="project in projects"
-          :key="project.id"
-          :project="project"
-          class="transition-transform duration-300 hover:scale-[1.02]"
-        />
-      </div>
+      <ProjectList :projects="projects" />
     </section>
 
     <!-- Articles Section -->
@@ -95,7 +88,7 @@ useSeoMeta({
 
         <NuxtLink
           to="/articles"
-          class="bg-primary-500 hover:bg-primary-600 inline-flex items-center gap-2 rounded-lg text-white transition-colors duration-300"
+          class="bg-primary-500 hover:bg-primary-600 flex items-center gap-2 rounded-lg text-white transition-colors duration-300"
         >
           <span>View All Articles</span>
           <div class="i-ph:arrow-right text-lg" />
@@ -113,14 +106,14 @@ useSeoMeta({
 
         <NuxtLink
           to="/talks"
-          class="bg-primary-500 hover:bg-primary-600 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-colors duration-300"
+          class="bg-primary-500 hover:bg-primary-600 flex items-center gap-2 rounded-lg text-white transition-colors duration-300"
         >
           <span>View All Talks</span>
           <div class="i-ph:arrow-right text-lg" />
         </NuxtLink>
       </div>
 
-      <TalkList :talks="talks" class="slide-enter-content grid-cols-1 gap-6 lg:grid-cols-3 md:grid-cols-2" />
+      <TalkList :talks="talks" class="slide-enter-content" />
     </section>
   </div>
 </template>

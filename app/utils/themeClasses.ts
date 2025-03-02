@@ -1,7 +1,7 @@
 export function themeClasses(key: string) {
   return {
     text: `text-${key}-950 dark:text-${key}-50`,
-    textLight: `text-${key}-900 dark:text-${key}-300`,
+    textLight: `text-${key}-900 dark:text-${key}-200`,
     textTint: `text-${key}-500`,
     highlight: `text-${key}-600 dark:text-${key}-400`,
     menu: `bg-${key}-500 dark:bg-${key}-500`,
