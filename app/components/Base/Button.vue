@@ -2,6 +2,7 @@
 const props = defineProps<{
   text?: string
   to?: string
+  href?: string
   icon?: string
   disabled?: boolean
   overrideTheme?: string
@@ -13,7 +14,7 @@ const classes = computed(() => themeClasses(props.overrideTheme ?? currentTheme.
 </script>
 
 <template>
-  <NuxtLink v-if="to" :to="to" :aria-disabled="disabled" class="inline-block">
+  <NuxtLink v-if="to || href" :to="to" :aria-disabled="disabled" :href="href" class="inline-block !no-underline">
     <button class="not-prose flex items-center bg-none" :class="cn('px-4 py-2', classes.button, disabled && 'opacity-50 cursor-not-allowed', $attrs.class?.toString())" :disabled="disabled">
       <span v-if="icon" class="mr-2 h-5 w-5" :class="icon" />
       <slot> {{ text }} </slot>

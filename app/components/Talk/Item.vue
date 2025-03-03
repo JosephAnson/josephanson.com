@@ -3,6 +3,7 @@ import type { Collections } from '@nuxt/content'
 
 const props = defineProps<{
   talk: Collections['talks']
+  imageClasses?: string
 }>()
 
 const { classes } = useTheme()
@@ -15,7 +16,7 @@ const timeAgo = useTimeAgo(new Date(props.talk.date))
     :to="talk.path || talk.url"
     class="group block h-full w-full"
   >
-    <BaseCard :image="{ src: talk.image, alt: talk.title }">
+    <BaseCard :image="{ src: talk.image, alt: talk.title }" :image-classes="imageClasses">
       <div class="h-full flex flex-col">
         <h2 class="mb-2 text-xl font-bold group-hover:underline">
           {{ talk.title }}

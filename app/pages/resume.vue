@@ -47,12 +47,8 @@ const coreSkills: { title: string, tags: string[] }[] = [
     tags: ['Node.js (Express, H3, Nitro)', 'RESTful APIs', 'GraphQL', 'Redis'],
   },
   {
-    title: 'Software Engineering Practices',
-    tags: ['Micro-frontends', 'Domain-Driven Design', 'Code Reviews', 'Agile Methodologies'],
-  },
-  {
     title: 'Leadership & Collaboration',
-    tags: ['Mentoring', 'Stakeholder Communication', 'TypeScript Advocacy', 'Team Leadership'],
+    tags: ['Public Speaking', 'Mentoring', 'Stakeholder Communication', 'TypeScript Advocacy', 'Team Leadership'],
   },
 ]
 
@@ -71,13 +67,12 @@ const experience: {
     description: 'Technical lead for frontend development at one of the largest Dutch banks, driving TypeScript adoption and accessibility compliance across enterprise-level financial applications.',
     responsibilitiesTitle: 'Key Contributions',
     responsibilities: [
-      'Led the successful launch of a new Loan Application platform, implementing modern frontend architecture with Vue 3 and TypeScript, resulting in a 4% increase in loan application conversions',
+      'Led the successful launch of a new Loan Application platform, implementing modern frontend architecture with Vue 3 and TypeScript, resulting in an increase in loan application conversions',
       'Spearheaded the migration of legacy JavaScript codebases to TypeScript, implementing advanced type safety patterns and reducing runtime errors',
       'Designed and implemented a comprehensive accessibility first testing strategy using Vitest, Vue Testing Library, and Playwright',
       'Led feature development by breaking down complex requirements into manageable components and creating detailed implementation plans',
       'Mentored a team of 4 developers through regular code reviews and technical workshops to improve code quality and team productivity',
       'Collaborated with UX designers to implement accessible components following design system patterns',
-      'Implemented containerised deployment strategies using Docker for frontend applications',
     ],
   },
   {
@@ -117,31 +112,14 @@ const experience: {
     ],
   },
 ]
-
-const { status, execute, data, error } = useFetch<Blob>('/download-resume', { immediate: false })
-
-async function onPrint() {
-  await execute()
-
-  if (!error.value && data.value) {
-    const url = URL.createObjectURL(data.value)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'Joseph Anson - Resume.pdf'
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-  }
-}
 </script>
 
 <template>
   <NuxtLayout name="plain">
     <teleport to="#teleport-menu">
-      <BaseButton class="flex items-center gap-2" :disabled="status === 'pending'" @click="onPrint">
-        <span class="hidden md:inline">Download</span>
-        <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" :class="{ 'i-ph:spinner-gap-duotone animate-spin': status === 'pending' }" />
+      <BaseButton class="flex items-center gap-2" href="/download-resume" target="_blank">
+        <span class="hidden md:inline">PDF Version</span>
+        <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" />
       </BaseButton>
     </teleport>
     <div class="print:backdrop-none relative z-10 mx-auto mb-50 max-w-[950px] border-black/20 text-sm backdrop-blur print:mb-0 print:max-w-none md:border-1 print:border-0 dark:border-white/20 md:text-base print:text-[17px]/6 print:text-black">
@@ -225,6 +203,24 @@ async function onPrint() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="heading">
+              Talks
+            </h2>
+            <div class="section">
+              <ul class="grid gap-3">
+                <li class="break-inside-avoid">
+                  <a href="/talks/beyond-type-checking" class="subheading">
+                    Beyond Type Checking: Building Bulletproof TypeScript Applications
+                  </a>
+                  <p class="mt-1 md:text-lg print:text-lg" :class="classes.highlight">
+                    DevWorld 2025, Amsterdam - February 28, 2025
+                  </p>
+                </li>
+              </ul>
             </div>
           </section>
 

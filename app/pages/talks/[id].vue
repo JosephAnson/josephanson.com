@@ -42,7 +42,7 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
   <article class="slide-enter-content relative pb-30 md:pb-100">
     <NuxtLink
       :to="parentPath"
-      class="inline-flex items-center text-sm"
+      class="not-prose inline-flex items-center text-sm"
       :class="classes.link"
     >
       <div class="i-ph:arrow-left mr-2 h-4 w-4" />
@@ -55,7 +55,7 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
       {{ talk?.title }}
     </ProseH1>
 
-    <div class="mb-8 flex gap-4" :class="classes.textTint">
+    <div class="not-prose mb-8 flex gap-4" :class="classes.textTint">
       <component
         :is="talk?.eventUrl ? 'a' : 'div'"
         :href="talk?.eventUrl"

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+/* eslint-disable vue/singleline-html-element-content-newline */
+
 const { data: home } = await useAsyncData('home', () => queryCollection('content').path('/').first())
 const { data: talks } = await useAsyncData('home-talks', () => queryCollection('talks').limit(3).order('date', 'DESC').all())
 const { data: projects } = await useAsyncData('home-projects', () => queryCollection('projects').limit(3).order('date', 'DESC').all())
@@ -13,7 +15,7 @@ useSeoMeta({
 
 <template>
   <div class="slide-enter-content">
-    <div class="slide-enter-content grid grid-cols-1 gap-6 lg:grid-cols-2 md:gap-20">
+    <div class="slide-enter-content grid grid-cols-1 gap-8 lg:grid-cols-2 md:gap-20">
       <div>
         <ProseH1 class="mb-8 mt-4 text-5xl md:mt-0 md:text-6xl">
           Hi <BaseLineShadowText>there!</BaseLineShadowText>
@@ -22,6 +24,15 @@ useSeoMeta({
         <ProseH2 class="mt-0 text-3xl leading-tight">
           I'm a seasoned <span class="rounded bg-white px-2" :class="classes.textTint">Frontend</span> expert with <YearsSince /> years of experience crafting innovative web applications.
         </ProseH2>
+
+        <p class="text-lg">
+          Turning innovative ideas into reality is my true passion. Check out my <NuxtLink to="/projects">portfolio of projects</NuxtLink>,
+          <NuxtLink to="/talks" class="hover:underline">technical talks</NuxtLink>, and <NuxtLink to="/articles" class="hover:underline">articles</NuxtLink>
+          on TypeScript, Vue, and modern web development.
+        </p>
+        <p class="text-lg">
+          When I'm not coding, you'll find me discovering new places or experimenting with new recipes. Based in Madrid - let's connect for coffee if you're in town!
+        </p>
       </div>
 
       <div class="">
@@ -32,31 +43,11 @@ useSeoMeta({
         <div class="not-prose">
           <NuxtLink :to="talks?.[0]?.path || talks?.[0]?.url">
             <!-- Features Content -->
-            <BaseCard
+            <TalkItem
               v-if="talks?.[0]"
-              :image="{ src: talks?.[0].image, alt: talks?.[0].title }"
+              :talk="talks?.[0]"
               image-classes="md:aspect-[18/6]"
-            >
-              <div class="h-full flex flex-col">
-                <h2 class="mb-4 text-xl font-bold group-hover:underline">
-                  {{ talks?.[0].title }}
-                </h2>
-
-                <div class="flex flex-wrap justify-between gap-4" :class="classes.textLight">
-                  <div class="flex flex-wrap gap-4">
-                    <div class="flex items-center gap-2 text-xs">
-                      <span class="i-ph:calendar-star-duotone" />
-                      <span>{{ talks?.[0].event }}</span>
-                    </div>
-
-                    <div class="flex items-center gap-2 text-xs">
-                      <span class="i-ph:map-pin-duotone" />
-                      <span>{{ talks?.[0].location }}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </BaseCard>
+            />
           </NuxtLink>
         </div>
       </div>

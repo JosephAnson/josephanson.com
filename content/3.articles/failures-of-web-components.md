@@ -16,7 +16,7 @@ tags:
 
 Web components are a relatively new technology that allows developers to create custom HTML elements that can be used in web pages. They were introduced as a way to make it easier to build reusable UI components, but in reality, they might be setting you up for failure.
 
-## The Promise of Web Components\*\*
+## The Promise of Web Components
 
 Web components were hailed as a revolutionary technology that would make it easier to build complex web applications. They promised to provide a way to create reusable UI components that could be easily composed together to build complex interfaces.
 

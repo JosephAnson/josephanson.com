@@ -16,3 +16,7 @@
 .prose :where(p,ul,ol,pre):not(:where(.not-prose,.not-prose *)):last-child {
   margin-bottom: 0
 }
+
+.prose :where(a):not(:where(.not-prose,.not-prose *)):not(h1 a, h2 a, h3 a, h4 a, .\!no-underline) {
+  @apply !underline underline-offset-5 !decoration-wavy !decoration-black/50 dark:!decoration-white/50;  
+}
