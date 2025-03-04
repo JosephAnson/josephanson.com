@@ -1,11 +1,12 @@
 import type { Browser } from 'puppeteer'
+import { Buffer } from 'node:buffer'
 import consola from 'consola'
 import puppeteer from 'puppeteer'
 
-export default eventHandler(async (event) => {
-  defaultContentType(event, 'application/pdf')
-
+export default eventHandler(async () => {
   let browser: Browser | undefined
+  const bucketName = 'josephanson-assets'
+  const key = 'joseph-anson-resume.pdf'
 
   try {
     browser = await puppeteer.connect({
@@ -20,7 +21,12 @@ export default eventHandler(async (event) => {
     await page.emulateMediaType('print')
     await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }])
 
-    return await page.pdf({
+    await page.waitForSelector('body')
+    await page.waitForNetworkIdle()
+
+    await new Promise(resolve => setTimeout(resolve, 10000))
+
+    const pdfBuffer = await page.pdf({
       format: 'a4',
       margin: {
         left: 40,
@@ -32,6 +38,13 @@ export default eventHandler(async (event) => {
       pageRanges: '1-',
       scale: 0.8,
     })
+
+    // Store PDF in S3/MinIO
+    await minioClient.putObject(bucketName, key, Buffer.from(pdfBuffer))
+
+    consola.info(`Resume stored in S3: ${key}`)
+
+    return 'Generated resume'
   }
   catch (err) {
     consola.error(`failed to create resume`, err)

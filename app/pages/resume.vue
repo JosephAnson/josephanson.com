@@ -117,7 +117,7 @@ const experience: {
 <template>
   <NuxtLayout name="plain">
     <teleport to="#teleport-menu">
-      <BaseButton class="flex items-center gap-2" href="/download-resume" target="_blank">
+      <BaseButton class="flex items-center gap-2" href="/josephanson-resume" target="_blank">
         <span class="hidden md:inline">PDF Version</span>
         <span class="i-ph:file-pdf-duotone h-6 w-6 text-lg" />
       </BaseButton>
@@ -174,7 +174,7 @@ const experience: {
               Work Experience
             </h2>
             <div class="section grid gap-6">
-              <div v-for="(job, jobIndex) in experience" :key="jobIndex" class="break-inside-avoid">
+              <div v-for="(job, jobIndex) in experience" :key="jobIndex">
                 <div class="mb-3 justify-between md:flex print:flex">
                   <div>
                     <h3 class="subheading">
