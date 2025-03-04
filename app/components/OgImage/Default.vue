@@ -13,7 +13,7 @@ const props = withDefaults(
   },
 )
 
-const title = computed(() => props.title.slice(0, 60))
+const title = computed(() => props.title.slice(0, 70))
 
 const waves = waveInit({
   height: 580,

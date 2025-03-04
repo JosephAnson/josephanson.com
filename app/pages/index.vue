@@ -31,7 +31,7 @@ useSeoMeta({
           on TypeScript, Vue, and modern web development.
         </p>
         <p class="text-lg">
-          When I'm not coding, you'll find me discovering new places or experimenting with new recipes. Based in Madrid - let's connect for coffee if you're in town!
+          When I'm not coding, you'll find me discovering new places or experimenting with new recipes. Based in Madrid - let's <a href="mailto:me@josephanson.com" class="hover:underline">connect</a> for coffee if you're in town!
         </p>
       </div>
 
