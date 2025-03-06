@@ -41,14 +41,12 @@ useSeoMeta({
         </ProseH2>
 
         <div class="not-prose">
-          <NuxtLink :to="talks?.[0]?.path || talks?.[0]?.url">
-            <!-- Features Content -->
-            <TalkItem
-              v-if="talks?.[0]"
-              :talk="talks?.[0]"
-              image-classes="md:aspect-[18/6]"
-            />
-          </NuxtLink>
+          <!-- Features Content -->
+          <TalkItem
+            v-if="talks?.[0]"
+            :talk="talks?.[0]"
+            image-classes="md:aspect-[18/6]"
+          />
         </div>
       </div>
     </div>
