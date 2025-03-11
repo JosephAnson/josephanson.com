@@ -1,12 +1,10 @@
 <script setup lang="ts">
 interface LineShadowTextProps {
-  shadowColor?: string
   as?: keyof HTMLElement
   class?: string
 }
 
 const props = withDefaults(defineProps<LineShadowTextProps>(), {
-  shadowColor: 'white',
   as: 'span' as keyof HTMLElement,
 })
 
@@ -28,7 +26,7 @@ if (!content) {
       cn(
         'relative z-0 inline-flex',
         'after:absolute after:left-[0.04em] after:top-[0.04em] after:-z-10',
-        'after:bg-[linear-gradient(45deg,transparent_45%,var(--shadow-color)_45%,var(--shadow-color)_55%,transparent_0)]',
+        'after:bg-[linear-gradient(45deg,transparent_45%,black_45%,black_55%,transparent_0)] dark:after:bg-[linear-gradient(45deg,transparent_45%,white_45%,white_55%,transparent_0)]',
         'after:bg-[length:0.06em_0.06em] after:bg-clip-text after:text-transparent',
         'after:content-[attr(data-text)]',
         'animate-line-shadow',
@@ -42,9 +40,6 @@ if (!content) {
 </template>
 
   <style scoped>
-  .shadow-color {
-    --shadow-color: v-bind(props.shadowColor);
-  }
 
   .animate-line-shadow::after {
     animation: line-shadow 15s linear infinite;
