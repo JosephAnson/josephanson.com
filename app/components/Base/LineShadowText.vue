@@ -40,8 +40,7 @@ if (!content) {
 </template>
 
   <style scoped>
-
-  .animate-line-shadow::after {
+.animate-line-shadow::after {
     animation: line-shadow 15s linear infinite;
   }
 

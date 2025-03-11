@@ -42,7 +42,7 @@ const timeAgo = useTimeAgo(new Date(props.talk.date))
           <div class="flex items-center gap-2 text-xs">
             <span class="i-ph-clock-countdown-duotone" />
             <span>{{ timeAgo }}</span>
-          </div> 
+          </div>
         </div>
       </div>
     </BaseCard>

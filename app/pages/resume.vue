@@ -83,10 +83,10 @@ const experience: {
     responsibilitiesTitle: 'Technical Achievements',
     responsibilities: [
       'Led the development of a bi-directional Vue 2/Vue 3 component library using vue-demi and Composition API, enabling seamless migration to Vue 3',
+      'Managed a Node.js BFF (Backend-For-Frontend) service using GraphQL, implementing efficient data aggregation and caching strategies to optimize API performance and reduce frontend complexity',
       'Optimized critical user flows (product search, basket management) resulting in faster page load times',
       'Implemented a real-time dietary preferences system, enhancing the product detail page experience for millions of users',
       'Introduced modern state management patterns using Pinia, reducing code complexity and improving maintainability of complex features',
-      'Collaborated with UX designers to implement responsive and accessible components',
     ],
   },
   {
@@ -161,7 +161,7 @@ const experience: {
             </h2>
             <div class="section">
               <ul class="list-inside md:list-disc print:list-disc">
-                <li v-for="(item, idx) in coreSkills" :key="idx" class="mb-4 md:mb-3 print:mb-3">
+                <li v-for="(item, idx) in coreSkills" :key="idx" class="mb-2 print:mb-2">
                   <strong class="mb-1 mr-1 inline-block md:mb-0 print:mb-0">{{ item.title }}:</strong>
                   {{ item.tags.join(', ') }}
                 </li>
@@ -175,7 +175,7 @@ const experience: {
             </h2>
             <div class="section grid gap-6">
               <div v-for="(job, jobIndex) in experience" :key="jobIndex">
-                <div class="mb-3 justify-between md:flex print:flex">
+                <div class="mb-2 justify-between md:flex print:flex">
                   <div>
                     <h3 class="subheading">
                       {{ job.position }}
