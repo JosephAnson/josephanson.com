@@ -32,22 +32,29 @@ const imageUrl = computed(
   <div class="h-full w-full inline-flex">
     <NuxtLink
       v-bind="bindProps"
-      :to="project.link"
+      :to="project?.link"
       class="group block h-full w-full"
     >
-      <BaseCard :image="{ src: imageUrl, alt: `Screenshot of ${project.title} website` }" class="overflow-hidden p-0">
-        <div class="mb-2 flex items-center justify-between">
-          <h2 class="text-xl font-bold" :class="classes.textLight">
-            {{ project.title }}
-          </h2>
-          <span class="i-ph:arrow-square-in-duotone text-xl transition-transform duration-300 group-hover:translate-x-1" :class="classes.textLight" />
+      <BaseCard
+        :image="{ src: imageUrl, alt: `Screenshot of ${project.title} website` }"
+        content-class="flex flex-col flex-1"
+      >
+        <div class="flex flex-1">
+          <div class="flex-1">
+            <div class="mb-2 flex items-center justify-between">
+              <h2 class="text-xl font-bold" :class="classes.textLight">
+                {{ project.title }}
+              </h2>
+            </div>
+
+            <p class="line-clamp-3 mb-3 text-sm" :class="classes.text">
+              {{ project.description }}
+            </p>
+          </div>
+          <span v-if="project?.link" class="i-ph:arrow-square-in-duotone text-xl transition-transform duration-300 group-hover:translate-x-1" :class="classes.textLight" />
         </div>
 
-        <p class="line-clamp-3 mb-3 text-sm" :class="classes.text">
-          {{ project.description }}
-        </p>
-
-        <div class="flex items-center gap-2 text-xs" :class="classes.textLight">
+        <div v-if="project?.link" class="flex items-center gap-2 text-xs" :class="classes.textLight">
           <span class="i-ph:link-simple-duotone" />
           <span>Visit Project</span>
         </div>
