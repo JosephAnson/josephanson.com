@@ -1,4 +1,9 @@
+id: old-website
 title: Old Website
 description: My old portfolio website
-#link: https://old.josephanson.com
-date: 2024-01-01
+# link: https://old.josephanson.com
+date: 2017-01-01
+technologies:
+  - Wordpress
+  - PHP
+  - Sass

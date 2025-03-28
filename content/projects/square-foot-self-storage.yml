@@ -1,4 +1,9 @@
+id: square-foot-self-storage
 title: Square Foot Self Storage
 description: Client website for Square Foot Self Storage
-#link: https://squarefoot.josephanson.com/
-date: 2024-01-04
+# link: https://squarefoot.josephanson.com/
+date: 2019-01-04
+technologies:
+  - Wordpress
+  - PHP
+  - CSS

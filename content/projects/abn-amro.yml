@@ -1,0 +1,9 @@
+id: abn-amro
+title: ABN AMRO
+description: During my time at ABN AMRO I acted as a team lead for the Personal Loan and Personal Loan Prospect flows.
+link: https://www.abnamro.nl/my-abnamro/loans/personal-loan-request-prospect/index.html#/offerte-aanvragen
+date: 2025-03-01
+technologies:
+  - Vue 3
+  - TypeScript
+  - Tailwind CSS

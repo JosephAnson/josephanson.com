@@ -1,4 +1,9 @@
+id: anson-decorators
 title: Anson Decorators
 description: A website for a decorator in Hereford
 link: https://www.ansondecorators.co.uk/
-date: 2024-01-08
+date: 2021-01-08
+technologies:
+  - Nuxt 3
+  - TypeScript
+  - Tailwind CSS

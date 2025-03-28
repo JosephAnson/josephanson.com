@@ -6,6 +6,7 @@ const props = defineProps<{
   }
   imageClasses?: string
   contentClass?: string
+  tags?: string[]
 }>()
 
 const { classes } = useTheme()
@@ -30,6 +31,8 @@ const { classes } = useTheme()
         loading="lazy"
       />
       <div class="absolute inset-0 from-black/50 to-transparent bg-gradient-to-t opacity-0 transition-opacity duration-300 group-hover:scale-105 group-hover:opacity-10" />
+
+      <BaseTagList v-if="tags" :tags="tags" class="absolute bottom-2 left-2 z-10" />
     </div>
 
     <div :class="cn('p-6', contentClass)">

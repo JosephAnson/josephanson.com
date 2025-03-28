@@ -1,4 +1,9 @@
+id: axion-guild
 title: Axion Guild Website
 description: Website for a World of Warcraft guild
-#link: https://www.axionguild.com/
-date: 2024-01-05
+# link: https://www.axionguild.com/
+date: 2020-01-05
+technologies:
+  - Nuxt 3
+  - TypeScript
+  - Tailwind CSS

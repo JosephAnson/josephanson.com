@@ -38,6 +38,7 @@ const imageUrl = computed(
       <BaseCard
         :image="{ src: imageUrl, alt: `Screenshot of ${project.title} website` }"
         content-class="flex flex-col flex-1"
+        :tags="project?.technologies"
       >
         <div class="flex flex-1">
           <div class="flex-1">

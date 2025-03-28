@@ -1,0 +1,9 @@
+id: jumbo
+title: Jumbo Supermarket
+description: Developed the Product, Promotions and Basket code whilst working at Jumbo Supermarket.
+link: https://www.jumbo.com/aanbiedingen/nu
+date: 2022-03-01
+technologies:
+  - Nuxt 3
+  - Vue 3
+  - TypeScript
