@@ -11,6 +11,13 @@ export default eventHandler(async (event) => {
   // @ts-expect-error mismatch between client and server types
   const payload = await queryCollection(event, 'projects').path(`/projects/${query.id}`).first()
 
+  if (!payload) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Project not found',
+    })
+  }
+
   payload.id = payload.title?.toLowerCase().replaceAll(/[ &]/g, '-').replaceAll(/---/g, '-')
 
   const projectResults = await runTask('screenshots', { payload } as TaskPayload)
