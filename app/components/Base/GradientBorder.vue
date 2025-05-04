@@ -54,6 +54,7 @@ const blurPx = computed(() => `${props.blur}px`)
   filter: blur(v-bind(blurPx));
   padding: v-bind(borderWidthInPx);
   z-index: -1;
+  pointer-events: none;
 }
 
 .rainbow-btn {

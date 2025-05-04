@@ -12,11 +12,11 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
 
 <template>
   <li>
-    <BaseCard>
-      <NuxtLink
-        :to="article.path"
-        class="group block h-full w-full"
-      >
+    <NuxtLink
+      :to="article.path"
+      class="group block h-full w-full"
+    >
+      <BaseCard>
         <div class="h-full flex flex-col">
           <div class="mb-2 flex items-start justify-between">
             <time
@@ -44,7 +44,7 @@ const timeAgo = useTimeAgo(new Date(props.article.date))
             />
           </div>
         </div>
-      </NuxtLink>
-    </BaseCard>
+      </BaseCard>
+    </NuxtLink>
   </li>
 </template>

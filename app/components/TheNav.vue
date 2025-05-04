@@ -35,6 +35,7 @@ function onClose() {
             ref="closeButton"
             class="absolute right-0 top-0 rounded bg-white:20 px-4 py-2"
             aria-label="Navigation Menu"
+            :tabindex="show ? 0 : -1"
             @click="onClose"
           >
             <span class="sr-only">Close</span>
@@ -64,6 +65,7 @@ function onClose() {
                   :to="link.path"
                   class="group relative text-5xl font-bold leading-loose transition-colors duration-300 md:text-7xl md:leading-loose"
                   :active-class="classes.textLight"
+                  :tabindex="show ? 0 : -1"
                   @click="onClose"
                 >
                   <span :class="`absolute bottom--4px h-2px w-0 ${classes.menuUnderline} transition-width duration-200 ease-in-out group-hover:w-full`" />
