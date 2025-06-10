@@ -2,7 +2,7 @@ id: travel
 title: Travel
 description: Personal Travel Blog
 link: https://travel.josephanson.com
-date: 2022-01-06
+date: 2025-06-10
 technologies:
   - Nuxt 3
   - TypeScript
