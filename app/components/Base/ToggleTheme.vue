@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import type { ColorModes } from '~~/types'
 import { capitalize } from 'vue'
-import { useWavesStore } from '~/stores/useWavesStore'
 
 const colorMode = useColorMode()
 const currentTheme = useCurrentTheme()
 
 const { rotateTheme, classes } = useTheme()
-const { changeWaves } = useWavesStore()
 
 const capitalizedCurrentTheme = computed(() => capitalize(currentTheme.value))
 
@@ -31,15 +29,6 @@ function onClick() {
     >
       <span class="mr-2 text-sm">{{ capitalizedCurrentTheme }}</span>
       <span class="i-ph:palette-duotone h-6 flex-shrink-0 bg-none" />
-    </button>
-
-    <button
-      title="Change the waves"
-      aria-label="Change the waves"
-      :class="`z-40 h-6 w-6 flex bg-transparent ${classes.icon}`"
-      @click="changeWaves"
-    >
-      <span class="i-ph:waves-duotone h-full w-full bg-none" />
     </button>
 
     <button

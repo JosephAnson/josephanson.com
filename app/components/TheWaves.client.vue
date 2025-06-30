@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useWavesStore } from '~/stores/useWavesStore'
+import { waveInit } from '~/utils/wave'
 
 const props = defineProps<{
   amount?: number
@@ -7,12 +7,20 @@ const props = defineProps<{
 }>()
 
 const { classes } = useTheme()
-const { state: waves, waveOptions } = useWavesStore()
-
-// z-0 z-1 z-2 z-3 z-4 z-5 z-6 z-7 z-8 z-9 z-10
-
 const { y } = useMouse()
-const { height } = useWindowSize()
+const { width, height } = useWindowSize()
+
+// Hardcoded wave options - only width is dynamic for responsiveness
+const waveOptions = {
+  height: 480,
+  width: width.value,
+  segmentCount: 12,
+  layerCount: 10,
+  variance: 1.2,
+}
+
+// Generate waves
+const waves = computed(() => waveInit(waveOptions))
 const mousePercent = computed(() => y.value / height.value / 10)
 
 const totalWaves = computed(() => {
@@ -20,14 +28,45 @@ const totalWaves = computed(() => {
 })
 
 function reverseIndex(index: number) {
-  const start = props.amount && !props.reverse ? waveOptions.value.layerCount - props.amount - 1 : 0
+  const start = props.amount && !props.reverse ? waveOptions.layerCount - props.amount - 1 : 0
   return start + index
 }
 
 function opacity(index: number) {
-  const steps = 1 / waveOptions.value.layerCount
+  const steps = 1 / waveOptions.layerCount
   const reverse = reverseIndex(index)
   return (steps * (reverse - 1)) + (mousePercent.value + 0.2)
+}
+
+function getWaveVariables(waveIndex: number) {
+  const wave = waves.value[waveIndex]
+  if (!wave)
+    return {}
+
+  const maxSteps = 10
+  const variables: Record<string, string> = {
+    '--wave-path-start': `"${wave.d}"`,
+    '--wave-duration': `${35 - waveIndex}s`,
+  }
+
+  // Set variables for each animated path
+  for (let i = 0; i < maxSteps; i++) {
+    const pathValue = i < wave.animatedPath.length
+      ? wave.animatedPath[i]
+      : wave.d // Fall back to base path if this wave has fewer steps
+    variables[`--wave-path-${i}`] = `"${pathValue}"`
+  }
+
+  return variables
+}
+
+function getPathStyle(index: number) {
+  const waveIndex = reverseIndex(index)
+  const variables = getWaveVariables(waveIndex)
+
+  // Convert variables object to CSS style string
+  const styleEntries = Object.entries(variables).map(([key, value]) => `${key}: ${value}`)
+  return styleEntries.join('; ')
 }
 </script>
 
@@ -41,10 +80,11 @@ function opacity(index: number) {
     :class="`transition-all transform-gpu duration-1000 w-full z-${index} wave-fade-in ${reverse ? 'reverse' : ''}`"
   >
     <path
-      class="transform-gpu ease-in-out"
-      :class="`path-${reverseIndex(index)} ${classes.fill}`"
+      class="wave-path transform-gpu ease-in-out"
+      :class="classes.fill"
       :d="wave.d"
       :fill-opacity="opacity(index)"
+      :style="getPathStyle(index)"
       stroke="rgba(255,255,255,0.25)"
     />
   </svg>
@@ -63,7 +103,6 @@ function opacity(index: number) {
 }
 
 /* Add staggered delays for each wave */
-
 .wave-fade-in.reverse:nth-child(9) { animation-delay: 0.3s; }
 .wave-fade-in.reverse:nth-child(8) { animation-delay: 0.4s; }
 .wave-fade-in.reverse:nth-child(7) { animation-delay: 0.5s; }
@@ -78,4 +117,44 @@ function opacity(index: number) {
 .wave-fade-in:nth-child(3) { animation-delay: 0s; }
 .wave-fade-in:nth-child(2) { animation-delay: 0.1s; }
 .wave-fade-in:nth-child(1) { animation-delay: 0.2s; }
+
+@keyframes wave-morph {
+  0% {
+    d: path(var(--wave-path-start));
+  }
+  10% {
+    d: path(var(--wave-path-1));
+  }
+  20% {
+    d: path(var(--wave-path-2));
+  }
+  30% {
+    d: path(var(--wave-path-3));
+  }
+  40% {
+    d: path(var(--wave-path-4));
+  }
+  50% {
+    d: path(var(--wave-path-5));
+  }
+  60% {
+    d: path(var(--wave-path-6));
+  }
+  70% {
+    d: path(var(--wave-path-7));
+  }
+  80% {
+    d: path(var(--wave-path-8));
+  }
+  90% {
+    d: path(var(--wave-path-9));
+  }
+  100% {
+    d: path(var(--wave-path-start));
+  }
+}
+
+.wave-path {
+  animation: wave-morph var(--wave-duration) ease-in-out infinite;
+}
 </style>
