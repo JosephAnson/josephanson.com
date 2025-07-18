@@ -9,6 +9,10 @@ ARG MINIO_ACCESS_KEY
 ARG MINIO_SECRET_KEY
 ARG CHROME_TOKEN
 
+# Nitro
+ENV NITRO_PRESET node-server
+ENV NODE_OPTIONS --max-old-space-size=4096
+
 ENV NUXT_PUBLIC_STUDIO_TOKENS=${NUXT_PUBLIC_STUDIO_TOKENS}
 ENV REDIS_HOST=${REDIS_HOST}
 ENV REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -25,28 +29,25 @@ RUN apk add --no-cache \
     sqlite-dev \
     && ln -sf python3 /usr/bin/python
 
-# Step 2: Set the working directory in the container
 WORKDIR /app
 
-# Step 3: Install pnpm
+# Install pnpm
 RUN npm install -g pnpm
 
-# Step 4: Copy the package.json and pnpm-lock.yaml (or pnpm-workspace.yaml if you use workspaces)
-# files into the working directory
+# Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-# Step 5: Install dependencies using pnpm.
-# The --frozen-lockfile option ensures that the installed packages match the lockfile.
+# Install dependencies with verbose logging
 RUN pnpm install --frozen-lockfile
 
-# Step 6: Copy the rest of the application code into the working directory
+# Copy source code
 COPY . .
 
-# Step 7: Build the application if needed. This step can be omitted if you're running a development server.
-RUN pnpm run build
+# Build
+RUN pnpm build
 
-# Step 8: Expose the port that Nuxt will run on
+# Step 9: Expose the port that Nuxt will run on
 ENV EXPOSE 3000
 
-# Step 10: Build the application
+# Step 10: Start the application
 CMD ["node", ".output/server/index.mjs"]

@@ -4,8 +4,10 @@ import { definePerson } from 'nuxt-schema-org/schema'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-18',
   site: {
-    name: 'Joseph Anson\'s Portfolio',
     url: 'https://josephanson.com',
+    name: 'Joseph Anson\'s Portfolio',
+    description: 'Experienced Senior Web Developer with 8+ years of expertise in building scalable web applications using Vue.js, React, and TypeScript. Proficient in containerized deployments and modern web technologies. Passionate about open-source and cloud-native development.',
+    defaultLocale: 'en',
   },
   umami: {
     host: 'https://unami.josephanson.com/',
@@ -14,6 +16,12 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/router.client.ts',
   ],
+  seo: {
+    meta: {
+      author: 'Joseph Anson',
+    },
+    automaticDefaults: true,
+  },
   schemaOrg: {
     identity: definePerson({
       name: 'Joseph Anson',
@@ -26,19 +34,23 @@ export default defineNuxtConfig({
       ],
     }),
   },
-  pages: true,
   modules: [
     'nuxt-content-twoslash',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
     '@nuxt/image',
-    'nuxt-schema-org',
+    '@nuxtjs/seo',
     'nuxt-umami',
-    '@nuxtjs/sitemap',
     '@nuxt/content',
-    'nuxt-og-image',
   ],
+  linkChecker: {
+    skipInspections: ['absolute-site-urls'],
+  },
+  sitemap: {
+    cacheMaxAgeSeconds: 3600,
+    autoLastmod: true,
+  },
   ogImage: {
     defaults: {
       renderer: 'satori',
@@ -70,6 +82,7 @@ export default defineNuxtConfig({
       tasks: true,
     },
     prerender: {
+      crawlLinks: true,
       routes: ['/sitemap.xml'],
     },
   },
