@@ -3,13 +3,13 @@ import {
   defineConfig,
   presetIcons,
   presetTypography,
-  presetUno,
   presetWebFonts,
+  presetWind3,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-import { tailwindColors } from './app/utils/constants'
-import { themeClasses } from './app/utils/themeClasses'
+import { tailwindColors } from './app/utils/constants.ts'
+import { themeClasses } from './app/utils/themeClasses.ts'
 
 export const colors: string[] = tailwindColors
   .map((key) => {
@@ -19,7 +19,7 @@ export const colors: string[] = tailwindColors
 
 export const unocssConfig: UserConfig<any> = {
   presets: [
-    presetUno(),
+    presetWind3(),
     presetIcons({
       extraProperties: {
         'display': 'inline-block',

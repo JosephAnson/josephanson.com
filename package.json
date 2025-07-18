@@ -42,11 +42,12 @@
     "eslint-plugin-format": "^1.0.1",
     "minio": "^8.0.5",
     "nprogress": "^0.2.0",
-    "nuxt": "^3.17.1",
+    "nuxt": "^4.0.0",
     "nuxt-og-image": "5.1.3",
     "nuxt-schema-org": "^5.0.5",
     "nuxt-umami": "^3.2.0",
     "typescript": "^5.8.3",
+    "unocss": "^66.3.3",
     "vue-tsc": "^2.2.10"
   },
   "pnpm": {
@@ -55,7 +56,8 @@
       "better-sqlite3",
       "esbuild",
       "puppeteer",
-      "sharp"
+      "sharp",
+      "unrs-resolver"
     ]
   }
 }

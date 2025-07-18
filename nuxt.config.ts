@@ -2,10 +2,7 @@ import process from 'node:process'
 import { definePerson } from 'nuxt-schema-org/schema'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-09-11',
-  future: {
-    compatibilityVersion: 4,
-  },
+  compatibilityDate: '2025-07-18',
   site: {
     name: 'Joseph Anson\'s Portfolio',
     url: 'https://josephanson.com',
