@@ -26,9 +26,9 @@ Here's an example of how to implement the Result pattern in an API endpoint usin
 ```typescript
 export type ApiError = 'InvalidJson' | 'RequestFailed' | 'NetworkError'
 
-export type Result<T, E extends ApiError> =
-  | { ok: true, data: T }
-  | { ok: false, error: E }
+export type Result<T, E extends ApiError>
+  = | { ok: true, data: T }
+    | { ok: false, error: E }
 
 async function getResult<T>(
   apiCall: () => Promise<Response>
