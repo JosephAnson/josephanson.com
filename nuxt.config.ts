@@ -43,7 +43,13 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     'nuxt-umami',
     '@nuxt/content',
+    'nuxt-llms',
   ],
+  llms: {
+    domain: 'https://josephanson.com',
+    title: 'Joseph Anson\'s Portfolio',
+    description: 'Experienced Senior Web Developer with 8+ years of expertise in building scalable web applications using Vue.js, React, and TypeScript. Proficient in containerized deployments and modern web technologies. Passionate about open-source and cloud-native development.',
+  },
   linkChecker: {
     skipInspections: ['absolute-site-urls'],
   },
