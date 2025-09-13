@@ -8,7 +8,6 @@ const schema = z.object({
 export default eventHandler(async (event) => {
   const query = await getValidatedQuery(event, schema.parse)
 
-  // @ts-expect-error mismatch between client and server types
   const payload = await queryCollection(event, 'projects').path(`/projects/${query.id}`).first()
 
   if (!payload) {
@@ -19,6 +18,9 @@ export default eventHandler(async (event) => {
   }
 
   payload.id = payload.title?.toLowerCase().replaceAll(/[ &]/g, '-').replaceAll(/---/g, '-')
+
+  // eslint-disable-next-line no-console
+  console.log('screenshot project:', payload)
 
   const projectResults = await runTask('screenshots', { payload } as TaskPayload)
 

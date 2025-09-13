@@ -1,0 +1,11 @@
+id: properties
+title: Madrid Property Search
+description: Property Search Website
+link: https://properties.josephanson.com/
+date: 2025-09-03
+technologies:
+  - Nuxt 3 / Nuxt UI
+  - TypeScript
+  - Tailwind CSS
+  - Drizzle
+  - Postgres

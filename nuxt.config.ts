@@ -77,11 +77,6 @@ export default defineNuxtConfig({
   image: {
     domains: [`${process.env.MINIO_URL}:9000`],
   },
-  content: {
-    preview: {
-      api: 'https://api.nuxt.studio',
-    },
-  },
   nitro: {
     compressPublicAssets: true,
     experimental: {
