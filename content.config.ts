@@ -19,11 +19,13 @@ export default defineContentConfig({
         schema: articleSchema,
       }),
     ),
-    projects: defineCollection({
-      type: 'page',
-      source: '*projects/**/*.yml',
-      schema: projectSchema,
-    }),
+    projects: defineCollection(
+      asSitemapCollection({
+        type: 'page',
+        source: '*projects/**/*.yml',
+        schema: projectSchema,
+      }),
+    ),
     talks: defineCollection(
       asSitemapCollection({
         type: 'page',
