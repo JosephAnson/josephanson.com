@@ -1,3 +1,8 @@
+:is(.prose) {
+  --un-prose-headings: inherit;
+  --un-prose-body: inherit;
+}
+
 .prose a {
   text-decoration: none;
 }
