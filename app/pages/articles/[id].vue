@@ -27,7 +27,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <article class="slide-enter-content relative max-w-3xl pb-30 prose md:pb-100">
+  <article class="slide-enter-content relative max-w-3xl pb-30 prose md:pb-100 dark:prose-invert">
     <div class="not-prose">
       <NuxtLink
         :to="parentPath"

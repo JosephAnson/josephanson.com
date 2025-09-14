@@ -112,7 +112,7 @@ const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
         </div>
       </div>
 
-      <div class="max-w-full prose">
+      <div class="max-w-full prose dark:prose-invert">
         <ProseH2 class="mt-0">
           Description
         </ProseH2>
