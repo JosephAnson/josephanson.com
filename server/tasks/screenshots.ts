@@ -24,7 +24,7 @@ export default defineTask({
 
         const page = await browser.newPage()
         await page.setViewport({
-          width: 1400,
+          width: 1920,
           height: 1080,
         })
 
