@@ -2,6 +2,10 @@
   text-decoration: none;
 }
 
+.dark :is(.dark\:prose-invert){
+  color: inherit;
+}
+
 .prose :where(h1 a, h2 a, h3 a, h4 a) {
   border-bottom: none !important;
   text-decoration: none !important;
@@ -18,5 +22,5 @@
 }
 
 .prose :where(a):not(:where(.not-prose,.not-prose *)):not(h1 a, h2 a, h3 a, h4 a, .\!no-underline) {
-  @apply !underline underline-offset-5 !decoration-wavy !decoration-black/50 dark:!decoration-white/50;  
+  @apply !underline underline-offset-5 !decoration-wavy !decoration-black/50 dark:!decoration-white/50;
 }

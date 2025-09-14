@@ -9,3 +9,4 @@ technologies:
   - Tailwind CSS
   - Drizzle
   - Postgres
+  - Zod

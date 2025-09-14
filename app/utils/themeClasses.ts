@@ -15,6 +15,6 @@ export function themeClasses(key: string) {
     gradient: `transition will-change-background bg-gradient-to-b from-${key}-200 via-${key}-100 to-${key}-50 dark:from-${key}-800 dark:via-${key}-900 dark:to-${key}-950`,
     htmlBackground: `bg-${key}-200 [&.dark]:bg-${key}-800`,
     icon: `hover:text-${key}-700 dark:hover:text-${key}-300`,
-    tag: `inline-flex py-1 px-2 text-sm justify-center items-center rounded flex-wrap gap-x-1 rounded font-medium text-${key}-950 bg-${key}-200 dark:text-${key}-100 dark:bg-${key}-950`,
+    tag: `inline-flex py-1 px-2 text-xs justify-center items-center rounded flex-wrap gap-x-1 rounded font-medium text-${key}-950 bg-${key}-200 dark:text-${key}-100 dark:bg-${key}-950`,
   }
 }
