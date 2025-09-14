@@ -59,7 +59,7 @@ useSeoMeta({
         </ProseH2>
         <NuxtLink
           to="/projects"
-          class="bg-primary-500 hover:bg-primary-600 inline-flex items-center gap-2 rounded-lg text-white transition-colors duration-300"
+          class="flex items-center gap-2"
         >
           <span>View All Projects</span>
           <div class="i-ph:arrow-right text-lg" />
@@ -77,7 +77,7 @@ useSeoMeta({
 
         <NuxtLink
           to="/articles"
-          class="bg-primary-500 hover:bg-primary-600 flex items-center gap-2 rounded-lg text-white transition-colors duration-300"
+          class="flex items-center gap-2"
         >
           <span>View All Articles</span>
           <div class="i-ph:arrow-right text-lg" />
@@ -95,7 +95,7 @@ useSeoMeta({
 
         <NuxtLink
           to="/talks"
-          class="bg-primary-500 hover:bg-primary-600 flex items-center gap-2 rounded-lg text-white transition-colors duration-300"
+          class="flex items-center gap-2"
         >
           <span>View All Talks</span>
           <div class="i-ph:arrow-right text-lg" />
