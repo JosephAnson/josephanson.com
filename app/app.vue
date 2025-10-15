@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useScroll } from '@vueuse/core'
 import '@unocss/reset/tailwind.css'
 import './styles/animations.css'
 import './styles/base.css'
@@ -65,6 +66,7 @@ watch(() => router.currentRoute.value.fullPath, () => {
 
 <template>
   <div ref="page" class="h-full of-y-scroll scroll-smooth print:h-auto">
+    <TheStarsBackground class="fixed left-0 top-0 h-full w-full" />
     <TheHeader />
     <main>
       <NuxtLayout>

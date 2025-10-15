@@ -11,16 +11,16 @@ const { y } = useMouse()
 const { width, height } = useWindowSize()
 
 // Hardcoded wave options - only width is dynamic for responsiveness
-const waveOptions = {
+const waveOptions = computed(() => ({
   height: 480,
   width: width.value,
   segmentCount: 12,
   layerCount: 10,
   variance: 1.2,
-}
+}))
 
 // Generate waves
-const waves = computed(() => waveInit(waveOptions))
+const waves = computed(() => waveInit(waveOptions.value))
 const mousePercent = computed(() => y.value / height.value / 10)
 
 const totalWaves = computed(() => {
@@ -28,12 +28,12 @@ const totalWaves = computed(() => {
 })
 
 function reverseIndex(index: number) {
-  const start = props.amount && !props.reverse ? waveOptions.layerCount - props.amount - 1 : 0
+  const start = props.amount && !props.reverse ? waveOptions.value.layerCount - props.amount - 1 : 0
   return start + index
 }
 
 function opacity(index: number) {
-  const steps = 1 / waveOptions.layerCount
+  const steps = 1 / waveOptions.value.layerCount
   const reverse = reverseIndex(index)
   return (steps * (reverse - 1)) + (mousePercent.value + 0.2)
 }

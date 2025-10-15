@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     'nuxt-umami',
     '@nuxt/content',
     'nuxt-llms',
+    'motion-v/nuxt',
   ],
   llms: {
     domain: 'https://josephanson.com',
