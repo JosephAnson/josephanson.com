@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const show = useShowMenu()
-const route = useRoute()
 function toggleMenu() {
   show.value = !show.value
 }
@@ -18,12 +17,6 @@ function toggleMenu() {
           </NuxtLink>
 
           <div class="flex items-center gap-2 md:gap-4">
-            <BaseGradientBorder v-if="route.path !== '/resume'">
-              <BaseButton to="/open-for-work">
-                Open for Work
-              </BaseButton>
-            </BaseGradientBorder>
-
             <div id="teleport-menu" />
 
             <BaseGlowBorder>
