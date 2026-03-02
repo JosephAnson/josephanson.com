@@ -22,6 +22,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Fetch secrets from Infisical
+        uses: Infisical/secrets-action@v1.0.12
+        with:
+          method: "universal"
+          client-id: ${{ secrets.INFISICAL_CLIENT_ID }}
+          client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
+          domain: "https://secrets.josephanson.com"
+          project-slug: "josephanson"
+          env-slug: "prod"
+
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
@@ -36,10 +46,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/josephanson:latest
           build-args: |
-            NUXT_PUBLIC_STUDIO_TOKENS=${{ secrets.NUXT_PUBLIC_STUDIO_TOKENS }}
-            CHROME_TOKEN=${{ secrets.CHROME_TOKEN }}
-            REDIS_HOST=${{ secrets.REDIS_HOST }}
-            REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
-            MINIO_URL=${{ secrets.MINIO_URL }}
-            MINIO_ACCESS_KEY=${{ secrets.MINIO_ACCESS_KEY }}
-            MINIO_SECRET_KEY=${{ secrets.MINIO_SECRET_KEY }}
+            NUXT_PUBLIC_STUDIO_TOKENS=${{ env.NUXT_PUBLIC_STUDIO_TOKENS }}
+            CHROME_TOKEN=${{ env.CHROME_TOKEN }}
+            REDIS_HOST=${{ env.REDIS_HOST }}
+            REDIS_PASSWORD=${{ env.REDIS_PASSWORD }}
+            MINIO_URL=${{ env.MINIO_URL }}
+            MINIO_ACCESS_KEY=${{ env.MINIO_ACCESS_KEY }}
+            MINIO_SECRET_KEY=${{ env.MINIO_SECRET_KEY }}

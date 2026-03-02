@@ -1,5 +1,5 @@
-# Step 1: Use a base image with Node.js. Nuxt 3 requires Node.js 14 or later.
-FROM node:24-alpine
+# === Build stage (secrets available, discarded after build) ===
+FROM node:24-alpine AS build
 
 ARG NUXT_PUBLIC_STUDIO_TOKENS
 ARG REDIS_HOST
@@ -9,9 +9,8 @@ ARG MINIO_ACCESS_KEY
 ARG MINIO_SECRET_KEY
 ARG CHROME_TOKEN
 
-# Nitro
-ENV NITRO_PRESET node-server
-ENV NODE_OPTIONS --max-old-space-size=4096
+ENV NITRO_PRESET=node-server
+ENV NODE_OPTIONS=--max-old-space-size=4096
 
 ENV NUXT_PUBLIC_STUDIO_TOKENS=${NUXT_PUBLIC_STUDIO_TOKENS}
 ENV REDIS_HOST=${REDIS_HOST}
@@ -31,23 +30,25 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-# Install pnpm
 RUN npm install -g pnpm
 
-# Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies with verbose logging
 RUN pnpm install --frozen-lockfile
 
-# Copy source code
 COPY . .
 
-# Build
 RUN pnpm build
 
-# Step 9: Expose the port that Nuxt will run on
-ENV EXPOSE 3000
+# === Runtime stage (clean, no secrets in any layer) ===
+FROM node:24-alpine
 
-# Step 10: Start the application
+WORKDIR /app
+
+COPY --from=build /app/.output .output
+
+ENV HOST=0.0.0.0
+ENV PORT=3000
+EXPOSE 3000
+
 CMD ["node", ".output/server/index.mjs"]
