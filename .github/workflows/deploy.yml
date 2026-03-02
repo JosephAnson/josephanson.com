@@ -25,12 +25,12 @@ jobs:
       - name: Fetch secrets from Infisical
         uses: Infisical/secrets-action@v1.0.12
         with:
-          method: "universal"
+          method: universal
           client-id: ${{ secrets.INFISICAL_CLIENT_ID }}
           client-secret: ${{ secrets.INFISICAL_CLIENT_SECRET }}
-          domain: "https://secrets.josephanson.com"
-          project-slug: "josephanson"
-          env-slug: "prod"
+          domain: https://secrets.josephanson.com
+          project-slug: josephanson
+          env-slug: prod
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
