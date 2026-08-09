@@ -1,151 +1,96 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
 const route = useRoute()
-const { data: talk } = await useAsyncData(route.path, () => {
-  return queryCollection('talks').path(route.path).first()
-})
+const { data: talk, error } = await useAsyncData(route.path, () => queryCollection('talks').path(route.path).first())
 
-const { classes } = useTheme()
-
-const iframeRef = ref<HTMLIFrameElement | null>(null)
-
-onMounted(() => {
-  if (iframeRef.value) {
-    iframeRef.value.focus()
-  }
-})
-
-if (talk.value && talk.value.seo.image) {
-  useHead({
-    meta: [
-      { property: 'og:image', content: talk.value.seo.image.toString() },
-    ],
+if (error.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: 'Unable to load this talk',
+    cause: error.value,
   })
 }
 
-const parentPath = computed(() => {
-  const pathTable = route.path.split('/')
-  pathTable.pop()
-  return pathTable.join('/') || '/'
-})
+if (!talk.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Talk not found',
+  })
+}
+
+if (talk.value?.seo?.image) {
+  useHead({
+    meta: [{ property: 'og:image', content: talk.value.seo.image.toString() }],
+  })
+}
+
+const formattedDate = computed(() => talk.value
+  ? new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric' }).format(new Date(talk.value.date))
+  : '')
 
 useSeoMeta({
   title: talk.value?.title,
   description: talk.value?.description,
 })
-
-const timeAgo = useTimeAgo(new Date(talk.value?.date || ''))
 </script>
 
 <template>
-  <article class="slide-enter-content relative pb-30 md:pb-100">
-    <NuxtLink
-      :to="parentPath"
-      class="not-prose inline-flex items-center text-sm"
-      :class="classes.link"
-    >
-      <div class="i-ph:arrow-left mr-2 h-4 w-4" />
-      <span>
-        Back
-      </span>
+  <article v-if="talk" class="content-page content-page-wide quiet-arrival">
+    <NuxtLink to="/talks" class="content-back site-link">
+      <span class="i-ph:arrow-left h-4 w-4" aria-hidden="true" />
+      Talks
     </NuxtLink>
 
-    <ProseH1>
-      {{ talk?.title }}
-    </ProseH1>
+    <header class="content-header talk-content-header">
+      <p class="page-kicker">
+        {{ talk.event }} · {{ talk.location }} · {{ formattedDate }}
+      </p>
+      <h1 class="content-title">
+        {{ talk.title }}
+      </h1>
+      <p class="content-deck">
+        {{ talk.description }}
+      </p>
+    </header>
 
-    <div class="not-prose mb-8 flex gap-4" :class="classes.textTint">
-      <component
-        :is="talk?.eventUrl ? 'a' : 'div'"
-        :href="talk?.eventUrl"
-        class="flex items-center gap-2 text-xs"
-        :class="classes.textTint"
-      >
-        <span class="i-ph:calendar-star-duotone" />
-        <span>{{ talk?.event }}</span>
-      </component>
-
-      <div class="flex items-center gap-2 text-xs">
-        <span class="i-ph:map-pin-duotone" />
-        <span>{{ talk?.location }}</span>
-      </div>
-
-      <div class="flex items-center gap-2 text-xs" :class="classes.textTint">
-        <span class="i-ph-clock-countdown-duotone" />
-        <span>{{ timeAgo }}</span>
-      </div>
-    </div>
-
-    <div class="grid-cols-2 w-full gap-12 md:grid">
-      <div class="w-full">
-        <div class="mb-4">
-          <ProseH2 class="mt-0">
+    <div class="talk-detail-grid">
+      <section aria-labelledby="slides-title">
+        <div class="content-section-heading">
+          <h2 id="slides-title">
             Slides
-          </ProseH2>
-
-          <iframe
-            v-if="talk?.url"
-            ref="iframeRef"
-            :title="`Presentation slides for ${talk?.title}`"
-            :src="talk.url"
-            class="aspect-video w-full border border-gray-200"
-          />
-
-          <div class="mt-4 text-sm" :class="classes.textTint">
-            Tip: swipe or use the arrow keys (<span class="i-ph:arrow-left-duotone" /> <span class="i-ph:arrow-right-duotone" />) to navigate through the presentation.
-          </div>
-        </div>
-
-        <!-- Add video recording section -->
-        <div v-if="talk?.recordingUrl" class="mb-8">
-          <ProseH2>
-            Video Recording
-          </ProseH2>
-          <a
-            :href="talk.recordingUrl"
-            class="hover:text-primary inline-flex items-center gap-2 text-sm transition-colors"
-          >
-            <span class="i-ph:video-duotone" />
-            <span>Watch the full recording</span>
+          </h2>
+          <a :href="talk.url" target="_blank" rel="noopener noreferrer" class="site-link">
+            Open separately
           </a>
         </div>
-      </div>
+        <iframe
+          :title="`Presentation slides for ${talk.title}`"
+          :src="talk.url"
+          class="talk-frame"
+          loading="lazy"
+        />
+      </section>
 
-      <div class="max-w-full prose dark:prose-invert">
-        <ProseH2 class="mt-0">
-          Description
-        </ProseH2>
+      <div class="talk-detail-copy">
+        <section aria-labelledby="about-talk-title" class="prose">
+          <h2 id="about-talk-title">
+            About this talk
+          </h2>
+          <ContentRenderer :value="talk" />
+        </section>
 
-        <div class="relative m-auto">
-          <ContentRenderer v-if="talk" :value="talk" class="slide-enter-content" />
-        </div>
-
-        <!-- Add resources section -->
-        <div v-if="talk?.resources?.length" class="mt-6">
-          <ProseH3>
+        <section v-if="talk.resources?.length" aria-labelledby="resources-title" class="talk-resources">
+          <h2 id="resources-title">
             Resources
-          </ProseH3>
-          <ul class="space-y-2">
-            <li v-for="resource in talk.resources" :key="resource.url" class="text-sm">
-              <a :href="resource.url" class="hover:text-primary flex items-center gap-2 transition-colors">
-                <span class="i-ph:link-simple" />
-                <span>{{ resource.title || 'Resource Link' }}</span>
+          </h2>
+          <ul>
+            <li v-for="resource in talk.resources" :key="resource.url">
+              <a :href="resource.url" target="_blank" rel="noopener noreferrer" class="site-link">
+                {{ resource.title }}
+                <span class="i-ph:arrow-up-right h-4 w-4" aria-hidden="true" />
               </a>
             </li>
           </ul>
-        </div>
-
-        <!-- Add tags section -->
-        <div v-if="talk?.tags?.length" class="mt-8 flex flex-wrap gap-2">
-          <span
-            v-for="tag in talk.tags"
-            :key="tag"
-            :class="classes.tag"
-          >
-            {{ tag }}
-          </span>
-        </div>
+        </section>
       </div>
     </div>
   </article>

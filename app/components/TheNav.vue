@@ -1,83 +1,148 @@
-<script lang="ts" setup>
-const menu = ref()
-const closeButton = ref()
-
-const { data: navigation } = await useAsyncData('navigation', () => {
-  return queryCollectionNavigation('content')
-})
-const { classes } = useTheme()
+<script setup lang="ts">
+const menu = useTemplateRef<HTMLElement>('menu')
+const closeButton = useTemplateRef<HTMLButtonElement>('closeButton')
 const show = useShowMenu()
+const route = useRoute()
+const navigation = siteNavigation
+const isDesktop = useMediaQuery('(min-width: 48rem)')
+let previousBodyOverflow = ''
 
 function onClose() {
   show.value = false
 }
+
+function setBackgroundInert(isInert: boolean) {
+  document.querySelector('.site-header-inner')?.toggleAttribute('inert', isInert)
+  document.querySelector('main')?.toggleAttribute('inert', isInert)
+  document.querySelector('footer')?.toggleAttribute('inert', isInert)
+}
+
+function onKeydown(event: KeyboardEvent) {
+  if (!show.value)
+    return
+
+  if (event.key === 'Escape') {
+    event.preventDefault()
+    onClose()
+    return
+  }
+
+  if (event.key !== 'Tab' || !menu.value)
+    return
+
+  const focusable = Array.from(menu.value.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+    .filter(element => !element.hasAttribute('disabled'))
+
+  if (!focusable.length)
+    return
+
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault()
+    last?.focus()
+  }
+  else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first?.focus()
+  }
+}
+
+watch(show, async (isOpen) => {
+  if (import.meta.server)
+    return
+
+  setBackgroundInert(isOpen)
+  if (isOpen) {
+    previousBodyOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+  }
+  else {
+    document.body.style.overflow = previousBodyOverflow
+  }
+
+  if (isOpen) {
+    await nextTick()
+    closeButton.value?.focus()
+  }
+})
+
+watch(() => route.fullPath, onClose)
+watch(isDesktop, (matches) => {
+  if (matches)
+    onClose()
+})
+
+onBeforeUnmount(() => {
+  if (import.meta.client) {
+    setBackgroundInert(false)
+    document.body.style.overflow = previousBodyOverflow
+  }
+})
 </script>
 
 <template>
-  <div
-    ref="menu"
-    class="menu pointer-events-none fixed right-0 top-0 h-full w-full transform-gpu transition-all duration-1000 ease-in-out will-change-transform !z-500"
-    :class="[
-      { '!pointer-events-auto': show },
-    ]"
-    :style="{
-      transform: !show
-        ? `translateY(100%)`
-        : `translateY(0%)`,
-    }"
-  >
-    <TheWaves :amount="3" class="absolute bottom-[-1px] z-0 translate-y--100dvh transition-all duration-500 ease-in-out" />
-
-    <div class="relative z-10 h-full py-4 transition-colors duration-300 md:py-16" :class="[classes.menu]">
-      <BaseContainer class="h-full">
-        <div class="relative h-full flex items-center">
-          <BaseButton
-            ref="closeButton"
-            class="absolute right-0 top-0 rounded bg-white:20 px-4 py-2"
-            aria-label="Navigation Menu"
-            :tabindex="show ? 0 : -1"
-            @click="onClose"
-          >
-            <span class="sr-only">Close</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+  <Transition name="menu-curtain">
+    <div
+      v-if="show"
+      id="site-navigation"
+      ref="menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site navigation"
+      class="site-mobile-menu is-open print:hidden"
+      @keydown="onKeydown"
+    >
+      <BaseContainer class="site-mobile-menu-shell">
+        <div class="site-mobile-menu-layout">
+          <div class="site-mobile-menu-header">
+            <NuxtLink to="/" class="site-identity site-mobile-menu-brand" aria-label="Joseph Anson, home" @click="onClose">
+              <span class="site-wordmark">Joseph Anson</span>
+            </NuxtLink>
+            <button
+              ref="closeButton"
+              type="button"
+              class="site-menu-close"
+              aria-label="Close navigation menu"
+              @click="onClose"
             >
+              <span>Close</span>
+              <span class="i-ph:x h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
 
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </BaseButton>
-          <nav>
-            <ul class="flex flex-col">
+          <nav class="site-mobile-navigation" aria-label="Mobile navigation">
+            <ul class="site-mobile-nav-list">
               <li
                 v-for="link of navigation"
                 :key="link.path"
               >
                 <NuxtLink
                   :to="link.path"
-                  class="group relative text-5xl font-bold leading-loose transition-colors duration-300 md:text-7xl md:leading-loose"
-                  :active-class="classes.textLight"
-                  :tabindex="show ? 0 : -1"
+                  class="site-mobile-nav-link"
+                  :class="{ 'is-active': isSiteNavigationActive(route.path, link.path) }"
+                  :aria-current="isSiteNavigationActive(route.path, link.path) ? 'page' : undefined"
                   @click="onClose"
                 >
-                  <span :class="`absolute bottom--4px h-2px w-0 ${classes.menuUnderline} transition-width duration-200 ease-in-out group-hover:w-full`" />
-                  {{ link.title }}
+                  <span class="site-mobile-nav-index" aria-hidden="true">{{ link.index }}</span>
+                  <span class="site-mobile-nav-label">{{ link.label }}</span>
+                  <span v-if="isSiteNavigationActive(route.path, link.path)" class="site-mobile-nav-state">Current</span>
+                  <span v-else class="site-mobile-nav-arrow i-ph:arrow-right h-5 w-5" aria-hidden="true" />
                 </NuxtLink>
               </li>
-
-              <slot />
             </ul>
           </nav>
+
+          <div class="site-mobile-menu-footer">
+            <p>Madrid / WWW</p>
+            <div class="site-mobile-appearance">
+              <span>Appearance</span>
+              <BaseToggleTheme class="site-mobile-appearance-toggle" />
+            </div>
+          </div>
         </div>
       </BaseContainer>
     </div>
-  </div>
+  </Transition>
 </template>

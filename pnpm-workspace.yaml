@@ -1,0 +1,17 @@
+shamefullyHoist: true
+strictPeerDependencies: false
+shellEmulator: true
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3
+  - semver@6.3.1
+  - undici-types@6.20.0
+
+allowBuilds:
+  '@parcel/watcher': true
+  better-sqlite3: true
+  esbuild: true
+  puppeteer: true
+  sharp: true
+  unrs-resolver: true
+  vue-demi: true

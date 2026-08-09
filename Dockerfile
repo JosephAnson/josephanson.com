@@ -1,5 +1,5 @@
 # === Build stage (secrets available, discarded after build) ===
-FROM node:24-alpine AS build
+FROM node:22.23.2-alpine AS build
 
 ARG NUXT_PUBLIC_STUDIO_TOKENS
 ARG REDIS_HOST
@@ -30,9 +30,9 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-RUN npm install -g pnpm
+RUN corepack enable
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
@@ -41,7 +41,7 @@ COPY . .
 RUN pnpm build
 
 # === Runtime stage (clean, no secrets in any layer) ===
-FROM node:24-alpine
+FROM node:22.23.2-alpine
 
 WORKDIR /app
 

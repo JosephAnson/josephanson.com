@@ -1,11 +1,50 @@
 <script setup lang="ts">
-/* eslint-disable vue/singleline-html-element-content-newline */
-
 const { data: home } = await useAsyncData('home', () => queryCollection('content').path('/').first())
-const { data: talks } = await useAsyncData('home-talks', () => queryCollection('talks').limit(3).order('date', 'DESC').all())
-const { data: projects } = await useAsyncData('home-projects', () => queryCollection('projects').limit(3).order('date', 'DESC').all())
-const { data: articles } = await useAsyncData('home-articles', () => queryCollection('articles').limit(3).order('date', 'DESC').all())
-const { classes } = useTheme()
+const {
+  data: talks,
+  error: talksError,
+  status: talksStatus,
+  refresh: refreshTalks,
+} = await useAsyncData('home-talks', () => queryCollection('talks').limit(1).order('date', 'DESC').all())
+const {
+  data: projects,
+  error: projectsError,
+  status: projectsStatus,
+  refresh: refreshProjects,
+} = await useAsyncData('home-projects', () => queryCollection('projects').order('date', 'DESC').limit(3).all())
+const {
+  data: articles,
+  error: articlesError,
+  status: articlesStatus,
+  refresh: refreshArticles,
+} = await useAsyncData('home-articles', () => queryCollection('articles').limit(3).order('date', 'DESC').all())
+
+const contextSection = useTemplateRef<HTMLElement>('context-section')
+const hasContextEntered = ref(false)
+let contextObserver: IntersectionObserver | undefined
+
+onMounted(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    hasContextEntered.value = true
+    return
+  }
+
+  contextObserver = new IntersectionObserver(([entry]) => {
+    if (!entry?.isIntersecting)
+      return
+
+    hasContextEntered.value = true
+    contextObserver?.disconnect()
+  }, {
+    rootMargin: '0px 0px 8% 0px',
+    threshold: 0.12,
+  })
+
+  if (contextSection.value)
+    contextObserver.observe(contextSection.value)
+})
+
+onBeforeUnmount(() => contextObserver?.disconnect())
 
 useSeoMeta({
   title: home.value?.seo?.title,
@@ -14,95 +53,90 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="slide-enter-content">
-    <div class="slide-enter-content grid grid-cols-1 gap-8 lg:grid-cols-2 md:gap-20">
-      <div>
-        <ProseH1 class="mb-8 mt-4 text-5xl md:mt-0 md:text-6xl">
-          Hi <BaseLineShadowText>there!</BaseLineShadowText>
-        </ProseH1>
-
-        <ProseH2 class="mt-0 text-3xl leading-tight">
-          I'm a seasoned <span class="rounded bg-white px-2" :class="classes.textTint">Frontend</span> expert with <YearsSince /> years of experience crafting innovative web applications.
-        </ProseH2>
-
-        <p class="text-lg">
-          Turning innovative ideas into reality is my true passion. Check out my <NuxtLink to="/projects">portfolio of projects</NuxtLink>,
-          <NuxtLink to="/talks" class="hover:underline">technical talks</NuxtLink>, and <NuxtLink to="/articles" class="hover:underline">articles</NuxtLink>
-          on TypeScript, Vue, and modern web development.
-        </p>
-        <p class="text-lg">
-          When I'm not coding, you'll find me discovering new places or experimenting with new recipes. Based in Madrid - let's connect for coffee if you're in town!
-        </p>
-      </div>
-
-      <div class="">
-        <ProseH2 class="m-0 mb-8">
-          Recent Highlight
-        </ProseH2>
-
-        <div class="not-prose">
-          <!-- Features Content -->
-          <TalkItem
-            v-if="talks?.[0]"
-            :talk="talks?.[0]"
-            image-classes="md:aspect-[18/6]"
-          />
-        </div>
-      </div>
-    </div>
-
-    <!-- Projects Section -->
-    <section v-if="projects?.length" class="mt-16">
-      <div class="slide-enter-content mb-8 flex items-center justify-between">
-        <ProseH2 class="m-0">
-          Recent Projects
-        </ProseH2>
-        <NuxtLink
-          to="/projects"
-          class="flex items-center gap-2"
-        >
-          <span>View All Projects</span>
-          <div class="i-ph:arrow-right text-lg" />
-        </NuxtLink>
-      </div>
-      <ProjectList :projects="projects" />
+  <div class="home-page quiet-arrival">
+    <HomeProjectShelf v-if="projects?.length" :projects="projects" />
+    <section v-else class="home-work-shelf" aria-label="Selected work status">
+      <BaseDataState
+        v-if="projectsError"
+        kind="error"
+        heading-level="h1"
+        title="Selected work couldn’t be loaded."
+        description="The project shelf is temporarily unavailable. Try loading it again."
+        action-label="Try again"
+        :busy="projectsStatus === 'pending'"
+        @action="refreshProjects"
+      />
+      <BaseDataState
+        v-else
+        kind="empty"
+        heading-level="h1"
+        title="Selected work is being arranged."
+        description="The project shelf is empty for now. Notes and talks are still available below."
+      />
     </section>
 
-    <!-- Articles Section -->
-    <section v-if="articles?.length" class="slide-enter-content mt-16">
-      <div class="slide-enter-content mb-8 flex items-center justify-between">
-        <ProseH2 class="m-0">
-          Recent Articles
-        </ProseH2>
-
-        <NuxtLink
-          to="/articles"
-          class="flex items-center gap-2"
-        >
-          <span>View All Articles</span>
-          <div class="i-ph:arrow-right text-lg" />
-        </NuxtLink>
+    <section
+      ref="context-section"
+      class="home-context motion-section motion-section-split"
+      :class="{ 'is-in-view': hasContextEntered }"
+      aria-labelledby="home-context-title"
+    >
+      <h2 id="home-context-title" class="page-title home-context-title">
+        <span class="home-context-title-word">Systems,</span>
+        <span class="home-context-title-word">products,</span>
+        <span class="home-context-title-word">experiments.</span>
+      </h2>
+      <div class="home-context-copy">
+        <p>
+          I’m a frontend engineer in Madrid, and one of two people shaping
+          <a href="https://nordhealth.design/" target="_blank" rel="noopener noreferrer" class="site-link">Nord Design System</a>
+          at Nordhealth. This site is where useful ideas and strange little experiments end up.
+        </p>
       </div>
-      <ArticleList :articles="articles" class="slide-enter-content" />
     </section>
 
-    <!-- Talks Section -->
-    <section v-if="talks?.length" class="mb-32 mt-16">
-      <div class="mb-8 flex items-center justify-between">
-        <ProseH2 class="m-0">
-          Recent Talks
-        </ProseH2>
-
-        <NuxtLink
-          to="/talks"
-          class="flex items-center gap-2"
-        >
-          <span>View All Talks</span>
-          <div class="i-ph:arrow-right text-lg" />
+    <section v-if="articlesError || articles?.length" class="home-notes motion-section motion-section-list" aria-labelledby="home-notes-title">
+      <div class="section-heading-row">
+        <h2 id="home-notes-title" class="page-title">
+          Recent notes
+        </h2>
+        <NuxtLink to="/articles" class="site-link">
+          All notes
+          <span class="i-ph:arrow-right h-4 w-4" aria-hidden="true" />
         </NuxtLink>
       </div>
+      <BaseDataState
+        v-if="articlesError"
+        kind="error"
+        title="Recent notes couldn’t be loaded."
+        description="This section is temporarily unavailable. Try loading it again."
+        action-label="Try again"
+        :busy="articlesStatus === 'pending'"
+        @action="refreshArticles"
+      />
+      <ArticleList v-else-if="articles" :articles="articles" heading-level="h3" />
+    </section>
 
-      <TalkList :talks="talks" class="slide-enter-content" />
+    <section v-if="talksError || talks?.[0]" class="home-talk motion-section motion-section-media" aria-labelledby="home-talk-title">
+      <div class="section-heading-row">
+        <h2 id="home-talk-title" class="page-title">
+          Latest talk
+        </h2>
+        <NuxtLink to="/talks" class="site-link">
+          All talks
+          <span class="i-ph:arrow-right h-4 w-4" aria-hidden="true" />
+        </NuxtLink>
+      </div>
+      <BaseDataState
+        v-if="talksError"
+        kind="error"
+        title="The latest talk couldn’t be loaded."
+        description="This section is temporarily unavailable. Try loading it again."
+        action-label="Try again"
+        :busy="talksStatus === 'pending'"
+        @action="refreshTalks"
+      />
+      <TalkItem v-else-if="talks?.[0]" :talk="talks[0]" heading-level="h3" />
     </section>
   </div>
 </template>

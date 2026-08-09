@@ -77,7 +77,8 @@ function getPathStyle(index: number) {
     :key="index"
     xmlns="http://www.w3.org/2000/svg"
     :viewBox="`0 0 ${waveOptions.width} ${waveOptions.height}`"
-    :class="`transition-all transform-gpu duration-1000 w-full z-${index} wave-fade-in ${reverse ? 'reverse' : ''}`"
+    class="wave-fade-in w-full transform-gpu transition-all duration-1000"
+    :class="[`z-${index}`, { reverse }]"
   >
     <path
       class="wave-path transform-gpu ease-in-out"

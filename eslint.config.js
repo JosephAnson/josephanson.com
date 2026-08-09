@@ -1,6 +1,12 @@
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
+  ignores: [
+    '.github/agents/**',
+    '.github/hooks/**',
+    '.github/skills/**',
+    'app/components/CanvasUi/**',
+  ],
   unocss: true,
   vue: true,
   jsonc: true,

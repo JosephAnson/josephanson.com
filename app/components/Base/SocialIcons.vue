@@ -17,10 +17,6 @@ const socials: Record<string, NuxtLinkProps & { label: string }> = {
     href: 'mailto:me@josephanson.com?Subject=Hello from josephanson.com',
     target: '_blank',
   },
-  resume: {
-    label: 'View my resume',
-    href: '/resume',
-  },
 }
 
 const socialsMap = {
@@ -32,10 +28,7 @@ const socialsMap = {
   medium: 'i-ph:medium-logo-duotone',
   linkedin: 'i-ph:linkedin-logo-duotone',
   email: 'i-ph:envelope-duotone',
-  resume: 'i-ph-read-cv-logo-duotone',
 }
-
-const { classes } = useTheme()
 
 const icons = computed<any>(() => {
   return Object.entries(socials)
@@ -58,7 +51,7 @@ function getRel(icon: any) {
 </script>
 
 <template>
-  <div class="flex gap-4">
+  <div class="social-links">
     <!-- eslint-disable-next-line vue/no-multiple-template-root -->
     <NuxtLink
       v-for="icon in icons"
@@ -68,9 +61,9 @@ function getRel(icon: any) {
       :aria-label="icon.label"
       :href="icon.href"
       :target="icon.target"
-      :class="`h-6 w-6 flex ${classes.icon}`"
+      class="social-link"
     >
-      <div v-if="icon.icon" :class="icon.icon" class="h-full w-full" />
+      <div v-if="icon.icon" :class="icon.icon" class="h-5 w-5" />
     </NuxtLink>
   </div>
 </template>

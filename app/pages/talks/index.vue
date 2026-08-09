@@ -1,16 +1,42 @@
 <script setup lang="ts">
-const { data: talks } = await useAsyncData(() => queryCollection('talks').order('date', 'DESC').all())
+const {
+  data: talks,
+  error,
+  status,
+  refresh,
+} = await useAsyncData('talks-index', () => queryCollection('talks').order('date', 'DESC').all())
 
 useSeoMeta({
-  title: 'Conference & Meetup Talks',
-  ogTitle: 'Insightful Tech Talks by Joseph Anson',
-  description: 'Discover engaging conference and meetup presentations by Joseph Anson, covering cutting-edge topics in software engineering. Explore slides, videos, and resources from past events.',
-  ogDescription: 'Dive into a collection of professional tech talks and presentations by Joseph Anson, featuring in-depth insights and practical knowledge from various conferences and meetups.',
+  title: 'Talks',
+  description: 'Conference talks and practical sessions by Joseph Anson on TypeScript, validation, and resilient frontend systems.',
 })
 </script>
 
 <template>
-  <ProseH1>My Talks</ProseH1>
+  <div class="index-page quiet-arrival">
+    <BasePageIntro
+      index="03 / Talks"
+      lead="Sessions about building more reliable applications, usually with types, runtime data, and real production constraints."
+    >
+      Ideas,<br>
+      out loud.
+    </BasePageIntro>
 
-  <TalkList v-if="talks" :talks="talks" class="pb-32 pt-8" />
+    <BaseDataState
+      v-if="error"
+      kind="error"
+      title="Talks couldn’t be loaded."
+      description="The talk archive is temporarily unavailable. Try loading it again."
+      action-label="Try again"
+      :busy="status === 'pending'"
+      @action="refresh"
+    />
+    <TalkList v-else-if="talks?.length" :talks="talks" />
+    <BaseDataState
+      v-else
+      kind="empty"
+      title="No talks are listed yet."
+      description="There’s nothing in this archive right now. Check back another time."
+    />
+  </div>
 </template>

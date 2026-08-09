@@ -1,0 +1,12 @@
+id: nord-design-system
+title: Nord Design System
+description: Stewarding the design system behind Nordhealth's products, building accessible web components, design tokens, and guidelines used across clinical software.
+link: https://nordhealth.design/
+date: 2026-08-09
+status: in-progress
+technologies:
+  - Web Components
+  - TypeScript
+  - Lit
+  - Design Tokens
+  - Tailwind CSS

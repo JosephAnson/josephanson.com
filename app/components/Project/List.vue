@@ -3,15 +3,14 @@ import type { Collections } from '@nuxt/content'
 
 defineProps<{
   projects: Collections['projects'][]
+  headingLevel?: 'h2' | 'h3'
 }>()
 </script>
 
 <template>
-  <ul class="not-prose slide-enter-content grid list-none gap-6 lg:grid-cols-3 sm:grid-cols-2">
+  <ul class="work-grid">
     <li v-for="project in projects" :key="project.id">
-      <ProjectItem
-        :project="project"
-      />
+      <ProjectItem :project="project" :heading-level="headingLevel" />
     </li>
   </ul>
 </template>

@@ -1,11 +1,31 @@
 <script setup lang="ts">
-import { useScroll } from '@vueuse/core'
+import '@fontsource-variable/archivo/wdth.css'
+import '@fontsource-variable/commissioner/wght.css'
 import '@unocss/reset/tailwind.css'
 import './styles/animations.css'
 import './styles/base.css'
 import './styles/prose.css'
 
-const { classes } = useTheme()
+const { classes, currentTheme } = useTheme()
+const colorMode = useColorMode()
+
+const route = useRoute()
+
+watch(() => route.fullPath, async () => {
+  if (!import.meta.client)
+    return
+
+  await nextTick()
+  if (route.hash) {
+    document.querySelector<HTMLElement>(route.hash)?.scrollIntoView()
+    return
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'auto',
+  })
+}, { flush: 'post' })
 
 useHead({
   titleTemplate(title) {
@@ -20,23 +40,23 @@ useHead({
       name: 'view-transition',
       content: 'same-origin',
     },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'description', content: 'Joseph Anson\'s personal website' },
+    { name: 'description', content: 'The personal website of Joseph Anson: frontend projects, design-system work, technical notes, talks, and occasional web experiments.' },
     { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
   ],
   link: [
     { rel: 'manifest', href: '/site.webmanifest' },
-    { rel: 'mask-icon', href: '/safari-pinned-tab.svg' },
+    { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#3f61a6' },
+    { rel: 'icon', type: 'image/svg+xml', href: '/icon.svg' },
     { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
     { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-    { rel: 'icon', type: 'image/png', href: '/favicon.png' },
     { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/android-chrome-192x192.png' },
     { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/android-chrome-512x512.png' },
     { rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png', href: '/apple-touch-icon.png' },
   ],
   htmlAttrs: {
-    lang: 'en',
-    class: () => `print:bg-none ${classes.value.htmlBackground}`,
+    'lang': 'en',
+    'class': () => `print:bg-none ${classes.value.htmlBackground}`,
+    'data-accent': () => currentTheme.value,
   },
   bodyAttrs: {
     class: () => `print:bg-none ${classes.value.gradient} ${classes.value.text}`,
@@ -44,35 +64,83 @@ useHead({
 })
 
 useSeoMeta({
-  ogTitle: 'Vue.js Expert & Web Developer - Joseph Anson',
-  ogDescription: 'Explore the portfolio of Joseph Anson, a Vue.js expert, and discover cutting-edge web applications that blend functionality with sleek design.',
+  ogTitle: 'Frontend projects, experiments & notes - Joseph Anson',
+  ogDescription: 'Projects, design-system work, technical notes, talks, and occasional web experiments by Joseph Anson.',
   ogUrl: 'https://www.josephanson.com',
-  twitterTitle: 'Vue.js Expert & Web Developer - Joseph Anson',
-  twitterDescription: 'Discover the work of Joseph Anson, a Vue.js expert with a passion for creating accessible and engaging web applications.',
-  twitterCard: 'summary',
   ogType: 'website',
 })
 
-defineOgImageComponent('Default')
-
-const el = useTemplateRef<HTMLElement>('page')
-const router = useRouter()
-const { y } = useScroll(el)
-
-watch(() => router.currentRoute.value.fullPath, () => {
-  y.value = 0
+defineOgImage('Default', {
+  title: 'Systems, products, experiments.',
+  description: 'Frontend projects, design-system work, technical notes, talks, and occasional web experiments.',
 })
+
+const pageTransition = {
+  name: 'route',
+  mode: 'out-in' as const,
+}
+
+const ditherColor = computed<[number, number, number]>(() => {
+  // The canvas is deliberately faint, so these keep each route accent's hue
+  // while restoring the chroma lost when the layer blends into the paper.
+  const lightColors: Record<string, [number, number, number]> = {
+    blue: [0.08, 0.27, 0.9],
+    indigo: [0.3, 0.22, 0.78],
+    emerald: [0.08, 0.54, 0.3],
+    rust: [0.9, 0.2, 0.06],
+  }
+
+  const darkColors: Record<string, [number, number, number]> = {
+    blue: [0.45, 0.64, 1],
+    indigo: [0.66, 0.56, 1],
+    emerald: [0.39, 0.82, 0.59],
+    rust: [1, 0.58, 0.42],
+  }
+
+  const colors = colorMode.value === 'dark' ? darkColors : lightColors
+  return colors[currentTheme.value] ?? colors.blue!
+})
+
+const ditherBaseColor = computed<[number, number, number]>(() => (
+  colorMode.value === 'dark'
+    ? [0.067, 0.086, 0.102]
+    : [0.953, 0.965, 0.973]
+))
 </script>
 
 <template>
-  <div ref="page" class="h-full of-y-scroll scroll-smooth print:h-auto">
-    <TheStarsBackground class="fixed left-0 top-0 h-full w-full" />
-    <TheHeader />
-    <main>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </main>
-    <TheFooter />
+  <!--
+  THESIS: Work is browsed as a quiet horizontal shelf, not sold through a personal-brand hero or recruitment funnel.
+  OWN-WORLD: Cool tinted paper, graphite type, one muted route accent, narrow headings, hairline rules, and flat square project planes.
+  STORY: Visitors meet Joseph, scan selected work, then wander into notes and talks with no conversion pressure.
+  FIRST VIEWPORT: Compact identity upper left, navigation upper right, controlled open field, and a lower shelf with one wide active project plus two narrow projects.
+  FORM: Shelf-led with Order, approved comp B of 3, seed key 6e5f3fcd.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <div class="site-root min-h-dvh">
+    <Dither
+      class="site-dither"
+      aria-hidden="true"
+      :wave-color="ditherColor"
+      :base-color="ditherBaseColor"
+      :wave-speed="0.055"
+      :wave-frequency="2.2"
+      :wave-amplitude="0.4"
+      :color-num="5"
+      :pixel-size="3"
+      :enable-mouse-interaction="true"
+      :mouse-radius="0.5"
+    />
+    <div class="site-content min-h-dvh">
+      <NuxtRouteAnnouncer />
+      <a href="#main-content" class="site-skip-link">Skip to content</a>
+      <TheHeader />
+      <main id="main-content" tabindex="-1">
+        <NuxtLayout>
+          <NuxtPage :transition="pageTransition" />
+        </NuxtLayout>
+      </main>
+      <TheFooter />
+    </div>
   </div>
 </template>

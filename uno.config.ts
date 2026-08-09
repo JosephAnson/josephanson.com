@@ -3,7 +3,6 @@ import {
   defineConfig,
   presetIcons,
   presetTypography,
-  presetWebFonts,
   presetWind3,
   transformerDirectives,
   transformerVariantGroup,
@@ -18,6 +17,16 @@ export const colors: string[] = tailwindColors
   .flat()
 
 export const unocssConfig: UserConfig<any> = {
+  blocklist: [/pascalCase\(component\)/],
+  content: {
+    pipeline: {
+      exclude: [
+        /\.(css|postcss|sass|scss|less|stylus|styl)($|\?)/,
+        /[/\\]\.github[/\\]/,
+        /[/\\]\.impeccable[/\\]/,
+      ],
+    },
+  },
   presets: [
     presetWind3(),
     presetIcons({
@@ -29,13 +38,6 @@ export const unocssConfig: UserConfig<any> = {
       },
     }),
     presetTypography(),
-    presetWebFonts({
-      provider: 'bunny',
-      fonts: {
-        sans: ['Poppins', 'Poppins:400,500,600,700'],
-        mono: 'DM Sans Mono',
-      },
-    }),
   ],
   transformers: [
     transformerDirectives(),
@@ -45,6 +47,10 @@ export const unocssConfig: UserConfig<any> = {
   theme: {
     container: {
       center: true,
+    },
+    fontFamily: {
+      sans: '"Commissioner Variable", sans-serif',
+      display: '"Archivo Variable", sans-serif',
     },
   },
 }

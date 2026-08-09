@@ -3,48 +3,33 @@ import type { Collections } from '@nuxt/content'
 
 const props = defineProps<{
   article: Collections['articles']
+  headingLevel?: 'h2' | 'h3'
 }>()
 
-const { classes } = useTheme()
-
-const timeAgo = useTimeAgo(new Date(props.article.date))
+const formattedDate = computed(() => new Intl.DateTimeFormat('en', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+}).format(new Date(props.article.date)))
 </script>
 
 <template>
-  <li>
-    <NuxtLink
-      :to="article.path"
-      class="group block h-full w-full"
-    >
-      <BaseCard>
-        <div class="h-full flex flex-col">
-          <div class="mb-2 flex items-start justify-between">
-            <time
-              class="text-xs font-medium"
-              :datetime="article.date.toString()"
-              :class="classes.textLight"
-            >
-              {{ timeAgo }}
-            </time>
-            <div class="i-ph:arrow-right text-lg" :class="classes.textTint" />
-          </div>
+  <li class="note-row">
+    <NuxtLink :to="article.path" class="note-row-link">
+      <time :datetime="article.date.toString()" class="note-date">
+        {{ formattedDate }}
+      </time>
 
-          <h2 class="mb-2 text-xl font-bold group-hover:underline" :class="classes.text">
-            {{ article.title }}
-          </h2>
+      <div class="note-copy">
+        <component :is="headingLevel ?? 'h2'" class="note-title">
+          {{ article.title }}
+        </component>
+        <p>{{ article.description }}</p>
+      </div>
 
-          <p class="line-clamp-3 mb-2 text-sm" :class="classes.text">
-            {{ article.description }}
-          </p>
-
-          <div class="mt-auto">
-            <BaseTagList
-              class="mt-4"
-              :tags="article.tags || []"
-            />
-          </div>
-        </div>
-      </BaseCard>
+      <span class="note-arrow" aria-hidden="true">
+        <span class="i-ph:arrow-up-right h-5 w-5" />
+      </span>
     </NuxtLink>
   </li>
 </template>

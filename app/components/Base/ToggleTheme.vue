@@ -1,55 +1,89 @@
 <script setup lang="ts">
 import type { ColorModes } from '~~/types'
-import { capitalize } from 'vue'
 
 const colorMode = useColorMode()
-const currentTheme = useCurrentTheme()
 
-const { rotateTheme, classes } = useTheme()
-
-const capitalizedCurrentTheme = computed(() => capitalize(currentTheme.value))
-
-function onClick() {
+function nextPreference() {
   const values: string[] = ['dark', 'light'] satisfies ColorModes[]
   const index = values.indexOf(colorMode.preference)
-  const next = (index + 1) % values.length
-
-  if (values[next])
-    colorMode.preference = values[next]
+  return values[(index + 1) % values.length]
 }
+
+function setThemeRevealGeometry() {
+  const root = document.documentElement
+  const surfaceWidth = Math.max(window.innerWidth, root.scrollWidth)
+  const surfaceHeight = Math.max(window.innerHeight, root.scrollHeight)
+  const rootFontSize = Number.parseFloat(getComputedStyle(root).fontSize)
+  const originInset = rootFontSize * 2.4
+  const farthestX = surfaceWidth - originInset
+  const farthestY = surfaceHeight - originInset
+  const overscan = Math.max(32, Math.max(surfaceWidth, surfaceHeight) * 0.04)
+  const radius = Math.ceil(Math.hypot(farthestX, farthestY) + overscan)
+  const previousRadius = Math.max(window.innerWidth, window.innerHeight) * 2
+  const duration = Math.round(Math.min(880, Math.max(620, 620 * radius / previousRadius)))
+
+  root.style.setProperty('--theme-reveal-radius', `${radius}px`)
+  root.style.setProperty('--theme-reveal-duration', `${duration}ms`)
+}
+
+function clearThemeRevealGeometry() {
+  const root = document.documentElement
+  root.style.removeProperty('--theme-reveal-radius')
+  root.style.removeProperty('--theme-reveal-duration')
+}
+
+async function onClick() {
+  const next = nextPreference()
+
+  if (!next)
+    return
+
+  const documentWithTransitions = document as Document & {
+    startViewTransition?: (update: () => Promise<void>) => { finished: Promise<void> }
+  }
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (!documentWithTransitions.startViewTransition || reduceMotion) {
+    colorMode.preference = next
+    return
+  }
+
+  setThemeRevealGeometry()
+  document.documentElement.dataset.themeTransition = ''
+  try {
+    const transition = documentWithTransitions.startViewTransition(async () => {
+      colorMode.preference = next
+      await nextTick()
+    })
+
+    void transition.finished.catch(() => {}).finally(() => {
+      delete document.documentElement.dataset.themeTransition
+      clearThemeRevealGeometry()
+    })
+  }
+  catch {
+    delete document.documentElement.dataset.themeTransition
+    clearThemeRevealGeometry()
+    colorMode.preference = next
+  }
+}
+
+const nextMode = computed(() => colorMode.preference === 'dark' ? 'light' : 'dark')
 </script>
 
 <template>
-  <div class="flex gap-4">
-    <button
-      title="Change the theme"
-      aria-label="Change the theme"
-      :class="`z-40 h-6 flex bg-transparent items-center ${classes.icon}`"
-      @click="rotateTheme"
-    >
-      <span class="mr-2 text-sm">{{ capitalizedCurrentTheme }}</span>
-      <span class="i-ph:palette-duotone h-6 flex-shrink-0 bg-none" />
-    </button>
-
-    <button
-      aria-label="Color Mode"
-      :class="`h-6 ${classes.icon} w-6 flex bg-transparent`"
-      @click="onClick"
-    >
+  <button
+    type="button"
+    class="appearance-toggle site-icon"
+    :aria-label="`Switch to ${nextMode} mode`"
+    :title="`Switch to ${nextMode} mode`"
+    @click="onClick"
+  >
+    <span class="appearance-toggle-icon" aria-hidden="true">
       <ColorScheme>
-        <template v-if="colorMode.preference === 'dark'">
-          <div class="i-ph:moon-duotone h-full w-full" />
-          <span class="sr-only">Dark mode</span>
-        </template>
-        <template v-else-if="colorMode.preference === 'light'">
-          <div class="i-ph:sun-duotone h-full w-full" />
-          <span class="sr-only">Light mode</span>
-        </template>
-        <template v-else>
-          <div class="i-ph:desktop-duotone h-full w-full" />
-          <span class="sr-only">System mode</span>
-        </template>
+        <span v-if="colorMode.preference === 'dark'" class="i-ph:moon h-4 w-4" />
+        <span v-else class="i-ph:sun h-4 w-4" />
       </ColorScheme>
-    </button>
-  </div>
+    </span>
+  </button>
 </template>

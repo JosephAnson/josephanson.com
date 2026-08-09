@@ -1,26 +1,10 @@
-<script setup lang="ts">
-const show = useShowMenu()
-</script>
-
 <template>
-  <footer class="fixed bottom-6 z-2000 mt-2 w-full pt-2 md:bottom-12 md:mt-10 print:hidden md:pt-8">
+  <footer class="site-footer print:hidden">
     <BaseContainer>
-      <div class="flex items-center justify-between">
+      <div class="site-footer-inner">
+        <p>Joseph Anson / Madrid</p>
         <BaseSocialIcons class="z-40" />
-
-        <BaseToggleTheme class="z-40" />
       </div>
     </BaseContainer>
   </footer>
-
-  <TheWaves
-    :amount="6"
-    reverse
-    class="pointer-events-none fixed bottom-0 left-0 print:hidden"
-    :style="{
-      transform: show
-        ? `translateY(-100%)`
-        : `translateY(0%)`,
-    }"
-  />
 </template>

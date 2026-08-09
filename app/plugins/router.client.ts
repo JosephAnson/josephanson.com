@@ -11,4 +11,8 @@ export default defineNuxtPlugin(() => {
   router.afterEach(() => {
     NProgress.done()
   })
+
+  router.onError(() => {
+    NProgress.done()
+  })
 })

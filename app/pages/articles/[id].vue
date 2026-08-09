@@ -1,24 +1,31 @@
 <script setup lang="ts">
 const route = useRoute()
-const { data: article } = await useAsyncData(route.path, () => {
-  return queryCollection('articles').path(route.path).first()
-})
+const { data: article, error } = await useAsyncData(route.path, () => queryCollection('articles').path(route.path).first())
 
-const { classes } = useTheme()
-
-if (article.value && article.value.seo.image) {
-  useHead({
-    meta: [
-      { property: 'og:image', content: article.value.seo.image.toString() },
-    ],
+if (error.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: 'Unable to load this note',
+    cause: error.value,
   })
 }
 
-const parentPath = computed(() => {
-  const pathTable = route.path.split('/')
-  pathTable.pop()
-  return pathTable.join('/') || '/'
-})
+if (!article.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Note not found',
+  })
+}
+
+if (article.value?.seo?.image) {
+  useHead({
+    meta: [{ property: 'og:image', content: article.value.seo.image.toString() }],
+  })
+}
+
+const formattedDate = computed(() => article.value
+  ? new Intl.DateTimeFormat('en', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(article.value.date))
+  : '')
 
 useSeoMeta({
   title: article.value?.title,
@@ -27,28 +34,28 @@ useSeoMeta({
 </script>
 
 <template>
-  <article class="slide-enter-content relative max-w-3xl pb-30 prose md:pb-100 dark:prose-invert">
-    <div class="not-prose">
-      <NuxtLink
-        :to="parentPath"
-        class="inline-flex items-center text-sm"
-        :class="classes.link"
-      >
-        <div class="i-ph:arrow-left mr-2 h-4 w-4" />
-        <span>
-          Back
-        </span>
-      </NuxtLink>
+  <article v-if="article" class="content-page quiet-arrival">
+    <NuxtLink to="/articles" class="content-back site-link">
+      <span class="i-ph:arrow-left h-4 w-4" aria-hidden="true" />
+      Notes
+    </NuxtLink>
+
+    <header class="content-header">
+      <p class="page-kicker">
+        {{ formattedDate }}
+      </p>
+      <h1 class="content-title">
+        {{ article.title }}
+      </h1>
+      <p class="content-deck">
+        {{ article.description }}
+      </p>
+    </header>
+
+    <div class="article-body prose">
+      <ContentRenderer :value="article" />
     </div>
 
-    <ProseH1>
-      {{ article?.title }}
-    </ProseH1>
-
-    <div class="relative m-auto">
-      <ContentRenderer v-if="article" :value="article" class="slide-enter-content" />
-    </div>
-
-    <BaseTagList class="mt-6" :tags="article?.tags || []" />
+    <BaseTagList v-if="article.tags?.length" class="content-tags" :tags="article.tags" />
   </article>
 </template>
