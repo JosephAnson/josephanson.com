@@ -7,6 +7,7 @@ export const articleSchema = z.object({
   tags: z.array(z.string()).optional(),
   image: z.string().url().optional(),
   author: z.string().optional(),
+  related: z.string().optional(),
   draft: z.boolean().default(false),
 })
 

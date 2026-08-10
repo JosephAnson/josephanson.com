@@ -86,14 +86,14 @@ const ditherColor = computed<[number, number, number]>(() => {
   // while restoring the chroma lost when the layer blends into the paper.
   const lightColors: Record<string, [number, number, number]> = {
     blue: [0.08, 0.27, 0.9],
-    indigo: [0.3, 0.22, 0.78],
+    violet: [0.55, 0.2, 0.62],
     emerald: [0.08, 0.54, 0.3],
     rust: [0.9, 0.2, 0.06],
   }
 
   const darkColors: Record<string, [number, number, number]> = {
     blue: [0.45, 0.64, 1],
-    indigo: [0.66, 0.56, 1],
+    violet: [0.79, 0.57, 0.86],
     emerald: [0.39, 0.82, 0.59],
     rust: [1, 0.58, 0.42],
   }

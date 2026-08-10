@@ -1,43 +1,38 @@
-<script setup>
-const props = defineProps({
-  href: {
-    type: String,
-    default: '',
-  },
-  blank: {
-    type: Boolean,
-    default: false,
-  },
+<script setup lang="ts">
+const props = withDefaults(defineProps<{
+  href?: string
+  blank?: boolean
+}>(), {
+  href: '',
+  blank: false,
 })
 
 const { classes } = useTheme()
 
-function isHttpUrl(string) {
-  let url
+function isHttpUrl(value: string) {
   try {
-    url = new URL(string)
+    const url = new URL(value)
+    return url.protocol === 'http:' || url.protocol === 'https:'
   }
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  catch (_) {
+  catch {
     return false
   }
-  return url.protocol === 'http:' || url.protocol === 'https:'
 }
 const isExternal = isHttpUrl(props.href)
 
-const bindProps = {
+const bindProps = computed(() => ({
   to: props.href,
-}
-
-if (isExternal || props.blank)
-  bindProps.target = '_blank'
+  target: props.blank ? '_blank' : undefined,
+  rel: props.blank ? 'noopener noreferrer' : undefined,
+  external: isExternal,
+}))
 </script>
 
 <template>
   <NuxtLink
     v-bind="bindProps"
     :class="classes.link"
-    :prefetch="true"
+    :prefetch="!isExternal"
   >
     <slot />
   </NuxtLink>

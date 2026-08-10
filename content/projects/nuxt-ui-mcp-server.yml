@@ -1,0 +1,12 @@
+id: nuxt-ui-mcp-server
+title: Nuxt UI MCP Server
+description: A hosted MCP server that gives coding agents current Nuxt UI component APIs, examples, templates, and documentation through eight focused tools.
+link: https://nuxt-ui-mcp-server.vercel.app/
+date: 2025-09-09
+status: completed
+technologies:
+  - Nuxt 4
+  - TypeScript
+  - Model Context Protocol
+  - Redis
+  - Vercel

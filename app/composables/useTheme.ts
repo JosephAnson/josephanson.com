@@ -11,7 +11,7 @@ export function useTheme() {
 
   watch(() => route.path, (path) => {
     if (path === '/projects')
-      currentTheme.value = 'indigo'
+      currentTheme.value = 'violet'
     else if (path.includes('/articles'))
       currentTheme.value = 'emerald'
     else if (path.includes('/talks'))
