@@ -8,6 +8,7 @@ import './styles/prose.css'
 
 const { classes, currentTheme } = useTheme()
 const colorMode = useColorMode()
+const hasHydrated = useMounted()
 
 const route = useRoute()
 
@@ -119,6 +120,7 @@ const ditherBaseColor = computed<[number, number, number]>(() => (
   -->
   <div class="site-root min-h-dvh">
     <Dither
+      v-if="hasHydrated"
       class="site-dither"
       aria-hidden="true"
       :wave-color="ditherColor"
