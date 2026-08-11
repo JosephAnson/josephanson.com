@@ -533,7 +533,7 @@ html[data-theme-transition]::view-transition-old(root) {
 
 html[data-theme-transition]::view-transition-new(root) {
   z-index: 2;
-  animation: theme-reveal var(--theme-reveal-duration, 620ms) var(--motion-ease-out) both;
+  animation: theme-reveal var(--theme-reveal-duration, 2400ms) var(--motion-ease-out) both;
 }
 
 @supports (animation-timeline: view()) {

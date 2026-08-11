@@ -9,6 +9,15 @@ function nextPreference() {
   return values[(index + 1) % values.length]
 }
 
+function easeOutTimeForProgress(progress: number) {
+  const curvePosition = 1 - Math.cbrt(1 - progress)
+  const inversePosition = 1 - curvePosition
+
+  return 3 * inversePosition ** 2 * curvePosition * 0.16
+    + 3 * inversePosition * curvePosition ** 2 * 0.3
+    + curvePosition ** 3
+}
+
 function setThemeRevealGeometry() {
   const root = document.documentElement
   const surfaceWidth = Math.max(window.innerWidth, root.scrollWidth)
@@ -17,13 +26,19 @@ function setThemeRevealGeometry() {
   const originInset = rootFontSize * 2.4
   const farthestX = surfaceWidth - originInset
   const farthestY = surfaceHeight - originInset
-  const overscan = Math.max(32, Math.max(surfaceWidth, surfaceHeight) * 0.04)
+  const overscan = 0
   const radius = Math.ceil(Math.hypot(farthestX, farthestY) + overscan)
   const previousRadius = Math.max(window.innerWidth, window.innerHeight) * 2
-  const duration = Math.round(Math.min(880, Math.max(620, 620 * radius / previousRadius)))
+  const baseDuration = 2000
+  const duration = Math.round(Math.min(2400, Math.max(baseDuration, baseDuration * radius / previousRadius)))
+  const viewportRadius = Math.hypot(window.innerWidth - originInset, window.innerHeight - originInset) + 32
+  const visibleProgress = Math.min(1, viewportRadius / radius)
+  const visibleDuration = Math.ceil(duration * easeOutTimeForProgress(visibleProgress))
 
   root.style.setProperty('--theme-reveal-radius', `${radius}px`)
   root.style.setProperty('--theme-reveal-duration', `${duration}ms`)
+
+  return visibleDuration
 }
 
 function clearThemeRevealGeometry() {
@@ -39,7 +54,11 @@ async function onClick() {
     return
 
   const documentWithTransitions = document as Document & {
-    startViewTransition?: (update: () => Promise<void>) => { finished: Promise<void> }
+    startViewTransition?: (update: () => Promise<void>) => {
+      ready: Promise<void>
+      finished: Promise<void>
+      skipTransition: () => void
+    }
   }
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -48,15 +67,21 @@ async function onClick() {
     return
   }
 
-  setThemeRevealGeometry()
+  const visibleDuration = setThemeRevealGeometry()
   document.documentElement.dataset.themeTransition = ''
   try {
     const transition = documentWithTransitions.startViewTransition(async () => {
       colorMode.preference = next
       await nextTick()
     })
+    let completionTimer: number | undefined
+
+    void transition.ready.then(() => {
+      completionTimer = window.setTimeout(() => transition.skipTransition(), visibleDuration)
+    }).catch(() => {})
 
     void transition.finished.catch(() => {}).finally(() => {
+      window.clearTimeout(completionTimer)
       delete document.documentElement.dataset.themeTransition
       clearThemeRevealGeometry()
     })
