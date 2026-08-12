@@ -2,6 +2,9 @@
 title: How We Added Performance Budgets to 117 Web Components
 description: How we turned interaction timing, rendering work, and application traces into a repeatable performance contract for Nord Design System.
 date: 2026-08-08T00:00:00.000Z
+categories:
+  - Design Systems
+  - Performance
 tags:
   - Design Systems
   - Web Components

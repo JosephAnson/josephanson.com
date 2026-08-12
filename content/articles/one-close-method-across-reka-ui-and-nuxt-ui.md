@@ -2,6 +2,9 @@
 title: One close() Method Across Reka UI and Nuxt UI
 description: How a small modal API improvement moved through two library layers and removed state-management boilerplate for their consumers.
 date: 2026-06-28T00:00:00.000Z
+categories:
+  - Component APIs
+  - Open Source
 tags:
   - Vue
   - Nuxt UI

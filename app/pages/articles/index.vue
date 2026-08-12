@@ -30,7 +30,7 @@ useSeoMeta({
       :busy="status === 'pending'"
       @action="refresh"
     />
-    <ArticleList v-else-if="articles?.length" :articles="articles" />
+    <ArticleList v-else-if="articles?.length" :articles="articles" filterable />
     <BaseDataState
       v-else
       kind="empty"

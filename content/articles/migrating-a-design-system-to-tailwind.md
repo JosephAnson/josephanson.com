@@ -2,6 +2,9 @@
 title: Migrating a Design System to Tailwind Without Breaking Its Consumers
 description: The migration tools, compatibility decisions, and rollout strategy behind making Tailwind CSS the main styling driver for Nord Design System.
 date: 2026-07-26T00:00:00.000Z
+categories:
+  - Design Systems
+  - Developer Experience
 tags:
   - Design Systems
   - Tailwind CSS

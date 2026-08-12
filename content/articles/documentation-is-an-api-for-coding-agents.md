@@ -4,6 +4,7 @@ description: What building MCP servers, llms.txt, and machine-readable component
 date: 2026-07-12T00:00:00.000Z
 categories:
   - AI
+  - Documentation
 tags:
   - Documentation
   - MCP
