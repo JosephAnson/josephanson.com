@@ -2,6 +2,8 @@
 title: Documentation Is Becoming an API for Coding Agents
 description: What building MCP servers, llms.txt, and machine-readable component documentation taught me about designing documentation for people and coding agents.
 date: 2026-07-12T00:00:00.000Z
+categories:
+  - AI
 tags:
   - Documentation
   - MCP
